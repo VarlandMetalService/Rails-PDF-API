@@ -3,6 +3,60 @@ class PdfController < ApplicationController
   def index
   end
 
+  def invoice
+    printer = :ox
+    pdf = Invoice.new
+    if params[:print]
+      path = Tempfile.new(['invoice','.pdf']).path
+      pdf.render_file path
+      spooler = VMS::PrintSpooler.new printer: printer, color: true
+      spooler.print_files path
+      File.delete(path)
+      render plain: "PDF (#{path}) sent to printer."
+    else
+      send_data pdf.render,
+                filename: "invoice.pdf",
+                type: "application/pdf",
+                disposition: "inline"
+    end
+  end
+
+  def packing_slip
+    printer = :ox
+    pdf = PackingSlip.new
+    if params[:print]
+      path = Tempfile.new(['packing_slip','.pdf']).path
+      pdf.render_file path
+      spooler = VMS::PrintSpooler.new printer: printer, color: true
+      spooler.print_files path
+      File.delete(path)
+      render plain: "PDF (#{path}) sent to printer."
+    else
+      send_data pdf.render,
+                filename: "Packing Slip.pdf",
+                type: "application/pdf",
+                disposition: "inline"
+    end
+  end
+
+  def plating_certificate
+    printer = :ox
+    pdf = PlatingCertificate.new
+    if params[:print]
+      path = Tempfile.new(['plating_certificate','.pdf']).path
+      pdf.render_file path
+      spooler = VMS::PrintSpooler.new printer: printer, color: true
+      spooler.print_files path
+      File.delete(path)
+      render plain: "PDF (#{path}) sent to printer."
+    else
+      send_data pdf.render,
+                filename: "plating_certificate.pdf",
+                type: "application/pdf",
+                disposition: "inline"
+    end
+  end
+
   def so
     printer = :ox
     if params[:print]
@@ -12,7 +66,7 @@ class PdfController < ApplicationController
         pdf.render_file path
         spooler = VMS::PrintSpooler.new printer: printer, color: true
         spooler.print_files path
-        # File.delete(path)
+       # File.delete(path)
       end
       render plain: "PDF sent to printer."
     else
