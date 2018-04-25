@@ -57,6 +57,24 @@ class PdfController < ApplicationController
     end
   end
 
+  def bill_of_lading
+    printer = :ox
+    pdf = BillOfLading.new
+    if params[:print]
+      path = Tempfile.new(['bill_of_lading','.pdf']).path
+      pdf.render_file path
+      spooler = VMS::PrintSpooler.new printer: printer, color: true
+      spooler.print_files path
+      File.delete(path)
+      render plain: "PDF (#{path}) sent to printer."
+    else
+      send_data pdf.render,
+                filename: "bill_of_lading.pdf",
+                type: "application/pdf",
+                disposition: "inline"
+    end
+  end
+
   def so
     printer = :ox
     if params[:print]
