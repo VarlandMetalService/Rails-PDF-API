@@ -5,13 +5,12 @@ class Invoice < VarlandPdf
     def initialize(data = nil)
         super()
         @data = data
-        numberOfOrders = 2
 
         insert_header
-        draw_invoiceTable(numberOfOrders)
+        draw_invoiceTable()
     end
 
-    def draw_invoiceTable(numOfOrders)
+    def draw_invoiceTable()
         #Draw Table
         bounding_box [_i(0.5), _i(7.5)], width: _i(7.5), height: _i(6.85) do
 
@@ -180,12 +179,12 @@ class Invoice < VarlandPdf
             #Draw Invoice Number.
             page_header_data_box '276876', 7.2, 0.2, 0.75, 0.2, false, :left
 
-            #Draw company code and FAX #
+            #Draw customer code and FAX #
             y = 0.875
             ['SOLIND',
              '',
              'FAX: (440) 816-9501'].each do |text|
-                page_header_data_box text, 6.3, y, 1.2, 0.2, false, :left
+                page_header_data_box text, 0.0, y, 7.5, 0.2, false, :right
                 y -= 0.125
             end
         end
@@ -200,19 +199,6 @@ class Invoice < VarlandPdf
         font_size large ? 9 : 7
         fill_color '000000'
         text_box  text,
-                  at: [_i(x), _i(y)],
-                  width: _i(width),
-                  height: _i(height),
-                  align: align,
-                  valign: valign,
-                  overflow: :shrink_to_fit
-    end
-
-    def page_large_header_text_box(text, x, y, width, height = 0.2, large = true, align = :center, valign = :center, style = :bold)
-        font 'Arial Narrow', style: style
-        font_size large ? 20 : 14
-        fill_color '000000'
-        text_box  text.upcase,
                   at: [_i(x), _i(y)],
                   width: _i(width),
                   height: _i(height),
