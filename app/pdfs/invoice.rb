@@ -33,15 +33,15 @@ class Invoice < VarlandPdf
             end
 
             #Draw Header Text
-            page_header_text_box 'Order', 0, 6.85, 0.75, 0.25
-            page_header_text_box 'Pounds', 0.75, 6.85, 0.6, 0.25
-            page_header_text_box 'Pieces', 1.4, 6.85, 0.6, 0.25
-            page_header_text_box 'Part Desc./Process Spec.', 2, 6.85, 2.2, 0.25
-            page_header_text_box 'Ref #', 4.2, 6.85, 1.2, 0.25
-            page_header_text_box 'Price/Remarks', 5.4, 6.85, 1.3, 0.25
-            page_header_text_box 'Totals', 6.7, 6.85, 0.8, 0.25
-            page_header_text_box 'Terms: 1% 10 Days Net 30, 1 1/2% Interest charge on Past due balance-18% Annual', 0, 0.25, 5.4, 0.25, true, :center, :center
-            page_header_text_box 'Invoice total', 5.5, 0.25, 1.3, 0.25, true, :left, :center
+            page_header_text_box 'ORDER', 0, 6.85, 0.75, 0.25
+            page_header_text_box 'POUNDS', 0.75, 6.85, 0.6, 0.25
+            page_header_text_box 'PIECES', 1.4, 6.85, 0.6, 0.25
+            page_header_text_box 'PART DESC./PROCESS SPEC.', 2, 6.85, 2.2, 0.25
+            page_header_text_box 'REF #', 4.2, 6.85, 1.2, 0.25
+            page_header_text_box 'PRICE/REMARKS', 5.4, 6.85, 1.3, 0.25
+            page_header_text_box 'TOTALS', 6.7, 6.85, 0.8, 0.25
+            page_header_text_box 'TERMS: 1% 10 DAYS NET 30, 1 1/2% INTEREST CHARGE ON PAST DUE BALANCE-18% ANNUAL', 0, 0.25, 5.4, 0.25, true, :center, :center
+            page_header_text_box 'INVOICE TOTAL', 5.5, 0.25, 1.3, 0.25, true, :left, :center
             page_header_text_box '$', 6.75, 0.25, 0.8, 0.25, true, :left, :center
             
             #Labels under 'ORDER'
@@ -128,7 +128,7 @@ class Invoice < VarlandPdf
 
         end
         #Draw sub-header
-        page_header_text_box 'We Hereby Certify That These Goods Were Produced In Compliance With The Fair Labor Standards Act, As Amended', 0.5, 0.6, 7.5, 0.2, true, :center, :top 
+        page_header_text_box 'We Hereby Certify That These Goods Were Produced In Compliance With The Fair Labor Standards Act, As Amended', 0.5, 0.6, 7.5, 0.2, false, :center, :top 
 
     end
 
@@ -196,7 +196,7 @@ class Invoice < VarlandPdf
 
     def page_header_text_box(text, x, y, width, height = 0.2, large = false, align = :center, valign = :center, style =:bold)
         font 'Arial Narrow', style: style
-        font_size large ? 9 : 7
+        font_size large ? 10 : 8
         fill_color '000000'
         text_box  text,
                   at: [_i(x), _i(y)],
@@ -210,7 +210,7 @@ class Invoice < VarlandPdf
     def page_header_data_box(text, x, y, width, height = 0.2, large = false, align = :left, valign = :center, style =:normal)
         return if text.blank?
         font 'Arial Narrow', style: style
-        font_size large ? 14 : 8
+        font_size large ? 14 : 9
         fill_color '000000'
         text_box  text.upcase,
                   at: [_i(x), _i(y)],

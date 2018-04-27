@@ -81,7 +81,7 @@ class PackingSlip < VarlandPdf
             #Draw SOLD TO along left side
             y = 1.4
             ['S', 'O', 'L', 'D', '', 'T', 'O'].each do |text|
-                page_header_data_box text, 0, y, 0.2, 1.4
+                page_header_data_box text, 0, y, 0.2, 1.4, :center
                 y -= 0.15
             end
 
@@ -90,7 +90,7 @@ class PackingSlip < VarlandPdf
             ['SMALL PARTS INC.',
              'PO BOX 23',
              'LOGANSPORT, IN 46947'].each do |text|
-                page_header_data_box text, 0.25, y, 2.0, 1.4, :left
+                page_header_data_box text, 0.25, y, 4.5, 1.4, :left
                 y -= 0.2
             end
 
@@ -101,7 +101,7 @@ class PackingSlip < VarlandPdf
              #Draw SHIP TO 
              y = 1.4
             ['S', 'H', 'I', 'P', '', 'T', 'O'].each do |text|
-                page_header_data_box text, 5.25, y, 0.2, 1.4
+                page_header_data_box text, 5.25, y, 0.2, 1.4, :center
                 y -= 0.15
             end
 
@@ -111,7 +111,7 @@ class PackingSlip < VarlandPdf
              'C/O F1 LOGISTICS - SUITE 2',
              '543-A AMERICAS',
              'EL PASO, TX 79907'].each do |text|
-                page_header_data_box text, 5.50, y, 2.5, 1.4, :left
+                page_header_data_box text, 5.50, y, 3.5, 1.4, :left
                 y -= 0.2
             end
 
@@ -163,7 +163,7 @@ class PackingSlip < VarlandPdf
 
     def page_header_text_box(text, x, y, width, height = 0.25, large = false, align = :center, valign = :center)
         font 'Arial Narrow', style: :normal
-        font_size large ? 14 : 9
+        font_size large ? 14 : 10
         fill_color '000000'
         text_box  text.upcase,
                   at: [_i(x), _i(y)],
@@ -177,7 +177,7 @@ class PackingSlip < VarlandPdf
     def page_header_data_box(text, x, y, width, height = 4.5 , align = :left, large = false, valign = :top)
         return if text.blank?
         font 'Arial Narrow', style: :bold
-        font_size large ? 14 : 9
+        font_size large ? 14 : 10
         fill_color '000000'
         x += 0.05
         width -= 0.1

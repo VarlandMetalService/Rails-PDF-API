@@ -11,7 +11,7 @@ class BillOfLading < VarlandPdf
     end
 
     def draw_bol
-        bounding_box([_i(0.25), _i(8.25)], :width => _i(8), :height => _i(8)) do
+        bounding_box([_i(0.25), _i(8.3)], :width => _i(8), :height => _i(8)) do
 
             #Draw Vertical Lines
             stroke_line [_i(4.0), _i(8.0)], [_i(4.0), _i(7.25)]
@@ -65,11 +65,11 @@ class BillOfLading < VarlandPdf
                 y -= 0.1
             end
             page_header_text_box 'HM*', 1.25, 7.0, 0.4, 0.25, false, :center
-            y = 7.05
+            y = 6.9755
             ['Kind of Packaging, Description of Articles', 
             'Special Marks and Exceptions'].each do |text|
-                page_header_text_box text, 1.65, y, 3.355, 0.25, false, :center
-                y -= 0.1
+                page_header_text_box text, 1.65, y, 3.355, 0.25, false, :center, :top
+                y -= 0.11
             end
             page_header_text_box '§ Weight', 5.0, 6.975, 1.25, 0.25, false, :center, :top
             font_size(6) do #Requires smaller font
@@ -161,7 +161,7 @@ class BillOfLading < VarlandPdf
         end
 
         #Footer
-        page_small_text_box '* MARK WITH "X" TO DESIGNATE HAZARDOUS MATERIAL AS DEFINED IN TITLE 49 OF FEDERAL REGULATION', 0.25, 0.2, 8.0, 0.2, false, :left, :top, :bold
+        page_small_text_box '* MARK WITH "X" TO DESIGNATE HAZARDOUS MATERIAL AS DEFINED IN TITLE 49 OF FEDERAL REGULATION', 0.25, 0.25, 8.0, 0.2, false, :left, :top, :bold
     end
 
     def insert_header
@@ -170,11 +170,11 @@ class BillOfLading < VarlandPdf
             image "#{Prawn::DATADIR}/images/bol_header.jpg", :fit => [_i(8), _i(1.25)]
         end
 
-        bounding_box([_i(0.25), _i(9.25)], :width => _i(8), :height => _i(1)) do
+        bounding_box([_i(0.25), _i(9.3)], :width => _i(8), :height => _i(1)) do
             page_header_text_box 'STRAIGHT BILL OF LADING - SHORT FORM', 0.0, 0.8, 8.0, 0.8, true, :center, :top, :bold
             font_size(11) do
                 text_box "ORIGINAL - NOT NEGOTIABLE", 
-                            :at => [_i(0.0), _i(0.625)],
+                            :at => [_i(0.0), _i(0.6)],
                             :width => _i(8),
                             :height => _i(0.65),
                             :align => :center,
@@ -193,14 +193,14 @@ class BillOfLading < VarlandPdf
 
     def insert_data
         #Header Data
-        bounding_box([_i(0.25), _i(9.25)], :width => _i(8), :height => _i(1)) do
+        bounding_box([_i(0.25), _i(9.3)], :width => _i(8), :height => _i(1)) do
             page_header_data_box 'R & L Carriers', 0.9, 0.2, 3, 0.2, false, :left, :center
             page_header_data_box '253474', 6.45, 0.4, 1.5, 0.2, false, :left, :center
             page_header_data_box '04/11/2018', 6.45, 0.2, 1.5, 0.2, false, :left, :center
         end
 
         #Body Data
-        bounding_box([_i(0.25), _i(8.25)], :width => _i(8), :height => _i(8)) do
+        bounding_box([_i(0.25), _i(8.3)], :width => _i(8), :height => _i(8)) do
 
             y = 7.775
             ['SECURITY SIGNALS INC.', '9509 MACON ROAD', 'CORDOVA, TN'].each do |text|
@@ -234,7 +234,7 @@ class BillOfLading < VarlandPdf
 
     def page_header_text_box(text, x, y, width, height, large = false, align = :center, valign = :center, style = :normal)
         font 'Arial Narrow', style: style
-        font_size large ? 14 : 8
+        font_size large ? 14 : 9
         fill_color '000000'
         text_box  text,
                   at: [_i(x), _i(y)],
@@ -248,7 +248,7 @@ class BillOfLading < VarlandPdf
     def page_header_data_box(text, x, y, width, height, large = false, align = :left, valign = :top, style = :bold)
         return if text.blank?
         font 'Arial Narrow', style: style
-        font_size large ? 14 : 8
+        font_size large ? 16 : 8
         fill_color '000000'
         x += 0.05
         width -= 0.1
