@@ -67,15 +67,15 @@ class PlatingCertificate < VarlandPdf
             
             y = 3.7
             ['WE CERTIFY THAT THIS LOT OF PARTS',
-            'WAS PROCESSED TO THE FOLLOWING',
-            'PARAMETERS',
-            '',
-            'CADMIUM (.0002" MINIMUM)', 
-            '& CLEAR SEAL', 
-            'PER SQUARE D 40004-016-01',
-            '',
-            'QUALITY CONTROL DEPARTMENT',
-            'VARLAND METAL SERVICE, INC.'].each do |text|
+             'WAS PROCESSED TO THE FOLLOWING',
+             'PARAMETERS:',
+             '',
+             'CADMIUM (.0002" MINIMUM)', 
+             '& CLEAR SEAL', 
+             'PER SQUARE D 40004-016-01',
+             '',
+             'QUALITY CONTROL DEPARTMENT',
+             'VARLAND METAL SERVICE, INC.'].each do |text|
                 page_header_data_box text, 7.1, y, 2.6, 4.5, :left, false
                 y -= 0.15
             end
@@ -93,15 +93,15 @@ class PlatingCertificate < VarlandPdf
             # Draw SOLD TO data
             y = 1.4
             ['SMALL PARTS INC.',
-            'PO BOX 23',
-            'LOGANSPORT, IN 46947'].each do |text|
+             'PO BOX 23',
+             'LOGANSPORT, IN 46947'].each do |text|
                 page_header_data_box text, 0.25, y, 2.0, 1.4, :left
                 y -= 0.175
             end
 
             #Draw SHIP DATE and SHIP DATE data
-            page_header_text_box 'SHIP DATE:', 0, 0.2, 0.6
-            page_header_data_box '04/10/18', 0.6, 0.12, 0.75
+            page_header_text_box 'SHIP DATE:', 0, 0.2, 0.6, 0.2, false, :left
+            page_header_data_box '04/10/18', 0.6, 0.2, 0.75, 0.2, :left, false, :center
 
             #Draw SHIP TO 
             y = 1.4
@@ -113,16 +113,16 @@ class PlatingCertificate < VarlandPdf
             #Draw SHIP TO Data
             y = 1.4
             ['SMALL PARTS INC.',
-            'C/O F1 LOGISTICS - SUITE 2',
-            '543-A AMERICAS',
-            'EL PASO, TX 79907'].each do |text|
+             'C/O F1 LOGISTICS - SUITE 2',
+             '543-A AMERICAS',
+             'EL PASO, TX 79907'].each do |text|
                 page_header_data_box text, 5.50, y, 2.5, 1.4, :left
                 y -= 0.175
             end
 
             #Draw SHIP VIA and SHIP VIA data
-            page_header_text_box 'SHIP VIA:', 5.25, 0.2, 0.6
-            page_header_data_box 'U.P.S. SECOND DAY', 5.8, 0.12, 2.0, 0.75
+            page_header_text_box 'SHIP VIA:', 5.25, 0.2, 0.6, 0.2, false, :left
+            page_header_data_box 'U.P.S. SECOND DAY', 5.8, 0.2, 3.0, 0.2, :left, false, :center
 
             #Fill shaded area
             fill_color 'cccccc'

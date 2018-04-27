@@ -148,7 +148,7 @@ class Invoice < VarlandPdf
             page_header_text_box 'SHIPPED VIA:', 0, 0.15, 0.7, 0.2, true, :left, :top
             page_header_text_box 'SHIP TO:', 4.2, 1, 0.75, 0.2, true, :left, :top, :bold
             page_header_text_box 'INOVICE DATE:', 4.79, 0.15, 0.75, 0.2, true, :left, :top
-            page_header_text_box 'INOVICE #:', 6.6, 0.15, 0.75, 0.2, true, :left, :top
+            page_header_text_box 'INOVICE #:', 6.50, 0.15, 0.75, 0.2, true, :left, :top
 
             #Draw SOLD TO Data
             y = 0.875
@@ -156,8 +156,8 @@ class Invoice < VarlandPdf
             'UNIT 7-11',
             '17830 ENGLEWOOD DR.',
             'MIDDLEBURG HTS., OH 44130'].each do |text|
-                page_header_data_box text, 0, y, 2.5, 0.2, false, :left
-                y -= 0.125
+                page_header_data_box text, 0, y, 2.5, 0.15, false, :left
+                y -= 0.14
             end
 
             #Draw SHIP TO Data
@@ -166,8 +166,8 @@ class Invoice < VarlandPdf
             'UNIT 7-11',
             '17830 ENGLEWOOD DR.',
             'MIDDLEBURG HTS., OH 44130'].each do |text|
-                page_header_data_box text, 4.2, y, 2.5, 0.2, false, :left
-                y -= 0.125
+                page_header_data_box text, 4.2, y, 2.5, 0.15, false, :left
+                y -= 0.14
             end
 
             #Draw SHIPPED VIA data
@@ -177,7 +177,7 @@ class Invoice < VarlandPdf
             page_header_data_box '04/10/18', 5.55, 0.2, 0.75, 0.2
 
             #Draw Invoice Number.
-            page_header_data_box '276876', 7.2, 0.2, 0.75, 0.2, false, :left
+            page_header_data_box '276876', 0.0, 0.2, 7.5, 0.2, false, :right
 
             #Draw customer code and FAX #
             y = 0.875
