@@ -55,26 +55,23 @@ class PackingSlip < VarlandPdf
             page_header_text_box 'PROCESS SPECIFICATION', 7.1, 4.75, 2.6
             page_header_text_box 'STATUS', 9.7, 4.75, 0.8
 
-            #Draw Table Data
-            page_header_data_box '284555', 0, 4.45, 0.6, 4.5, :center, false
-            page_header_data_box '04/06/18', 0.6, 4.45, 0.75, 4.5, :center, false
-            page_header_data_box '47.38', 1.35, 4.45, 0.75, 4.5, :right, false
-            page_header_data_box '680', 2.1, 4.45, 0.75, 4.5, :right, false
-            page_header_data_box '1 CTN', 2.85, 4.45, 1, 4.5, :center, false
-            page_header_data_box 'PJ00027663', 3.85, 4.45, 1.4, 4.5, :left, false
-            y = 4.45
-            ['235900P', '60A SWITCH BLADE', 'U-SHAPED', 'LOT #19472-01-13450'].each do |text|
-                page_header_data_box text, 5.25, y, 1.85, 4.5, :left, false
-                y -= 0.2
+            packing_list_data = [
+                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"],
+                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"]
+            ]
+            move_cursor_to _i(4.5)
+            table(packing_list_data, :width => (10.5*72)) do
+                style(row(0...-1).columns(0...-1), :borders => [:left, :right])
+                style(columns(0), :width => (0.6*72), :align => :center)
+                style(columns(1), :width => (0.75*72), :align => :center)
+                style(columns(2), :width => (0.75*72), :align => :right)
+                style(columns(3), :width => (0.75*72), :align => :right)
+                style(columns(4), :width => (1.0*72), :align => :center)
+                style(columns(5), :width => (1.4*72), :align => :left)
+                style(columns(6), :width => (1.85*72), :align => :left)
+                style(columns(7), :width => (2.6*72), :align => :left)
+                style(columns(8), :width => (0.8*72), :align => :center)
             end
-            
-            y = 4.45
-            ['CADMIUM (.0002" MINIMUM)', '& CLEAR SEAL', 'PER SQUARE D 40004-016-01'].each do |text|
-                page_header_data_box text, 7.1, y, 2.6, 4.5, :left, false
-                y -= 0.2
-            end
-            page_header_data_box 'COMPLETE', 9.7, 4.45, 0.8, 4.5, :center, false            
- 
         end
 
         bounding_box [_i(0.25), _i(6.7)], width: _i(10.5), height: _i(1.4) do
@@ -85,11 +82,16 @@ class PackingSlip < VarlandPdf
                 y -= 0.15
             end
 
+            #SOLD TO data
+            sold_to_data = [
+                "SMALL PARTS INC.",
+                "PO BOX 23",
+                "LOGANSPORT, IN 46947"
+            ]
+
             # Draw SOLD TO data
             y = 1.4
-            ['SMALL PARTS INC.',
-             'PO BOX 23',
-             'LOGANSPORT, IN 46947'].each do |text|
+            sold_to_data.each do |text|
                 page_header_data_box text, 0.25, y, 4.5, 1.4, :left
                 y -= 0.2
             end
@@ -105,12 +107,16 @@ class PackingSlip < VarlandPdf
                 y -= 0.15
             end
 
+            #SHIP TO data
+            ship_to_data = [
+                "SMALL PARTS INC.",
+                "C/O F1 LOGISTICS - SUITE 2",
+                "543-A AMERICAS",
+                "EL PASO, TX 79907"
+            ]
             #Draw SHIP TO Data
             y = 1.4
-            ['SMALL PARTS INC.',
-             'C/O F1 LOGISTICS - SUITE 2',
-             '543-A AMERICAS',
-             'EL PASO, TX 79907'].each do |text|
+            ship_to_data.each do |text|
                 page_header_data_box text, 5.50, y, 3.5, 1.4, :left
                 y -= 0.2
             end

@@ -150,22 +150,32 @@ class Invoice < VarlandPdf
             page_header_text_box 'INOVICE DATE:', 4.79, 0.15, 0.75, 0.2, true, :left, :top
             page_header_text_box 'INOVICE #:', 6.50, 0.15, 0.75, 0.2, true, :left, :top
 
+            #SOLD TO Data
+            sold_to = [
+                "SOLUTION INDUSTRIES LLC",
+                "UNIT 7-11",
+                "17830 ENGLEWOOD DR.",
+                "MIDDLEBURG HTS., OH 44130"
+            ]
+
             #Draw SOLD TO Data
             y = 0.875
-            ['SOLUTION INDUSTRIES LLC',
-            'UNIT 7-11',
-            '17830 ENGLEWOOD DR.',
-            'MIDDLEBURG HTS., OH 44130'].each do |text|
+            sold_to.each do |text|
                 page_header_data_box text, 0, y, 2.5, 0.15, false, :left
                 y -= 0.14
             end
 
+            #SHIP TO Data
+            ship_to = [
+                "SOLUTION INDUSTRIES LLC",
+                "UNIT 7-11",
+                "17830 ENGLEWOOD DR.",
+                "MIDDLEBURG HTS., OH 44130"
+            ]
+
             #Draw SHIP TO Data
             y = 0.875
-            ['SOLUTION INDUSTRIES LLC',
-            'UNIT 7-11',
-            '17830 ENGLEWOOD DR.',
-            'MIDDLEBURG HTS., OH 44130'].each do |text|
+            ship_to.each do |text|
                 page_header_data_box text, 4.2, y, 2.5, 0.15, false, :left
                 y -= 0.14
             end

@@ -193,36 +193,76 @@ class BillOfLading < VarlandPdf
 
     def insert_data
         #Header Data
+        bol_header_data = [
+            "R & L Carriers",
+            "253474",
+            "04/11/2018"
+        ]
+
+        #insert header data
         bounding_box([_i(0.25), _i(9.3)], :width => _i(8), :height => _i(1)) do
-            page_header_data_box 'R & L Carriers', 0.9, 0.2, 3, 0.2, false, :left, :center
-            page_header_data_box '253474', 6.45, 0.4, 1.5, 0.2, false, :left, :center
-            page_header_data_box '04/11/2018', 6.45, 0.2, 1.5, 0.2, false, :left, :center
+            page_header_data_box bol_header_data[0], 0.9, 0.2, 3, 0.2, false, :left, :center
+            page_header_data_box bol_header_data[1], 6.45, 0.4, 1.5, 0.2, false, :left, :center
+            page_header_data_box bol_header_data[2], 6.45, 0.2, 1.5, 0.2, false, :left, :center
         end
 
         #Body Data
         bounding_box([_i(0.25), _i(8.3)], :width => _i(8), :height => _i(8)) do
 
+            #TO Data
+            to_info = [
+                "SECURITY SIGNALS INC.",
+                "9509 MACON ROAD",
+                "CORDOVA, TN", 
+                "38016"
+            ]
+
+            #Insert TO Data
             y = 7.775
-            ['SECURITY SIGNALS INC.', '9509 MACON ROAD', 'CORDOVA, TN'].each do |text|
+            to_info[0...to_info.length-1].each do |text|
                 page_header_data_box text, 0.75, y, 3.0, 0.75, false, :left, :top
                 y -= 0.175
             end
+            page_header_data_box to_info[-1], 3.4, 7.425, 0.6, 0.75, false, :left, :top 
 
-            page_header_data_box '38016', 3.4, 7.425, 0.6, 0.75, false, :left, :top 
-            page_header_data_box 'VARLAND METAL SERVICE', 4.7, 7.775, 3.25, 0.75, false, :left, :top
+            #FROM Data
+            from_info = [
+                "VARLAND METAL SERVICE",
+                "3231 FREDONIA AVENUE ● (513) 861-0555",
+                "Cincinnati, OH 45229-3394"
+            ]
+            page_header_data_box from_info[0], 4.7, 7.775, 3.25, 0.75, false, :left, :top
             
+            #Insert FROM Data
             y = 7.6
-            ['3231 FREDONIA AVENUE ● (513) 861-0555', 'Cincinnati, OH 45229-3394'].each do |text|
+            from_info[1...from_info.length].each do |text|
                 page_header_text_box text, 4.75, y, 3.25, 0.75, false, :left, :top, :normal
                 y -= 0.175
             end
 
+            #Insert initials
             page_header_data_box 'TM', 7.4, 7.425, 0.6, 0.75, false, :left, :top
 
-            page_header_data_box '1', 0, 6.7, 1.25, 0.25, false, :center #(Data) Number of Shipping Units
-            page_header_data_box 'SKID (21 BOXES) NUTS OR BOLTS', 1.7, 6.7, 3.555, 0.25, false, :left #(Data) Kind of Packing, Description of...
-            page_header_data_box '570#', 5.0, 6.7, 1.25, 0.25, false, :center #(Data) Weight
-            page_header_data_box '50', 6.25, 6.7, 0.65, 0.25, false, :center #(Data) Weight
+            #Order Data
+            order_data = [
+                ["1", "", "SKID (21 BOXES) NUTS OR BOLTS", "570#", "50", ""],
+                ["2", "", "###########################################################################", "460#", "30", ""],
+                ["1", "", "SKID (21 BOXES) NUTS OR BOLTS", "570#", "50", ""],
+                ["1", "", "SKID (21 BOXES) NUTS OR BOLTS", "570#", "50", ""],
+            ]
+
+            #Insert Order Data
+            move_cursor_to _i(6.75)
+            table(order_data, :width => (8*72)) do
+                style(row(0...-1).columns(0...-1), :align => :center)
+                style(row(0...-1).columns(2), :align => :left)
+                style(row(0...-1).columns(0...-1), :borders => [:left, :right])
+                style(columns(0), :width => (1.25*72))
+                style(columns(1), :width => (0.4*72))
+                style(columns(2), :width => (3.35*72))
+                style(columns(3), :width => (1.25*72))
+                style(columns(4), :width => (0.65*72))
+            end
 
             page_header_data_box 'XXX', 7.1, 1.4, 0.4, 0.2, false, :left
 
