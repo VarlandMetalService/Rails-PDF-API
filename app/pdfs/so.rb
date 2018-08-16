@@ -1,6 +1,8 @@
 require 'barby'
 require 'barby/barcode/code_39'
 require 'barby/outputter/prawn_outputter'
+require 'json'
+include ActionView::Helpers::NumberHelper
 
 class SO < VarlandPdf
 
@@ -9,8 +11,11 @@ class SO < VarlandPdf
 
   def initialize(data = nil, color = nil)
     super()
-    @data = data
+    file = File.read('288224.json')
+    @data = JSON.parse(file)
+
     @color = color
+
     print_text
     print_header
     first_page_header
@@ -25,7 +30,7 @@ class SO < VarlandPdf
     bounding_box [_i(0.25), _i(3.45)], width: _i(8), height: _i(0.8) do
       page_header_data_box 'REV DATES:', -0.05, 0.8, 1.5, 0.2, :left
       headings = ['SPEC INST', 'STD PROC', 'LOADINGS', 'PART SPEC']
-      dates = ['12/11/15', '04/06/18', '12/23/15', '04/06/18']
+      dates = ['12/11/15', '04/06/18', '12/23/15', '04/06/18'] # START HERE ON FRIDAY
       times = ['16:22', '13:06', '12:07', '13:06']
       initials = ['JP', 'MMJ', 'BM', 'MMJ']
       y = 0.8
@@ -68,23 +73,13 @@ class SO < VarlandPdf
       font_size 11.96
       fill_color '000000'
       font 'Source Code Pro', style: :bold
-      y = 2
-      5.times do
-        text_box  'SEE JP BEFORE RUNNING FIRST LOAD. LAST COUPLE ORDERS WE HAVE HAD TO ADD 500CC',
-                  at: [_i(0.05), _i(y)],
+        text_box  @data['note'].join("\n"),
+                  at: [_i(0.05), _i(1.9)],
                   width: _i(7.9),
-                  height: _i(0.2),
+                  height: _i(2.5),
                   align: :left,
-                  valign: :center
-        y -= 0.2
-        text_box  'OF BRIGHTENER BEFORE RUNNING. DO WE NEED TO DO THIS AGAIN? -MMJ',
-                  at: [_i(0.05), _i(y)],
-                  width: _i(7.9),
-                  height: _i(0.2),
-                  align: :left,
-                  valign: :center
-        y -= 0.2
-      end
+                  valign: :top
+      
     end
       
     # Draw page header box.
@@ -147,31 +142,17 @@ class SO < VarlandPdf
       page_header_text_box 'Part & Material Description:', 0.05, 0.8, 3.9, 0.2, false, :left
 
       # Draw header data.
-      y = 5
-      ['WE CERTIFY THAT THIS LOT OF PARTS',
-       'WAS PROCESSED TO THE FOLLOWING',
-       'PARAMETERS:',
-       '',
-       'MATTE ACID TIN (.0002" MINIMUM)',
-       'GM 4253M, CODE 20',
-       '',
-       '',
-       '',
-       'QUALITY CONTROL DEPARTMENT',
-       'VARLAND METAL SERVICE, INC.'].each do |text|
-        page_header_data_box text, 0, y, 4, 0.2, :left
-        y -= 0.2
-      end
-      page_header_data_box 'COPPER X 14.77MM OD X 6.4MM ID X', 0, 0.6, 4, 0.2, :left
-      page_header_data_box '13MM LONG', 0, 0.4, 4, 0.2, :left
-      page_header_data_box '28.830 PCS/LB', 3.2, 0.8, 2.4, 0.2, :left
-      page_header_data_box '0.35 FT<sup>2</sup>/LB', 3.2, 0.6, 2.4, 0.2, :left
-      page_header_data_box '290.00 LBS/FT<sup>3</sup>', 3.2, 0.4, 2.4, 0.2, :left
-      page_header_data_box '15.733292 GRAMS/PC', 3.2, 0.2, 2.4, 0.2, :left
-      page_header_data_box '34.69 LBS/M', 5.6, 0.8, 2.4, 0.2, :left
-      page_header_data_box "12.24 FT<sup>2</sup>/M", 5.6, 0.6, 2.4, 0.2, :left
-      page_header_data_box '0.03468 PC WT', 5.6, 0.4, 2.4, 0.2, :left
-      page_header_data_box '11.368545 CM<sup>2</sup>/PC', 5.6, 0.2, 2.4, 0.2, :left
+      
+      page_header_data_box @data['certify_code']['part_1'].join("\n") + "\n" + @data['process_specification'].join("\n") + "\n" + @data['certify_code']['part_2'].join("\n") , 0, 4.95, 4, 3.5, :left, false, :top
+      page_header_data_box @data['part_description'].join("\n"), 0, 0.6, 4, 0.6, :left
+      page_header_data_box (number_with_precision(@data['pieces_per_pound'], precision: 3)) + ' PCS/LB', 3.2, 0.8, 2.4, 0.2, :left
+      page_header_data_box (number_with_precision(@data['square_feet_per_pound'], precision: 2)) + ' FT<sup>2</sup>/LB', 3.2, 0.6, 2.4, 0.2, :left
+      page_header_data_box (number_with_precision(@data['pounds_per_cubic_foot'], precision: 2)) + ' LBS/FT<sup>3</sup>', 3.2, 0.4, 2.4, 0.2, :left
+      page_header_data_box (number_with_precision(@data['grams_per_piece'], precision: 6)) + ' GRAMS/PC', 3.2, 0.2, 2.4, 0.2, :left
+      page_header_data_box (number_with_precision(@data['pounds_per_thousand'], precision: 2)) + ' LBS/M', 5.6, 0.8, 2.4, 0.2, :left
+      page_header_data_box (number_with_precision(@data['square_feet_per_thousand'], precision: 2)) + ' FT<sup>2</sup>/M', 5.6, 0.6, 2.4, 0.2, :left
+      page_header_data_box (number_with_precision(@data['piece_weight'], precision: 5)) + ' PC WT', 5.6, 0.4, 2.4, 0.2, :left
+      page_header_data_box (number_with_precision(@data['square_centimeters_per_piece'], precision: 6)) + ' CM<sup>2</sup>/PC', 5.6, 0.2, 2.4, 0.2, :left
       font 'Arial', style: :bold
       font_size 40
       fill_color 'ff0000'
@@ -210,8 +191,8 @@ class SO < VarlandPdf
       # Draw oversized shop order numbers.
       font_size 40
       font 'Arial Narrow', style: :bold
-      text_box '123456', at: [_i(1), _i(10.75)], width: _i(2.5), height: _i(0.6)
-      text_box '123456', at: [_i(8.25), _i(10.25)], width: _i(1.8), height: _i(0.6), rotate: 270, align: :center
+      text_box @data["shop_order"], at: [_i(1), _i(10.75)], width: _i(2.5), height: _i(0.6)
+      text_box @data["shop_order"], at: [_i(8.25), _i(10.25)], width: _i(1.8), height: _i(0.6), rotate: 270, align: :center
 
       # Draw shop order barcode.
       bounding_box [_i(5.58), _i(10.75)], width: _i(2.5), height: _i(0.3) do
@@ -283,24 +264,21 @@ class SO < VarlandPdf
         page_header_text_box 'Shipping #', 6, 0.5, 1.5
 
         # Draw header data.
-        page_header_data_box 'HINES PRECISION INC.', 0, 1.6, 3.5, 0.5, :left, true
-        page_header_data_box 'HINES', 3.5, 1.6, 1, 0.3, :center, true
-        page_header_data_box 'AT', 4.5, 1.6, 0.7, 0.3, :center, true
-        page_header_data_box '4222', 5.2, 1.6, 2, 0.3, :left, true
-        page_header_data_box '', 7.2, 1.6, 0.3, 0.3, :center, true
-        page_header_data_box 'BRIGHT ACID TIN', 0, 1.1, 3.5, 0.2, :left, false
-        page_header_data_box '(EQUIPMENT #2 IF NECESSARY)', 0, 0.9, 3.5, 0.2, :left, false
-        page_header_data_box 'LINE TERMINAL A PHASE', 3.5, 1.1, 2.5, 0.2, :left, false
-        page_header_data_box 'OLD SIEMENS # 806439A', 3.5, 0.9, 2.5, 0.2, :left, false
-        page_header_data_box 'NEW SIEMENS # 812465A', 3.5, 0.7, 2.5, 0.2, :left, false
-        page_header_data_box 'PO-61411', 6, 1.1, 1.5, 0.2, :left, false
-        page_header_data_box 'PAGE-12', 6, 0.9, 1.5, 0.2, :left, false
-        page_header_data_box 'LOT-L00059', 6, 0.7, 1.5, 0.2, :left, false
-        page_header_data_box '04/05/18', 0, 0.3, 1.5, 0.3, :center, true
-        page_header_data_box '258.00', 1.5, 0.3, 1.25, 0.3, :center, true
-        page_header_data_box '8,850', 2.75, 0.3, 1.25, 0.3, :center, true
-        page_header_data_box '10 TOTES', 4, 0.3, 2, 0.3, :center, true
-        page_header_data_box '$/M', 6, 0.3, 1.5, 0.3, :right, false, :bottom
+        page_header_data_box @data['ship_to']['name_1']+ "\n" + @data['ship_to']['name_2'], 0, 1.6, 3.5, 0.5, :left, true
+        page_header_data_box @data['customer_code'], 3.5, 1.6, 1, 0.3, :center, true
+        page_header_data_box @data['process_code'], 4.5, 1.6, 0.7, 0.3, :center, true
+        page_header_data_box @data['part_id'], 5.2, 1.6, 2, 0.3, :left, true
+        page_header_data_box @data['sub_id'], 7.2, 1.6, 0.3, 0.3, :center, true
+        page_header_data_box @data['equipment_used'].join("\n"), 0, 1.025, 3.5, 0.6, :left, false, :top
+        page_header_data_box @data['part_name'].join("\n"), 3.5, 1.025, 2.5, 0.6, :left, false, :top
+        page_header_data_box @data['po_numbers'].join("\n"), 6, 1.025, 1.5, 0.6, :left, false, :top
+        page_header_data_box @data['shop_order_date*'], 0, 0.3, 1.5, 0.3, :center, true
+        page_header_data_box (number_with_precision(@data['pounds'], precision: 2)).to_s, 1.5, 0.3, 1.25, 0.3, :center, true
+        page_header_data_box (number_with_delimiter(@data['pieces'])).to_s, 2.75, 0.3, 1.25, 0.3, :center, true
+        page_header_data_box @data['containers'].to_s + " " +  @data['container_type'], 4, 0.3, 2, 0.3, :center, true
+        page_header_data_box '$/M', 6, 0.3, 1.5, 0.3, :right, false, :bottom 
+
+        puts (@data['po_numbers'].join("\n")).gsub("", " ")
 
       end
 
@@ -344,10 +322,19 @@ class SO < VarlandPdf
   def print_text
 
     start_new_page
-    font_size 11.96
+    font_size 11.5
     fill_color '000000'
-    font 'Source Code Pro', style: :normal
+    font 'SF Mono', style: :bold
     bounding_box [_i(0.25), _i(8)], width: _i(8), height: _i(7.75) do
+      2.times do
+        text ('=' * 31) + ' SHOP ORDER NOTES ' + ('=' * 31)
+        text 'SEE JP BEFORE RUNNING FIRST LOAD. LAST COUPLE ORDERS WE HAVE HAD TO ADD 500CC'
+        text 'OF BRIGHTENER BEFORE RUNNING. DO WE NEED TO DO THIS AGAIN? -MMJ'
+        text ('=' * 80)
+        text ' '
+      end
+
+      font 'SF Mono', style: :normal
       2.times do
         text ('=' * 31) + ' SHOP ORDER NOTES ' + ('=' * 31)
         text 'SEE JP BEFORE RUNNING FIRST LOAD. LAST COUPLE ORDERS WE HAVE HAD TO ADD 500CC'

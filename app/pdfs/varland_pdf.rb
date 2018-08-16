@@ -62,6 +62,16 @@ class VarlandPdf < Prawn::Document
         :bold_italic  => Rails.root.join('lib', 'assets', 'Courier New Bold Italic.ttf')
       }
     )
+    
+    font_families.update(
+      "SF Mono" => {
+        :normal       => Rails.root.join('lib', 'assets', 'SFMono-Medium.ttf'),
+        :italic       => Rails.root.join('lib', 'assets', 'SFMono-Semibold.ttf'),
+        :bold         => Rails.root.join('lib', 'assets', 'SFMono-Bold.ttf'),
+        :bold_italic  => Rails.root.join('lib', 'assets', 'SFMono-Heavy.ttf')
+      }
+    )
+
   end
 
   def inches_to_points(inches)
