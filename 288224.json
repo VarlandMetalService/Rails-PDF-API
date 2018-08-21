@@ -23,7 +23,7 @@
    "grams_per_piece":2.98055546327,
    "square_centimeters_per_piece":3.44019809,
    "receipt_date":1534305600,
-   "promise_date":0,
+   "promise_date":1534824000,
    "shop_order_date":1534305600,
    "time_received":"11:08",
    "ship_to":{
@@ -54,7 +54,7 @@
       ""
    ],
    "process_specification":[
-      null,
+      "ZINC-IRON (5\u00b5m MINIMUM) &",
       "BLACK TRIVALENT CHROMATE",
       "72 HOURS NO WHITE CORROSION",
       "240 HOURS NO RED RUST",
@@ -64,6 +64,7 @@
       "",
       ""
    ],
+   "shipping_phone":"3304257121",
    "revision_dates":{
       "part_spec":{
          "operator_initials":"MMJ",
@@ -146,22 +147,56 @@
          "thickness":0,
          "procedure_code":"",
          "loads":"1",
-         "raw_header":null,
-         "header":{
-            "is_bright_nickel":false,
-            "abbreviated_instructions":[
-               null,
-               null,
-               null,
-               null,
-               null,
-               null,
-               null,
-               null,
-               null,
-               null
-            ]
-         }
+         "raw_account":{
+            "ACCOUNT_NO":"503.05",
+            "GL_DEPARTMENT":"03",
+            "SCHED_SHORT_DESC":"CLEAN",
+            "SCHED_DESC":"CLEAN (DEPT 3)",
+            "SCHED_POLLUTION":"N",
+            "SCHED_MONTHLY_COST":"Y",
+            "SCHED_LABOR_LOAD":".00",
+            "SCHED_PER_TENTH_PRICE":".000",
+            "SCHED_SQ_FT_PRICE":".037",
+            "SCHED_METAL_FACTOR":".000000",
+            "SCHED_METAL_PRICE":".0000",
+            "SCHED_PRINT_PER_TENTH":"N",
+            "SCHED_PRINT_ON_SCHED":"Y",
+            "SCHED_SYMBOL":"",
+            "SCHED_VALENCE":"",
+            "SCHED_EN_LOADING":"",
+            "UNUSED_3":"",
+            "SCHED_CATHODE_EFF":"100.0",
+            "SCHED_METAL_MULT":"1.00",
+            "SCHED_DEPOSITION_RATE":".00",
+            "SCHED_UNIT":"",
+            "SCHED_AMP_HR_SQ_FT_TENTH":".000",
+            "SCHED_IN_PLANT_ACCOUNT":"Y",
+            "SCHED_EXPENSE_ACCOUNT":"",
+            "SCHED_REWORK_LABOR_COST":"14.10",
+            "SCHED_REWORK_LABOR_UNIT":"L",
+            "SCHED_REWORK_COST":".04",
+            "SCHED_REWORK_UNIT":"S",
+            "SCHED_PRINT_DESC":"",
+            "SCHED_MINIMUM_SQ_FT":".0000",
+            "SCHED_MINIMUM_SQ_FT_T":".0000",
+            "SCHED_MAX_AMPS_PER_LOAD":"0",
+            "SCHED_MIN_AMPS_PER_LOAD":"0",
+            "SCHED_MAX_AMPS_SQ_FT":".0",
+            "SCHED_MIN_AMPS_SQ_FT":".0",
+            "SCHED_NUMBER_OF_STATIONS":"0",
+            "SCHED_LOADING_ONLY":"",
+            "SCHED_DEFAULT_AMPS_PER_SQ_FT":".0",
+            "SCHED_LOADS_REQUIRED":"Y",
+            "SCHED_UPDATE_MONTHLY_AREA":"",
+            "SCHED_FIXED_CYCLE":"",
+            "SCHED_RECIPE_REQUIRED":"",
+            "SCHED_VOLT_LIMIT_REQUIRED":"",
+            "SCHED_BARREL_SPEED_REQUIRED":"",
+            "SCHED_CYCLE_START_TIME":"0",
+            "SCHED_CYCLE_TIME":"0",
+            "BRIGHT_NICKEL":""
+         },
+         "title":"DEPT 03 CLEAN"
       },
       {
          "code":"B",
@@ -169,6 +204,102 @@
          "thickness":0.00036,
          "procedure_code":"NITRIC",
          "loads":"1",
+         "raw_account":{
+            "ACCOUNT_NO":"503.55",
+            "GL_DEPARTMENT":"03",
+            "SCHED_SHORT_DESC":"ZINC-IRON PLATE",
+            "SCHED_DESC":"ZINC-IRON PLATE",
+            "SCHED_POLLUTION":"N",
+            "SCHED_MONTHLY_COST":"Y",
+            "SCHED_LABOR_LOAD":".00",
+            "SCHED_PER_TENTH_PRICE":".034",
+            "SCHED_SQ_FT_PRICE":".000",
+            "SCHED_METAL_FACTOR":".003720",
+            "SCHED_METAL_PRICE":"1.0500",
+            "SCHED_PRINT_PER_TENTH":"Y",
+            "SCHED_PRINT_ON_SCHED":"Y",
+            "SCHED_SYMBOL":"ZN",
+            "SCHED_VALENCE":"2",
+            "SCHED_EN_LOADING":"",
+            "UNUSED_3":"",
+            "SCHED_CATHODE_EFF":"95.0",
+            "SCHED_METAL_MULT":"1.00",
+            "SCHED_DEPOSITION_RATE":".00",
+            "SCHED_UNIT":"P",
+            "SCHED_AMP_HR_SQ_FT_TENTH":"1.505",
+            "SCHED_IN_PLANT_ACCOUNT":"Y",
+            "SCHED_EXPENSE_ACCOUNT":"",
+            "SCHED_REWORK_LABOR_COST":".00",
+            "SCHED_REWORK_LABOR_UNIT":"",
+            "SCHED_REWORK_COST":".04",
+            "SCHED_REWORK_UNIT":"T",
+            "SCHED_PRINT_DESC":"Y",
+            "SCHED_MINIMUM_SQ_FT":".0000",
+            "SCHED_MINIMUM_SQ_FT_T":".0000",
+            "SCHED_MAX_AMPS_PER_LOAD":"1000",
+            "SCHED_MIN_AMPS_PER_LOAD":"50",
+            "SCHED_MAX_AMPS_SQ_FT":"12.0",
+            "SCHED_MIN_AMPS_SQ_FT":"2.0",
+            "SCHED_NUMBER_OF_STATIONS":"0",
+            "SCHED_LOADING_ONLY":"N",
+            "SCHED_DEFAULT_AMPS_PER_SQ_FT":".0",
+            "SCHED_LOADS_REQUIRED":"Y",
+            "SCHED_UPDATE_MONTHLY_AREA":"Y",
+            "SCHED_FIXED_CYCLE":"",
+            "SCHED_RECIPE_REQUIRED":"",
+            "SCHED_VOLT_LIMIT_REQUIRED":"Y",
+            "SCHED_BARREL_SPEED_REQUIRED":"Y",
+            "SCHED_CYCLE_START_TIME":"0",
+            "SCHED_CYCLE_TIME":"0",
+            "BRIGHT_NICKEL":""
+         },
+         "title":"DEPT 03 ZINC-IRON PLATE & NITRIC ONLY",
+         "code_details":{
+            "timestamp":1391453764,
+            "operator_initials":"JP",
+            "authorized_initials":"JP",
+            "text":[
+               "    **** CHECK THICKNESS BEFORE PULLING 1ST LOAD ****",
+               "",
+               "    POST DIP PROCEDURE:",
+               "    1. ZINC-IRON NITRIC DIP 10 SEC.",
+               "",
+               "    INSPECTION GUIDELINES:",
+               "    APPEAR: 1. ZINC-IRON APPEARANCE",
+               "               A. STRIVING FOR AS UNIFORM AN APPEARANCE AS POSSIBLE",
+               "               B. SOME PARTS (A LOW PCT.) MAY HAVE DARKER AREAS BUT IN GENERAL",
+               "                  LOAD SHOULD HAVE FAIRLY UNIFORM APPEARANCE",
+               "               C. I.D. APPEARANCE MUST NOT BE DARK AND\/OR \"ROUGH\"",
+               "               D. A HIGH PERCENTAGE OF DARK\/DISOLORED PARTS IS NOT ACCEPTABLE -",
+               "                  IF LOADS HAVE THIS APPEARANCE, STOP PLATING AND CONTACT",
+               "                  FOREMAN AND\/OR OPERATIONS MANAGER",
+               "            2. PARTS MUST NOT BE ARCED OR OTHERWISE DAMAGED (NICKED, DINGED)",
+               "    ADHES:  1. VISUALLY CHECK FOR EXCELLENT ADHESION - NO BLISTERS, ETC."
+            ],
+            "pages":{
+               "1":{
+                  "1":"    **** CHECK THICKNESS BEFORE PULLING 1ST LOAD ****",
+                  "2":"",
+                  "3":"    POST DIP PROCEDURE:",
+                  "4":"    1. ZINC-IRON NITRIC DIP 10 SEC."
+               },
+               "2":{
+                  "1":"",
+                  "2":"    INSPECTION GUIDELINES:",
+                  "3":"    APPEAR: 1. ZINC-IRON APPEARANCE",
+                  "4":"               A. STRIVING FOR AS UNIFORM AN APPEARANCE AS POSSIBLE",
+                  "5":"               B. SOME PARTS (A LOW PCT.) MAY HAVE DARKER AREAS BUT IN GENERAL",
+                  "6":"                  LOAD SHOULD HAVE FAIRLY UNIFORM APPEARANCE",
+                  "7":"               C. I.D. APPEARANCE MUST NOT BE DARK AND\/OR \"ROUGH\"",
+                  "8":"               D. A HIGH PERCENTAGE OF DARK\/DISOLORED PARTS IS NOT ACCEPTABLE -",
+                  "9":"                  IF LOADS HAVE THIS APPEARANCE, STOP PLATING AND CONTACT",
+                  "10":"                  FOREMAN AND\/OR OPERATIONS MANAGER",
+                  "11":"            2. PARTS MUST NOT BE ARCED OR OTHERWISE DAMAGED (NICKED, DINGED)",
+                  "12":"    ADHES:  1. VISUALLY CHECK FOR EXCELLENT ADHESION - NO BLISTERS, ETC."
+               }
+            },
+            "timestamp*":"02\/03\/14 01:56:04 pm"
+         },
          "raw_header":{
             "ACCOUNT_NO":"503.55",
             "PROC_HEADER_CODE":"NITRIC",
@@ -230,10 +361,118 @@
          },
          "header":{
             "is_bright_nickel":false,
+            "lane_setup":"0",
             "abbreviated_instructions":[
 
             ]
-         }
+         },
+         "raw_details":[
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"1",
+               "PROC_DATA":"    **** CHECK THICKNESS BEFORE PULLING 1ST LOAD ****"
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"3",
+               "PROC_DATA":"    POST DIP PROCEDURE:"
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"4",
+               "PROC_DATA":"    1. ZINC-IRON NITRIC DIP 10 SEC."
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"2",
+               "PROC_DATA":"    INSPECTION GUIDELINES:"
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"3",
+               "PROC_DATA":"    APPEAR: 1. ZINC-IRON APPEARANCE"
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"4",
+               "PROC_DATA":"               A. STRIVING FOR AS UNIFORM AN APPEARANCE AS POSSIBLE"
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"5",
+               "PROC_DATA":"               B. SOME PARTS (A LOW PCT.) MAY HAVE DARKER AREAS BUT IN GENERAL"
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"6",
+               "PROC_DATA":"                  LOAD SHOULD HAVE FAIRLY UNIFORM APPEARANCE"
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"7",
+               "PROC_DATA":"               C. I.D. APPEARANCE MUST NOT BE DARK AND\/OR \"ROUGH\""
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"8",
+               "PROC_DATA":"               D. A HIGH PERCENTAGE OF DARK\/DISOLORED PARTS IS NOT ACCEPTABLE -"
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"9",
+               "PROC_DATA":"                  IF LOADS HAVE THIS APPEARANCE, STOP PLATING AND CONTACT"
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"10",
+               "PROC_DATA":"                  FOREMAN AND\/OR OPERATIONS MANAGER"
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"11",
+               "PROC_DATA":"            2. PARTS MUST NOT BE ARCED OR OTHERWISE DAMAGED (NICKED, DINGED)"
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"12",
+               "PROC_DATA":"    ADHES:  1. VISUALLY CHECK FOR EXCELLENT ADHESION - NO BLISTERS, ETC."
+            },
+            {
+               "ACCOUNT_NO":"503.55",
+               "PROC_HEADER_CODE":"NITRIC",
+               "PROC_PAGE":"99",
+               "PROC_LINE":"1",
+               "PROC_DATA":"LAST UPDATE: JP :JP  02\/03\/2014 13:56:04"
+            }
+         ]
       },
       {
          "code":"C",
@@ -241,6 +480,162 @@
          "thickness":0,
          "procedure_code":"TRIBLACK",
          "loads":"0",
+         "raw_account":{
+            "ACCOUNT_NO":"503.71",
+            "GL_DEPARTMENT":"03",
+            "SCHED_SHORT_DESC":"POST DIP",
+            "SCHED_DESC":"TRIVALENT BLACK DIP",
+            "SCHED_POLLUTION":"N",
+            "SCHED_MONTHLY_COST":"Y",
+            "SCHED_LABOR_LOAD":".00",
+            "SCHED_PER_TENTH_PRICE":".000",
+            "SCHED_SQ_FT_PRICE":".308",
+            "SCHED_METAL_FACTOR":".000000",
+            "SCHED_METAL_PRICE":".0000",
+            "SCHED_PRINT_PER_TENTH":"N",
+            "SCHED_PRINT_ON_SCHED":"Y",
+            "SCHED_SYMBOL":"",
+            "SCHED_VALENCE":"",
+            "SCHED_EN_LOADING":"",
+            "UNUSED_3":"",
+            "SCHED_CATHODE_EFF":"100.0",
+            "SCHED_METAL_MULT":"1.00",
+            "SCHED_DEPOSITION_RATE":".00",
+            "SCHED_UNIT":"",
+            "SCHED_AMP_HR_SQ_FT_TENTH":".000",
+            "SCHED_IN_PLANT_ACCOUNT":"Y",
+            "SCHED_EXPENSE_ACCOUNT":"",
+            "SCHED_REWORK_LABOR_COST":".00",
+            "SCHED_REWORK_LABOR_UNIT":"",
+            "SCHED_REWORK_COST":".30",
+            "SCHED_REWORK_UNIT":"S",
+            "SCHED_PRINT_DESC":"",
+            "SCHED_MINIMUM_SQ_FT":".0000",
+            "SCHED_MINIMUM_SQ_FT_T":".0000",
+            "SCHED_MAX_AMPS_PER_LOAD":"0",
+            "SCHED_MIN_AMPS_PER_LOAD":"0",
+            "SCHED_MAX_AMPS_SQ_FT":".0",
+            "SCHED_MIN_AMPS_SQ_FT":".0",
+            "SCHED_NUMBER_OF_STATIONS":"0",
+            "SCHED_LOADING_ONLY":"",
+            "SCHED_DEFAULT_AMPS_PER_SQ_FT":".0",
+            "SCHED_LOADS_REQUIRED":"Y",
+            "SCHED_UPDATE_MONTHLY_AREA":"",
+            "SCHED_FIXED_CYCLE":"",
+            "SCHED_RECIPE_REQUIRED":"",
+            "SCHED_VOLT_LIMIT_REQUIRED":"",
+            "SCHED_BARREL_SPEED_REQUIRED":"Y",
+            "SCHED_CYCLE_START_TIME":"0",
+            "SCHED_CYCLE_TIME":"0",
+            "BRIGHT_NICKEL":""
+         },
+         "title":"DEPT 03 POST DIP TRIVALENT BLACK",
+         "code_details":{
+            "timestamp":1534800439,
+            "operator_initials":"MMJ",
+            "authorized_initials":"MMJ",
+            "text":[
+               "",
+               "    **** NOTE: LEAVE BBL IN CLEAN RINSE IF THICKNESS CHECKS NEEDED *****",
+               "",
+               "    ++++++++++++++++++++++++++++++++++++++++++++",
+               "    DIP SAMPLES PER BELOW",
+               "    CHECK BLACK ADHESION AND APPEARANCE CLOSELY.",
+               "    ++++++++++++++++++++++++++++++++++++++++++++",
+               "    POST DIP:",
+               "    1. ***** BLACKEN IMMEDIATELY AFTER PLATE *****",
+               "    2. TURN IN POST DIP STATIONS @ PLATING RPM",
+               "    3. NITRIC DIP 10 SEC. TO ACTIVATE - RINSE",
+               "    4. CAUSTIC PRE-DIP 45-90 SEC. RINSE IN BOTH ALKALINE RINSES & CHOMATED RINSE",
+               "       A. WASHERS AND NUTS WILL NEED LONGER DIP TIMES THAN BOLTS.  PARTS SHOULD",
+               "          HAVE UNIFORM DULL GRAY APPEARANCE AFTER PRE-DIP.",
+               "       B. PARTS MUST BE RINSED VERY WELL, TO MINIMIZE DRAG-IN OF HIGH PH",
+               "          PRE-DIP SOLUTION.  THIS WILL HELP AVOID CONTAMINATION OF THE",
+               "          BLACKENING SOLUTION.",
+               "    5. BLACK DIP: 2-8 MIN. AS NEEDED TO ACHIEVE BLACK APPEARANCE, THEN RINSE",
+               "       NOTE: A. FLAT PARTS WILL NEED LONGER DIP TIMES",
+               "             B. YOU SHOULD NOT SEE ANY IRIDESCENCE WHEN PARTS ARE BLACK ENOUGH",
+               "             C. **** IF PARTS TAKE LONGER THAN 8 MIN. TO BLACKEN - CALL LAB ****",
+               "    6. HYPRO 250 SEAL 45 SEC. - DRAIN WELL AFTER SEAL 30 SEC. TURNING SLOW",
+               "       NOTE: DO NOT RINSE AFTER SEAL",
+               "",
+               "    DRYING PROCEDURE:",
+               "    1. OKAY TO DRY PARTS IN HARSHAW BASKETS",
+               "    2. SPIN OFF PARTS WITH NO HEAT 15 SEC. - TO REMOVE EXCESS SEAL.",
+               "       NOTE:  SEAL WILL PUDDLE IF NOT SPUN OFF FIRST.",
+               "    3. DRY WELL WITH HEAT.",
+               "       DRYING TEMP = 180 DEG.",
+               "       DRYING TIME = 10 MINS. MINIMUM",
+               "    4. DO NOT OVER-DRY PARTS AS THIS WILL ALSO CAUSE EXCESSIVE SCRATCHING",
+               "",
+               "    INSPECTION PROCEDURE:",
+               "    APPEAR: 1. PARTS MUST BE BLACK IN COLOR (NOT BROWN, GREEN, ETC.)",
+               "               NOTE: SOME VERY SLIGHT IRRIDESCENCE IS ACCEPTABLE",
+               "            2. PARTS SHOULD HAVE SOME SHINE TO FINISH, SHOULD NOT BE DULL",
+               "            3. PARTS SHOULD NOT BE EXCESSIVELY SCRATCHY",
+               "            4. MAKE SURE PARTS ARE TOTALLY DRY, LOOK FOR SEAL PUDDLING",
+               "            *******************************************************************",
+               "            5. SPECIAL APPEARANCE TEST:",
+               "               A. RUB SMOOTH AREAS OF PART AND MAKE SURE BLACK DOES NOT COME",
+               "                  OFF.  IF THE BLACK RUBS OFF, THIS USUALLY INDICATES AN",
+               "                  ACTIVATION ISSUE BEFORE THE BLACK DIP.",
+               "            *******************************************************************"
+            ],
+            "pages":{
+               "1":{
+                  "1":"",
+                  "2":"    **** NOTE: LEAVE BBL IN CLEAN RINSE IF THICKNESS CHECKS NEEDED *****",
+                  "3":"",
+                  "4":"    ++++++++++++++++++++++++++++++++++++++++++++",
+                  "5":"    DIP SAMPLES PER BELOW",
+                  "6":"    CHECK BLACK ADHESION AND APPEARANCE CLOSELY.",
+                  "7":"    ++++++++++++++++++++++++++++++++++++++++++++",
+                  "8":"    POST DIP:",
+                  "9":"    1. ***** BLACKEN IMMEDIATELY AFTER PLATE *****",
+                  "10":"    2. TURN IN POST DIP STATIONS @ PLATING RPM",
+                  "11":"    3. NITRIC DIP 10 SEC. TO ACTIVATE - RINSE",
+                  "12":"    4. CAUSTIC PRE-DIP 45-90 SEC. RINSE IN BOTH ALKALINE RINSES & CHOMATED RINSE",
+                  "13":"       A. WASHERS AND NUTS WILL NEED LONGER DIP TIMES THAN BOLTS.  PARTS SHOULD",
+                  "14":"          HAVE UNIFORM DULL GRAY APPEARANCE AFTER PRE-DIP.",
+                  "15":"       B. PARTS MUST BE RINSED VERY WELL, TO MINIMIZE DRAG-IN OF HIGH PH",
+                  "16":"          PRE-DIP SOLUTION.  THIS WILL HELP AVOID CONTAMINATION OF THE"
+               },
+               "2":{
+                  "1":"          BLACKENING SOLUTION.",
+                  "2":"    5. BLACK DIP: 2-8 MIN. AS NEEDED TO ACHIEVE BLACK APPEARANCE, THEN RINSE",
+                  "3":"       NOTE: A. FLAT PARTS WILL NEED LONGER DIP TIMES",
+                  "4":"             B. YOU SHOULD NOT SEE ANY IRIDESCENCE WHEN PARTS ARE BLACK ENOUGH",
+                  "5":"             C. **** IF PARTS TAKE LONGER THAN 8 MIN. TO BLACKEN - CALL LAB ****",
+                  "6":"    6. HYPRO 250 SEAL 45 SEC. - DRAIN WELL AFTER SEAL 30 SEC. TURNING SLOW",
+                  "7":"       NOTE: DO NOT RINSE AFTER SEAL",
+                  "8":"",
+                  "9":"    DRYING PROCEDURE:",
+                  "10":"    1. OKAY TO DRY PARTS IN HARSHAW BASKETS",
+                  "11":"    2. SPIN OFF PARTS WITH NO HEAT 15 SEC. - TO REMOVE EXCESS SEAL.",
+                  "12":"       NOTE:  SEAL WILL PUDDLE IF NOT SPUN OFF FIRST.",
+                  "13":"    3. DRY WELL WITH HEAT.",
+                  "14":"       DRYING TEMP = 180 DEG.",
+                  "15":"       DRYING TIME = 10 MINS. MINIMUM",
+                  "16":"    4. DO NOT OVER-DRY PARTS AS THIS WILL ALSO CAUSE EXCESSIVE SCRATCHING"
+               },
+               "3":{
+                  "1":"",
+                  "2":"    INSPECTION PROCEDURE:",
+                  "3":"    APPEAR: 1. PARTS MUST BE BLACK IN COLOR (NOT BROWN, GREEN, ETC.)",
+                  "4":"               NOTE: SOME VERY SLIGHT IRRIDESCENCE IS ACCEPTABLE",
+                  "5":"            2. PARTS SHOULD HAVE SOME SHINE TO FINISH, SHOULD NOT BE DULL",
+                  "6":"            3. PARTS SHOULD NOT BE EXCESSIVELY SCRATCHY",
+                  "7":"            4. MAKE SURE PARTS ARE TOTALLY DRY, LOOK FOR SEAL PUDDLING",
+                  "8":"            *******************************************************************",
+                  "9":"            5. SPECIAL APPEARANCE TEST:",
+                  "10":"               A. RUB SMOOTH AREAS OF PART AND MAKE SURE BLACK DOES NOT COME",
+                  "11":"                  OFF.  IF THE BLACK RUBS OFF, THIS USUALLY INDICATES AN",
+                  "12":"                  ACTIVATION ISSUE BEFORE THE BLACK DIP.",
+                  "13":"            *******************************************************************"
+               }
+            },
+            "timestamp*":"08\/20\/18 05:27:19 pm"
+         },
          "raw_header":{
             "ACCOUNT_NO":"503.71",
             "PROC_HEADER_CODE":"TRIBLACK",
@@ -272,11 +667,11 @@
             "PART_DATE_CENTURY":"20",
             "PART_DATE_YEAR":"18",
             "PART_DATE_MONTH":"8",
-            "PART_DATE_MO":"2",
-            "PART_TIME_HOUR":"18",
-            "PART_TIME_MINUTE":"8",
-            "PART_TIME_SECOND":"28",
-            "PART_TIME_HUNDRED":"0",
+            "PART_DATE_MO":"20",
+            "PART_TIME_HOUR":"17",
+            "PART_TIME_MINUTE":"27",
+            "PART_TIME_SECOND":"19",
+            "PART_TIME_HUNDRED":"27",
             "HEADER_OPER_INIT":"JP",
             "HEADER_AUTH_INIT":"JP",
             "HEADER_DATE_CENTURY":"20",
@@ -302,10 +697,307 @@
          },
          "header":{
             "is_bright_nickel":false,
+            "lane_setup":"0",
             "abbreviated_instructions":[
 
             ]
-         }
+         },
+         "raw_details":[
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"2",
+               "PROC_DATA":"    **** NOTE: LEAVE BBL IN CLEAN RINSE IF THICKNESS CHECKS NEEDED *****"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"4",
+               "PROC_DATA":"    ++++++++++++++++++++++++++++++++++++++++++++"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"5",
+               "PROC_DATA":"    DIP SAMPLES PER BELOW"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"6",
+               "PROC_DATA":"    CHECK BLACK ADHESION AND APPEARANCE CLOSELY."
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"7",
+               "PROC_DATA":"    ++++++++++++++++++++++++++++++++++++++++++++"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"8",
+               "PROC_DATA":"    POST DIP:"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"9",
+               "PROC_DATA":"    1. ***** BLACKEN IMMEDIATELY AFTER PLATE *****"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"10",
+               "PROC_DATA":"    2. TURN IN POST DIP STATIONS @ PLATING RPM"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"11",
+               "PROC_DATA":"    3. NITRIC DIP 10 SEC. TO ACTIVATE - RINSE"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"12",
+               "PROC_DATA":"    4. CAUSTIC PRE-DIP 45-90 SEC. RINSE IN BOTH ALKALINE RINSES & CHOMATED RINSE"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"13",
+               "PROC_DATA":"       A. WASHERS AND NUTS WILL NEED LONGER DIP TIMES THAN BOLTS.  PARTS SHOULD"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"14",
+               "PROC_DATA":"          HAVE UNIFORM DULL GRAY APPEARANCE AFTER PRE-DIP."
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"15",
+               "PROC_DATA":"       B. PARTS MUST BE RINSED VERY WELL, TO MINIMIZE DRAG-IN OF HIGH PH"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"16",
+               "PROC_DATA":"          PRE-DIP SOLUTION.  THIS WILL HELP AVOID CONTAMINATION OF THE"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"1",
+               "PROC_DATA":"          BLACKENING SOLUTION."
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"2",
+               "PROC_DATA":"    5. BLACK DIP: 2-8 MIN. AS NEEDED TO ACHIEVE BLACK APPEARANCE, THEN RINSE"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"3",
+               "PROC_DATA":"       NOTE: A. FLAT PARTS WILL NEED LONGER DIP TIMES"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"4",
+               "PROC_DATA":"             B. YOU SHOULD NOT SEE ANY IRIDESCENCE WHEN PARTS ARE BLACK ENOUGH"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"5",
+               "PROC_DATA":"             C. **** IF PARTS TAKE LONGER THAN 8 MIN. TO BLACKEN - CALL LAB ****"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"6",
+               "PROC_DATA":"    6. HYPRO 250 SEAL 45 SEC. - DRAIN WELL AFTER SEAL 30 SEC. TURNING SLOW"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"7",
+               "PROC_DATA":"       NOTE: DO NOT RINSE AFTER SEAL"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"9",
+               "PROC_DATA":"    DRYING PROCEDURE:"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"10",
+               "PROC_DATA":"    1. OKAY TO DRY PARTS IN HARSHAW BASKETS"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"11",
+               "PROC_DATA":"    2. SPIN OFF PARTS WITH NO HEAT 15 SEC. - TO REMOVE EXCESS SEAL."
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"12",
+               "PROC_DATA":"       NOTE:  SEAL WILL PUDDLE IF NOT SPUN OFF FIRST."
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"13",
+               "PROC_DATA":"    3. DRY WELL WITH HEAT."
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"14",
+               "PROC_DATA":"       DRYING TEMP = 180 DEG."
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"15",
+               "PROC_DATA":"       DRYING TIME = 10 MINS. MINIMUM"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"16",
+               "PROC_DATA":"    4. DO NOT OVER-DRY PARTS AS THIS WILL ALSO CAUSE EXCESSIVE SCRATCHING"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"3",
+               "PROC_LINE":"2",
+               "PROC_DATA":"    INSPECTION PROCEDURE:"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"3",
+               "PROC_LINE":"3",
+               "PROC_DATA":"    APPEAR: 1. PARTS MUST BE BLACK IN COLOR (NOT BROWN, GREEN, ETC.)"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"3",
+               "PROC_LINE":"4",
+               "PROC_DATA":"               NOTE: SOME VERY SLIGHT IRRIDESCENCE IS ACCEPTABLE"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"3",
+               "PROC_LINE":"5",
+               "PROC_DATA":"            2. PARTS SHOULD HAVE SOME SHINE TO FINISH, SHOULD NOT BE DULL"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"3",
+               "PROC_LINE":"6",
+               "PROC_DATA":"            3. PARTS SHOULD NOT BE EXCESSIVELY SCRATCHY"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"3",
+               "PROC_LINE":"7",
+               "PROC_DATA":"            4. MAKE SURE PARTS ARE TOTALLY DRY, LOOK FOR SEAL PUDDLING"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"3",
+               "PROC_LINE":"8",
+               "PROC_DATA":"            *******************************************************************"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"3",
+               "PROC_LINE":"9",
+               "PROC_DATA":"            5. SPECIAL APPEARANCE TEST:"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"3",
+               "PROC_LINE":"10",
+               "PROC_DATA":"               A. RUB SMOOTH AREAS OF PART AND MAKE SURE BLACK DOES NOT COME"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"3",
+               "PROC_LINE":"11",
+               "PROC_DATA":"                  OFF.  IF THE BLACK RUBS OFF, THIS USUALLY INDICATES AN"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"3",
+               "PROC_LINE":"12",
+               "PROC_DATA":"                  ACTIVATION ISSUE BEFORE THE BLACK DIP."
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"3",
+               "PROC_LINE":"13",
+               "PROC_DATA":"            *******************************************************************"
+            },
+            {
+               "ACCOUNT_NO":"503.71",
+               "PROC_HEADER_CODE":"TRIBLACK",
+               "PROC_PAGE":"99",
+               "PROC_LINE":"1",
+               "PROC_DATA":"LAST UPDATE: MMJ:MMJ 08\/20\/2018 17:27:19"
+            }
+         ]
       },
       {
          "code":"D",
@@ -313,6 +1005,67 @@
          "thickness":0,
          "procedure_code":"72+240",
          "loads":"0",
+         "raw_account":{
+            "ACCOUNT_NO":"516.97",
+            "GL_DEPARTMENT":"16",
+            "SCHED_SHORT_DESC":"SALT SPRAY",
+            "SCHED_DESC":"SALT SPRAY",
+            "SCHED_POLLUTION":"N",
+            "SCHED_MONTHLY_COST":"Y",
+            "SCHED_LABOR_LOAD":".00",
+            "SCHED_PER_TENTH_PRICE":".000",
+            "SCHED_SQ_FT_PRICE":".000",
+            "SCHED_METAL_FACTOR":".000000",
+            "SCHED_METAL_PRICE":".0000",
+            "SCHED_PRINT_PER_TENTH":"N",
+            "SCHED_PRINT_ON_SCHED":"N",
+            "SCHED_SYMBOL":"",
+            "SCHED_VALENCE":"",
+            "SCHED_EN_LOADING":"",
+            "UNUSED_3":"",
+            "SCHED_CATHODE_EFF":"100.0",
+            "SCHED_METAL_MULT":"1.00",
+            "SCHED_DEPOSITION_RATE":".00",
+            "SCHED_UNIT":"",
+            "SCHED_AMP_HR_SQ_FT_TENTH":".000",
+            "SCHED_IN_PLANT_ACCOUNT":"Y",
+            "SCHED_EXPENSE_ACCOUNT":"",
+            "SCHED_REWORK_LABOR_COST":".00",
+            "SCHED_REWORK_LABOR_UNIT":"",
+            "SCHED_REWORK_COST":".00",
+            "SCHED_REWORK_UNIT":"",
+            "SCHED_PRINT_DESC":"",
+            "SCHED_MINIMUM_SQ_FT":".0000",
+            "SCHED_MINIMUM_SQ_FT_T":".0000",
+            "SCHED_MAX_AMPS_PER_LOAD":"0",
+            "SCHED_MIN_AMPS_PER_LOAD":"0",
+            "SCHED_MAX_AMPS_SQ_FT":".0",
+            "SCHED_MIN_AMPS_SQ_FT":".0",
+            "SCHED_NUMBER_OF_STATIONS":"0",
+            "SCHED_LOADING_ONLY":"",
+            "SCHED_DEFAULT_AMPS_PER_SQ_FT":".0",
+            "SCHED_LOADS_REQUIRED":"",
+            "SCHED_UPDATE_MONTHLY_AREA":"",
+            "SCHED_FIXED_CYCLE":"",
+            "SCHED_RECIPE_REQUIRED":"",
+            "SCHED_VOLT_LIMIT_REQUIRED":"",
+            "SCHED_BARREL_SPEED_REQUIRED":"",
+            "SCHED_CYCLE_START_TIME":"0",
+            "SCHED_CYCLE_TIME":"0",
+            "BRIGHT_NICKEL":""
+         },
+         "title":"DEPT 16 SALT SPRAY ",
+         "code_details":{
+            "timestamp":null,
+            "operator_initials":null,
+            "authorized_initials":null,
+            "text":[
+
+            ],
+            "pages":[
+
+            ]
+         },
          "raw_header":{
             "ACCOUNT_NO":"516.97",
             "PROC_HEADER_CODE":"72+240",
@@ -374,12 +1127,16 @@
          },
          "header":{
             "is_bright_nickel":false,
+            "lane_setup":"0",
             "abbreviated_instructions":[
                "    * PARTS MUST PASS 72 HOUR SALT SPRAY - NO WHITE CORROSION",
                "    * PARTS MUST PASS 240 HOUR SALT SPRAY - NO RED RUST",
                "    * PARTS PASS\/FAIL:  SEE SALT SPRAY LOG"
             ]
-         }
+         },
+         "raw_details":[
+
+         ]
       },
       {
          "code":"E",
@@ -387,6 +1144,112 @@
          "thickness":0,
          "procedure_code":"ZFBLK",
          "loads":"0",
+         "raw_account":{
+            "ACCOUNT_NO":"516.99",
+            "GL_DEPARTMENT":"16",
+            "SCHED_SHORT_DESC":"FINAL INSPECT",
+            "SCHED_DESC":"QC - FINAL INSPECT",
+            "SCHED_POLLUTION":"N",
+            "SCHED_MONTHLY_COST":"Y",
+            "SCHED_LABOR_LOAD":".00",
+            "SCHED_PER_TENTH_PRICE":".000",
+            "SCHED_SQ_FT_PRICE":".000",
+            "SCHED_METAL_FACTOR":".000000",
+            "SCHED_METAL_PRICE":".0000",
+            "SCHED_PRINT_PER_TENTH":"N",
+            "SCHED_PRINT_ON_SCHED":"N",
+            "SCHED_SYMBOL":"",
+            "SCHED_VALENCE":"",
+            "SCHED_EN_LOADING":"",
+            "UNUSED_3":"",
+            "SCHED_CATHODE_EFF":"100.0",
+            "SCHED_METAL_MULT":"1.00",
+            "SCHED_DEPOSITION_RATE":".00",
+            "SCHED_UNIT":"",
+            "SCHED_AMP_HR_SQ_FT_TENTH":".000",
+            "SCHED_IN_PLANT_ACCOUNT":"Y",
+            "SCHED_EXPENSE_ACCOUNT":"",
+            "SCHED_REWORK_LABOR_COST":".00",
+            "SCHED_REWORK_LABOR_UNIT":"",
+            "SCHED_REWORK_COST":".00",
+            "SCHED_REWORK_UNIT":"",
+            "SCHED_PRINT_DESC":"",
+            "SCHED_MINIMUM_SQ_FT":".0000",
+            "SCHED_MINIMUM_SQ_FT_T":".0000",
+            "SCHED_MAX_AMPS_PER_LOAD":"0",
+            "SCHED_MIN_AMPS_PER_LOAD":"0",
+            "SCHED_MAX_AMPS_SQ_FT":".0",
+            "SCHED_MIN_AMPS_SQ_FT":".0",
+            "SCHED_NUMBER_OF_STATIONS":"0",
+            "SCHED_LOADING_ONLY":"",
+            "SCHED_DEFAULT_AMPS_PER_SQ_FT":".0",
+            "SCHED_LOADS_REQUIRED":"",
+            "SCHED_UPDATE_MONTHLY_AREA":"",
+            "SCHED_FIXED_CYCLE":"",
+            "SCHED_RECIPE_REQUIRED":"",
+            "SCHED_VOLT_LIMIT_REQUIRED":"",
+            "SCHED_BARREL_SPEED_REQUIRED":"",
+            "SCHED_CYCLE_START_TIME":"0",
+            "SCHED_CYCLE_TIME":"0",
+            "BRIGHT_NICKEL":""
+         },
+         "title":"DEPT 16 FINAL INSPECT ZINC-IRON & TRIVALENT BLACK",
+         "code_details":{
+            "timestamp":1276809800,
+            "operator_initials":"JP",
+            "authorized_initials":"JP",
+            "text":[
+               "    APPEAR: 1. PARTS MUST BE BLACK IN COLOR (NOT BROWN, GREEN, ETC.)",
+               "               NOTE: SOME VERY SLIGHT IRRIDESCENCE IS ACCEPTABLE",
+               "            2. PARTS SHOULD NOT BE DULL OR HAVE DULL AREAS",
+               "            3. PARTS SHOULD NOT BE SCRATCHY &\/OR HAVE ZINC SHOWING THRU",
+               "               NOTE:  VERY MINOR SCRATCHING IS ACCEPTABLE, BUT SHOULD NOT BE",
+               "                      EXCESSIVE.",
+               "            4. MINOR PUDDLING FROM SEAL IN ID AREAS IS ACCEPTABLE, BUT MUST BE",
+               "               SMALL % AND NOT EXCESSIVE.",
+               "            5. MAKE SURE PARTS ARE TOTALLY DRY",
+               "            *******************************************************************",
+               "            6. SPECIAL APPEARANCE TEST:",
+               "               A. RUB SMOOTH AREAS OF PART AND MAKE SURE BLACK DOES NOT COME",
+               "                  OFF.  IF THE BLACK RUBS OFF, THIS USUALLY INDICATES AN",
+               "                  ACTIVATION ISSUE BEFORE THE BLACK DIP.",
+               "            *******************************************************************",
+               "    ADHES:  1. VISUALLY CHECK FOR EXCELLENT ADHESION - NO BLISTERS ETC.",
+               "    THICK:  1. (WHEN APPLICABLE) - VERIFY THAT ALL LOADS HAVE CORRECT",
+               "               THICKNESS - SEE GUIDELINES ABOVE UNDER PLATING",
+               "",
+               "    MATERIAL HANDLING:",
+               "    1. VERIFY THAT PARTS WERE PACKED CORRECTLY PER INSTRUCTIONS UNDER PLATING"
+            ],
+            "pages":{
+               "1":{
+                  "1":"    APPEAR: 1. PARTS MUST BE BLACK IN COLOR (NOT BROWN, GREEN, ETC.)",
+                  "2":"               NOTE: SOME VERY SLIGHT IRRIDESCENCE IS ACCEPTABLE",
+                  "3":"            2. PARTS SHOULD NOT BE DULL OR HAVE DULL AREAS",
+                  "4":"            3. PARTS SHOULD NOT BE SCRATCHY &\/OR HAVE ZINC SHOWING THRU",
+                  "5":"               NOTE:  VERY MINOR SCRATCHING IS ACCEPTABLE, BUT SHOULD NOT BE",
+                  "6":"                      EXCESSIVE.",
+                  "7":"            4. MINOR PUDDLING FROM SEAL IN ID AREAS IS ACCEPTABLE, BUT MUST BE",
+                  "8":"               SMALL % AND NOT EXCESSIVE.",
+                  "9":"            5. MAKE SURE PARTS ARE TOTALLY DRY",
+                  "10":"            *******************************************************************",
+                  "11":"            6. SPECIAL APPEARANCE TEST:",
+                  "12":"               A. RUB SMOOTH AREAS OF PART AND MAKE SURE BLACK DOES NOT COME",
+                  "13":"                  OFF.  IF THE BLACK RUBS OFF, THIS USUALLY INDICATES AN",
+                  "14":"                  ACTIVATION ISSUE BEFORE THE BLACK DIP.",
+                  "15":"            *******************************************************************",
+                  "16":"    ADHES:  1. VISUALLY CHECK FOR EXCELLENT ADHESION - NO BLISTERS ETC."
+               },
+               "2":{
+                  "1":"    THICK:  1. (WHEN APPLICABLE) - VERIFY THAT ALL LOADS HAVE CORRECT",
+                  "2":"               THICKNESS - SEE GUIDELINES ABOVE UNDER PLATING",
+                  "3":"",
+                  "4":"    MATERIAL HANDLING:",
+                  "5":"    1. VERIFY THAT PARTS WERE PACKED CORRECTLY PER INSTRUCTIONS UNDER PLATING"
+               }
+            },
+            "timestamp*":"06\/17\/10 05:23:20 pm"
+         },
          "raw_header":{
             "ACCOUNT_NO":"516.99",
             "PROC_HEADER_CODE":"ZFBLK",
@@ -448,119 +1311,242 @@
          },
          "header":{
             "is_bright_nickel":false,
+            "lane_setup":"0",
             "abbreviated_instructions":[
 
             ]
-         }
+         },
+         "raw_details":[
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"1",
+               "PROC_DATA":"    APPEAR: 1. PARTS MUST BE BLACK IN COLOR (NOT BROWN, GREEN, ETC.)"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"2",
+               "PROC_DATA":"               NOTE: SOME VERY SLIGHT IRRIDESCENCE IS ACCEPTABLE"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"3",
+               "PROC_DATA":"            2. PARTS SHOULD NOT BE DULL OR HAVE DULL AREAS"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"4",
+               "PROC_DATA":"            3. PARTS SHOULD NOT BE SCRATCHY &\/OR HAVE ZINC SHOWING THRU"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"5",
+               "PROC_DATA":"               NOTE:  VERY MINOR SCRATCHING IS ACCEPTABLE, BUT SHOULD NOT BE"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"6",
+               "PROC_DATA":"                      EXCESSIVE."
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"7",
+               "PROC_DATA":"            4. MINOR PUDDLING FROM SEAL IN ID AREAS IS ACCEPTABLE, BUT MUST BE"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"8",
+               "PROC_DATA":"               SMALL % AND NOT EXCESSIVE."
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"9",
+               "PROC_DATA":"            5. MAKE SURE PARTS ARE TOTALLY DRY"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"10",
+               "PROC_DATA":"            *******************************************************************"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"11",
+               "PROC_DATA":"            6. SPECIAL APPEARANCE TEST:"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"12",
+               "PROC_DATA":"               A. RUB SMOOTH AREAS OF PART AND MAKE SURE BLACK DOES NOT COME"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"13",
+               "PROC_DATA":"                  OFF.  IF THE BLACK RUBS OFF, THIS USUALLY INDICATES AN"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"14",
+               "PROC_DATA":"                  ACTIVATION ISSUE BEFORE THE BLACK DIP."
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"15",
+               "PROC_DATA":"            *******************************************************************"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"1",
+               "PROC_LINE":"16",
+               "PROC_DATA":"    ADHES:  1. VISUALLY CHECK FOR EXCELLENT ADHESION - NO BLISTERS ETC."
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"1",
+               "PROC_DATA":"    THICK:  1. (WHEN APPLICABLE) - VERIFY THAT ALL LOADS HAVE CORRECT"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"2",
+               "PROC_DATA":"               THICKNESS - SEE GUIDELINES ABOVE UNDER PLATING"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"4",
+               "PROC_DATA":"    MATERIAL HANDLING:"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"2",
+               "PROC_LINE":"5",
+               "PROC_DATA":"    1. VERIFY THAT PARTS WERE PACKED CORRECTLY PER INSTRUCTIONS UNDER PLATING"
+            },
+            {
+               "ACCOUNT_NO":"516.99",
+               "PROC_HEADER_CODE":"ZFBLK",
+               "PROC_PAGE":"99",
+               "PROC_LINE":"1",
+               "PROC_DATA":"LAST UPDATE: JP :JP  06\/17\/2010 17:23:20"
+            }
+         ]
       }
    ],
    "special_instructions":[
       {
+         "department":"",
          "operation":"A",
          "before_after":"before",
-         "page":1,
-         "line":2,
-         "data":"    BBL TYPE:  3 RPM CLAMPLESS",
-         "timestamp":null
+         "pages":{
+            "1":{
+               "1":"",
+               "2":"    BBL TYPE:  3 RPM CLAMPLESS",
+               "3":"",
+               "4":"    CLEANING PROCEDURE:",
+               "5":"    1. SOAK CLEAN 10 MIN.",
+               "6":"    2. #1 ELECTROCLEAN 10 MIN.",
+               "7":"    3. HOT ACID 1 MIN.",
+               "8":"    4. #1 ELECTROCLEAN 10 MIN.",
+               "9":"    5. ***** DO NOT GIVE PARTS ELECTRIC CYANIDE *****"
+            }
+         },
+         "text":[
+            "",
+            "    BBL TYPE:  3 RPM CLAMPLESS",
+            "",
+            "    CLEANING PROCEDURE:",
+            "    1. SOAK CLEAN 10 MIN.",
+            "    2. #1 ELECTROCLEAN 10 MIN.",
+            "    3. HOT ACID 1 MIN.",
+            "    4. #1 ELECTROCLEAN 10 MIN.",
+            "    5. ***** DO NOT GIVE PARTS ELECTRIC CYANIDE *****"
+         ],
+         "timestamp":1532706912,
+         "operator_initials":"JP",
+         "authorized_initials":"JP",
+         "timestamp*":"07\/27\/18 11:55:12 am"
       },
       {
-         "operation":"A",
-         "before_after":"before",
-         "page":1,
-         "line":4,
-         "data":"    CLEANING PROCEDURE:",
-         "timestamp":null
-      },
-      {
-         "operation":"A",
-         "before_after":"before",
-         "page":1,
-         "line":5,
-         "data":"    1. SOAK CLEAN 10 MIN.",
-         "timestamp":null
-      },
-      {
-         "operation":"A",
-         "before_after":"before",
-         "page":1,
-         "line":6,
-         "data":"    2. #1 ELECTROCLEAN 10 MIN.",
-         "timestamp":null
-      },
-      {
-         "operation":"A",
-         "before_after":"before",
-         "page":1,
-         "line":7,
-         "data":"    3. HOT ACID 1 MIN.",
-         "timestamp":null
-      },
-      {
-         "operation":"A",
-         "before_after":"before",
-         "page":1,
-         "line":8,
-         "data":"    4. #1 ELECTROCLEAN 10 MIN.",
-         "timestamp":null
-      },
-      {
-         "operation":"A",
-         "before_after":"before",
-         "page":1,
-         "line":9,
-         "data":"    5. ***** DO NOT GIVE PARTS ELECTRIC CYANIDE *****",
-         "timestamp":null
-      },
-      {
+         "department":"",
          "operation":"B",
          "before_after":"after",
-         "page":1,
-         "line":1,
-         "data":"    THICK:  1. CHECK 5 PCS\/LOAD IN CENTER OF HEX",
+         "pages":{
+            "1":{
+               "1":"    THICK:  1. CHECK 5 PCS\/LOAD IN CENTER OF HEX",
+               "2":"            2. DIR:  MISC         PRODUCT:  ZN\/FE (MICRONS)",
+               "3":"            3. TARGET MEAN (MICRONS) = 7.5\u00b5M - 9\u00b5M, ALL CHECKS > 5\u00b5M"
+            }
+         },
+         "text":[
+            "    THICK:  1. CHECK 5 PCS\/LOAD IN CENTER OF HEX",
+            "            2. DIR:  MISC         PRODUCT:  ZN\/FE (MICRONS)",
+            "            3. TARGET MEAN (MICRONS) = 7.5\u00b5M - 9\u00b5M, ALL CHECKS > 5\u00b5M"
+         ],
          "timestamp":1532708692,
+         "operator_initials":"JP",
+         "authorized_initials":"JP",
          "timestamp*":"07\/27\/18 12:24:52 pm"
       },
       {
-         "operation":"B",
-         "before_after":"after",
-         "page":1,
-         "line":2,
-         "data":"            2. DIR:  MISC         PRODUCT:  ZN\/FE (MICRONS)",
-         "timestamp":null
-      },
-      {
-         "operation":"B",
-         "before_after":"after",
-         "page":1,
-         "line":3,
-         "data":null,
-         "timestamp":null
-      },
-      {
+         "department":"",
          "operation":"C",
          "before_after":"after",
-         "page":1,
-         "line":2,
-         "data":"    MATERIAL HANDLING:",
-         "timestamp":null
-      },
-      {
-         "operation":"C",
-         "before_after":"after",
-         "page":1,
-         "line":3,
-         "data":"    1. PACK PARTS BACK INTO THIER TRAYS SET INSIDE THE TOTES.",
-         "timestamp":null
-      },
-      {
-         "operation":"C",
-         "before_after":"after",
-         "page":1,
-         "line":4,
-         "data":"       (ONLY LINE TRAYS IF NECESSARY)",
-         "timestamp":null
+         "pages":{
+            "1":{
+               "1":"",
+               "2":"    MATERIAL HANDLING:",
+               "3":"    1. PACK PARTS BACK INTO THIER TRAYS SET INSIDE THE TOTES.",
+               "4":"       (ONLY LINE TRAYS IF NECESSARY)"
+            }
+         },
+         "text":[
+            "",
+            "    MATERIAL HANDLING:",
+            "    1. PACK PARTS BACK INTO THIER TRAYS SET INSIDE THE TOTES.",
+            "       (ONLY LINE TRAYS IF NECESSARY)"
+         ],
+         "timestamp":1534349250,
+         "operator_initials":"MMJ",
+         "authorized_initials":"MMJ",
+         "timestamp*":"08\/15\/18 12:07:30 pm"
       }
    ],
    "receipt_date*":"08\/15\/18",
+   "promise_date*":"08\/21\/18",
    "shop_order_date*":"08\/15\/18"
 }
