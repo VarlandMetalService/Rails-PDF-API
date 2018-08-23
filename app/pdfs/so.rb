@@ -2,6 +2,7 @@ require 'barby'
 require 'barby/barcode/code_39'
 require 'barby/outputter/prawn_outputter'
 require 'json'
+require 'uri'
 include ActionView::Helpers::NumberHelper
 
 class SO < VarlandPdf
@@ -11,9 +12,16 @@ class SO < VarlandPdf
 
   def initialize(data = nil, color = nil)
     super()
+=begin   
+    shopOrderSearch = "288224"
+    url = "http://as400railsapi.varland.com/v1/so?shop_order=" + shopOrderSearch
+    @data = JSON.parse(open(url).read)
+    puts @data
+=end
     file = File.read('288224.json')
     @data = JSON.parse(file)
 
+    #testNewJSON
     @color = color
     case @data['schedule_code']
     when 'YEL'
@@ -424,6 +432,11 @@ class SO < VarlandPdf
       end
     end
   end
+
+  def testNewJSON
+    text @data['body']
+     
+  end 
 
   def page_header_text_box(text, x, y, width, height = 0.2, large = false, align = :center, valign = :center)
     font 'Arial Narrow', style: :bold
