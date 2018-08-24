@@ -3,6 +3,7 @@ require 'barby/barcode/code_39'
 require 'barby/outputter/prawn_outputter'
 require 'json'
 require 'uri'
+require 'date'
 include ActionView::Helpers::NumberHelper
 
 class SO < VarlandPdf
@@ -12,24 +13,17 @@ class SO < VarlandPdf
 
   def initialize(data = nil, color = nil)
     super()
-=begin   
-    shopOrderSearch = "288224"
-    url = "http://as400railsapi.varland.com/v1/so?shop_order=" + shopOrderSearch
-    @data = JSON.parse(open(url).read)
-    puts @data
-=end
-    file = File.read('288224.json')
+    file = File.read('288473.json')
     @data = JSON.parse(file)
 
-    #testNewJSON
     @color = color
-    case @data['schedule_code']
-    when 'YEL'
-      @color = 'yellow'
-    when 'GRN'
-      @color = 'green'
-    else
-      @color = 'blue'
+    case @data['scheduleCode']
+      when 'YEL'
+        @color = 'yellow'
+      when 'GRN'
+        @color = 'green'
+      else
+        @color = 'blue'
     end
 
     print_instructions
@@ -44,92 +38,99 @@ class SO < VarlandPdf
 
     # Draw revision dates.
     bounding_box [_i(0.25), _i(3.45)], width: _i(8), height: _i(0.8) do
+      
+      #Draw REV DATES at bottom
       page_header_data_box 'REV DATES:', -0.05, 0.8, 1.5, 0.2, :left
 
-      headings = ['SPEC INST', 'STD PROC', 'LOADINGS', 'PART SPEC']
-
-      dates = [
-        @data['revision_dates']['special_instructions']['timestamp*'], 
-        @data['revision_dates']['standard_procedure']['timestamp*'], 
-        @data['revision_dates']['loadings']['timestamp*'], 
-        @data['revision_dates']['part_spec']['timestamp*'] 
-      ]
-
-      #Formats date/time
-      for i in (0..dates.length)
-        if dates[i] != nil
-          dates[i] = dates[i][0...-6]
+      #Checking if anything in revisionDates from the JSON file is NIL. Replace with empty string.
+      headers = ['SPEC INST', 'STD PROC', 'LOADINGS', 'PART SPEC']
+      date_initials = []
+      ['special', 'procedure', 'loading', 'part'].each do |i|
+        if @data['revisionDates'][i] != nil
+          date_initials.push([@data['revisionDates'][i]['timestamp'], @data['revisionDates'][i]['operatorInitials'], @data['revisionDates'][i]['authorizedInitials']])
+        else
+          date_initials.push(['', '', ''])
         end
       end
 
-      initials = [
-        [@data['revision_dates']['special_instructions']['operator_initials'],@data['revision_dates']['special_instructions']['operator_initials']], 
-        [@data['revision_dates']['standard_procedure']['operator_initials'], @data['revision_dates']['standard_procedure']['operator_initials']], 
-        [@data['revision_dates']['loadings']['operator_initials'], @data['revision_dates']['loadings']['operator_initials']], 
-        [@data['revision_dates']['part_spec']['operator_initials'], @data['revision_dates']['part_spec']['operator_initials']]
-      ]
-
+      #Print first column of revision dates
       y = 0.8
-      0.upto(3) do |i|
-        page_header_data_box headings[i], 1, y, 1.5, 0.2, :left
-        page_header_data_box dates[i], 1.8, y, 1.5, 0.2, :left
-        if(initials[i][0] != nil|| initials[i][1] != nil) #Formats initials
-          page_header_data_box "#{initials[i][0]}:#{initials[i][1]}", 2.4, y, 1.5, 0.2, :right
+      0.upto(headers.length - 1) do |i|
+        page_header_data_box headers[i], 1, y, 1.5, 0.2, :left
+        if date_initials[i][0] != ''
+          page_header_data_box DateTime.parse(date_initials[i][0]).strftime("%m/%d/%Y %H:%M"), 1.75, y, 1.5, 0.2, :left
         end
-        #page_header_data_box times[i], 3.1, y, 1.5, 0.2, :left
+        if(date_initials[i][1] != ''|| date_initials[i][2] != '') #Formats initials
+          page_header_data_box "#{date_initials[i][1]}:#{date_initials[i][2]}", 2.8525, y, 1.5, 0.2, :left
+        end
         y -= 0.2
       end
-      headings = ['LAST ORDER', 'PREV ORDER', 'QUOTE INFO']
-      dates = [
-        @data['revision_dates']['last_order']['date*'], 
-        @data['revision_dates']['previous_order']['date*'], 
-        @data['revision_dates']['quote']['date*']
-      ]
-      numbers = [
-        @data['revision_dates']['last_order']['number'].to_s, 
-        @data['revision_dates']['previous_order']['number'].to_s, 
-        @data['revision_dates']['quote']['number'].to_s
-      ]
+
+      #'PRICING' is a special field with a dynamic header name
+      quote_or_price = @data['revisionDates']['pricing'] ? @data['revisionDates']['pricing']['label'] : ''
+
+      #Checking if anything in revisionDates from the JSON file is NIL. Replace with empty string.
+      headers = ['LAST ORDER', 'PREV ORDER', quote_or_price]
+      date_numbers = []
+      ['lastOrder', 'prevOrder', 'pricing'].each do |i|
+        if @data['revisionDates'][i] != nil
+          if i == 'pricing'
+            t_array = [@data['revisionDates'][i]['timestamp'], @data['revisionDates'][i]['value']]
+            date_numbers.push(t_array)
+          else
+            t_array = [@data['revisionDates'][i]['timestamp'], @data['revisionDates'][i]['number']]
+            date_numbers.push(t_array)
+          end
+        else
+          date_numbers.push(['', ''])
+        end
+      end
+   
+      #Print second column of revision dates
       y = 0.8
-      0.upto(2) do |i|
-        page_header_data_box headings[i], 4, y, 1.5, 0.2, :left
-        page_header_data_box dates[i], 4.9, y, 1.5, 0.2, :left
-        page_header_data_box numbers[i], 5.5, y, 1.5, 0.2, :left
+      0.upto(headers.length-1) do |i|
+        page_header_data_box headers[i], 4, y, 1.5, 0.2, :left
+        if(date_numbers[i][0] != '')
+          puts "LOOK HERE! -->#{date_numbers[i][0]}"
+          page_header_data_box DateTime.parse(date_numbers[i][0]).strftime("%m/%d/%Y"), 4.9, y, 1.5, 0.2, :left
+        end
+          page_header_data_box date_numbers[i][1].to_s, 5.65, y, 1.5, 0.2, :left
         y -= 0.2
       end
     end
 
-    # Draw shop order note box.
-    bounding_box [_i(0.25), _i(2.5)], width: _i(8), height: _i(0.25) do
-      fill_color 'cccccc'
-      fill_rectangle([_i(0), _i(0.25)], _i(8), _i(0.25))
-      stroke_bounds
-      font_size 11.96
-      fill_color '000000'
-      font 'Arial Narrow', style: :bold
-      text_box  'Shop Order Notes'.upcase,
-                at: [_i(0.05), _i(0.25)],
-                width: _i(7.9),
-                height: _i(0.25),
-                align: :center,
-                valign: :center
-    end
-
-    #Draw shop order notes
-    bounding_box [_i(0.25), _i(2.25)], width: _i(8), height: _i(2) do
-      stroke_bounds
-      font_size 11.5
-      fill_color '000000'
-      font 'SF Mono', style: :bold
-        text_box  @data['note'].join("\n"),
-                  at: [_i(0.05), _i(1.95)],
+    if(@data['shopOrderNote'] != nil)
+      # Draw shop order note box.
+      bounding_box [_i(0.25), _i(2.5)], width: _i(8), height: _i(0.25) do
+        fill_color 'cccccc'
+        fill_rectangle([_i(0), _i(0.25)], _i(8), _i(0.25))
+        stroke_bounds
+        font_size 11.96
+        fill_color '000000'
+        font 'Arial Narrow', style: :bold
+        text_box  'Shop Order Notes'.upcase,
+                  at: [_i(0.05), _i(0.25)],
                   width: _i(7.9),
-                  height: _i(2.5),
-                  align: :left,
-                  valign: :top
-      
+                  height: _i(0.25),
+                  align: :center,
+                  valign: :center
+      end
+
+      #Draw shop order notes
+      bounding_box [_i(0.25), _i(2.25)], width: _i(8), height: _i(2) do
+        stroke_bounds
+        font_size 11.5
+        fill_color '000000'
+        font 'SF Mono', style: :bold
+          text_box  @data['shopOrderNote'].join("\n"),
+                    at: [_i(0.05), _i(1.95)],
+                    width: _i(7.9),
+                    height: _i(2.5),
+                    align: :left,
+                    valign: :top
+      end
     end
-      
+    
     # Draw page header box.
     bounding_box [_i(0.25), _i(8.45)], width: _i(8), height: _i(5) do
 
@@ -161,8 +162,6 @@ class SO < VarlandPdf
       #Stroke lines for SHIP TO, FINAL INSPECTION, and P&M DESC.
       stroke_color '000000'
       stroke_line [_i(3.2), _i(4.8)], [_i(8.0), _i(4.8)]
-      #stroke_line [_i(4.0), _i(4.8)], [_i(4.0), _i(5.0)]
-      #stroke_line [_i(6.5), _i(4.8)], [_i(8.0), _i(4.8)]
       stroke_line [_i(0), _i(0.6)], [_i(3.2), _i(0.6)]
 
       # Draw border around entire box.
@@ -199,39 +198,59 @@ class SO < VarlandPdf
       page_header_text_box 'Final Inspection', 6.5, 5, 1.5, 0.2, false, :center
       page_header_text_box 'Part & Material Description', 0, 0.8, 3.2, 0.2, false, :center
 
-      # Draw header data.
-      shipping_no = @data['shipping_phone'].to_i
-      ship_to_address = @data['ship_to']['name_1'] + "\n" + @data['ship_to']['address'] + "\n" + @data['ship_to']['city'] + ', ' + @data['ship_to']['state'] + ', ' + @data['ship_to']['zip_code'].to_s
+      #Draw circle under FINAL INSPECTION
+      stroke_circle [_i(7.24), _i(4.401)], _i(0.35)
 
-      page_header_data_box number_to_phone(shipping_no, area_code: true), 3.2, 4.8, 3.3, 0.2, :right
-      page_header_data_box ship_to_address, 3.2, 4.9, 3.2, 0.8, :left
-      page_header_data_box @data['certify_code']['part_1'].join("\n") + "\n" + @data['process_specification'].join("\n") + "\n" + @data['certify_code']['part_2'].join("\n"), 0.025, 4.95, 4, 3.5, :left, false, :top
-      page_header_data_box @data['part_description'].join("\n"), 0, 0.6, 4, 0.6, :left
-      page_header_data_box (number_with_precision(@data['pieces_per_pound'], precision: 3)) + ' PCS / LB', 3.2, 0.8, 2.4, 0.2, :left
-      page_header_data_box (number_with_precision(@data['square_feet_per_pound'], precision: 2)) + " FT² / LB", 3.2, 0.6, 2.4, 0.2, :left
-      page_header_data_box (number_with_precision(@data['pounds_per_cubic_foot'], precision: 2)) + ' LB / FT³', 3.2, 0.4, 2.4, 0.2, :left
-      page_header_data_box (number_with_precision(@data['grams_per_piece'], precision: 6)) + ' GRAMS / PC', 3.2, 0.2, 2.4, 0.2, :left
-      page_header_data_box (number_with_precision(@data['pounds_per_thousand'], precision: 2)) + ' LBS / M', 5.6, 0.8, 2.4, 0.2, :left
-      page_header_data_box (number_with_precision(@data['square_feet_per_thousand'], precision: 2)) + 'FT² / M', 5.6, 0.6, 2.4, 0.2, :left 
-      page_header_data_box (number_with_precision(@data['piece_weight'], precision: 5)) + ' PC WT', 5.6, 0.4, 2.4, 0.2, :left
-      page_header_data_box (number_with_precision(@data['square_centimeters_per_piece'], precision: 6)) + 'CM² / PC', 5.6, 0.2, 2.4, 0.2, :left 
+      # Draw header data.
+      shipping_no = @data['shipTo']['phone'].to_i
+      ship_to_address = @data['shipTo']['name_1'] + "\n" + @data['shipTo']['address'] + "\n" + @data['shipTo']['city'] + ', ' + @data['shipTo']['state'] + ', ' + @data['shipTo']['zipCode'].to_s
+      page_header_data_box number_to_phone(shipping_no, area_code: true), 3.2, 4.75, 3.3, 0.8, :right, false, :top
+      page_header_data_box ship_to_address, 3.2, 4.75, 3.2, 0.8, :left, false, :top
+      page_header_data_box @data['process'] + "\n\n" + "PRIMARY DEPARTMENT: #{@data['primaryDept']}  \nALTERNATE DEPTS: #{@data['altDepts'][0]}", 0.025, 4.95, 4, 3.2, :left, false, :top
+      page_header_data_box @data['partDescription'].join("\n"), 0, 0.55, 4, 0.6, :left, false, :top
+      page_header_data_box (number_with_precision(@data['piecesPerPound'], precision: 3)) + ' PCS / LB', 3.2, 0.8, 2.4, 0.2, :left
+      page_header_data_box (number_with_precision(@data['ft2PerPound'], precision: 2)) + " FT² / LB", 3.2, 0.6, 2.4, 0.2, :left
+      page_header_data_box (number_with_precision(@data['poundsPerFt3'], precision: 2)) + ' LB / FT³', 3.2, 0.4, 2.4, 0.2, :left
+      page_header_data_box (number_with_precision(@data['gramsPerPiece'], precision: 6)) + ' GRAMS / PC', 3.2, 0.2, 2.4, 0.2, :left
+      page_header_data_box (number_with_precision(@data['poundsPerThousand'], precision: 2)) + ' LBS / M', 5.6, 0.8, 2.4, 0.2, :left
+      page_header_data_box (number_with_precision(@data['ft2PerThousand'], precision: 2)) + ' FT² / M', 5.6, 0.6, 2.4, 0.2, :left 
+      page_header_data_box (number_with_precision(@data['pieceWeight'], precision: 5)) + ' PC WT', 5.6, 0.4, 2.4, 0.2, :left
+      page_header_data_box (number_with_precision(@data['cm2PerPiece'], precision: 6)) + ' CM² / PC', 5.6, 0.2, 2.4, 0.2, :left 
       
       font 'Arial', style: :bold
       font_size 40
       fill_color 'ff0000'
       stroke_color '000000'
-      case @color
-      when 'red'
-        fill_color 'ffffff'
-      end
-      text_box  'NEW JOB',
-                at: [_i(0), _i(1.4)],
-                width: _i(3.2),
-                height: _i(0.6),
-                align: :center,
-                valign: :center,
-                mode: :fill_stroke
 
+      if (@data['isNewJob'])
+        case [@color]
+        when 'red'
+          fill_color 'ffffff'
+        end
+        text_box  'NEW JOB',
+                  at: [_i(0), _i(1.4)],
+                  width: _i(3.2),
+                  height: _i(0.6),
+                  align: :center,
+                  valign: :center,
+                  mode: :fill_stroke
+      end
+=begin This will be used for the ifDevelopmental tag is ever in place
+      if (@data['isDevelopmental']) 
+        font_size 25
+        case [@color]
+        when 'red'
+          fill_color 'ffffff'
+        end
+        text_box  'DEVELOPMENTAL',
+                  at: [_i(0), _i(1.4)],
+                  width: _i(3.2),
+                  height: _i(0.6),
+                  align: :center,
+                  valign: :center,
+                  mode: :fill_stroke
+      end
+=end
     end
 
   end
@@ -242,11 +261,15 @@ class SO < VarlandPdf
     font_size 8
     font 'Arial Narrow', style: :bold
     bounding_box [_i(0.25), _i(10.75)], width: _i(8), height: _i(0.75) do
-      number_pages 'PAGE <page>', align: :center
+      if @data['isPageReprint']
+         number_pages 'REPRINT PAGE <page>', align: :center 
+      else
+        number_pages 'PAGE <page>', align: :center
+      end
     end
 
     # Configure shop order barcode.
-    barcode = Barby::Code39.new 987654.to_s.rjust(10)
+    barcode = Barby::Code39.new @data['shopOrder'].to_s.rjust(10)
 
     # Print header on every page.
     repeat :all do
@@ -254,8 +277,8 @@ class SO < VarlandPdf
       # Draw oversized shop order numbers.
       font_size 40
       font 'Arial Narrow', style: :bold
-      text_box @data["shop_order"], at: [_i(1), _i(10.75)], width: _i(2.5), height: _i(0.6)
-      text_box @data["shop_order"], at: [_i(8.25), _i(10.25)], width: _i(1.8), height: _i(0.6), rotate: 270, align: :center
+      text_box @data["shopOrder"].to_s, at: [_i(1), _i(10.75)], width: _i(2.5), height: _i(0.6)
+      text_box @data["shopOrder"].to_s, at: [_i(8.25), _i(10.25)], width: _i(1.8), height: _i(0.6), rotate: 270, align: :center
 
       # Draw shop order barcode.
       bounding_box [_i(5.58), _i(10.75)], width: _i(2.5), height: _i(0.3) do
@@ -264,27 +287,27 @@ class SO < VarlandPdf
 
       #Draw text under barcode
       bounding_box [_i(0.25), _i(10.45)], width: _i(7.5), height: _i(0.2) do
-        page_header_data_box 'VMS' + @data['shop_order'].to_s, 5.5, 0.2, 7.55, 0.2, :left
-        page_header_data_box @data['shop_order_date*'] + ' ' +  @data['time_received'], 0, 0.2, 7.55, 0.2, :right
+        page_header_data_box 'VMS' + @data['shopOrder'].to_s, 5.275, 0.2, 7.55, 0.2, :left
+        page_header_data_box DateTime.parse(@data['shopOrderDate']).strftime("%m/%d/%Y") + ' ' +  @data['timeReceived'], 0, 0.2, 7.55, 0.2, :right
       end
-      
       # Draw page header box.
       bounding_box [_i(0.25), _i(10.25)], width: _i(7.5), height: _i(1.8) do
 
         # Draw shaded background if necessary.
         fill_color 'ffffff'
         case @color
-        when 'yellow'
-          fill_color 'f9d423'
-        when 'green'
-          fill_color '93dfb8'
-        when 'blue'
-          fill_color 'b4f3fd'
-        when 'purple'
-          fill_color 'e3aad6'
-        when 'red'
-          fill_color 'ff4e50'
+          when 'yellow'
+            fill_color 'f9d423'
+          when 'green'
+            fill_color '93dfb8'
+          when 'blue'
+            fill_color 'b4f3fd'
+          when 'purple'
+            fill_color 'e3aad6'
+          when 'red'
+            fill_color 'ff4e50'
         end
+
         fill_rectangle([0, _i(1.8)], _i(7.5), _i(1.8))
 
         # Draw shaded header boxes.
@@ -329,21 +352,20 @@ class SO < VarlandPdf
         page_header_text_box 'Shipping #', 6, 0.5, 1.5
 
         # Draw header data.
-        page_header_data_box @data['ship_to']['name_1']+ "\n" + @data['ship_to']['name_2'], 0, 1.6, 3.5, 0.5, :left, true
-        page_header_data_box @data['customer_code'], 3.5, 1.6, 1, 0.3, :center, true
-        page_header_data_box @data['process_code'], 4.5, 1.6, 0.7, 0.3, :center, true
-        page_header_data_box @data['part_id'], 5.2, 1.6, 2, 0.3, :left, true
-        page_header_data_box @data['sub_id'], 7.2, 1.6, 0.3, 0.3, :center, true
-        page_header_data_box @data['equipment_used'].join("\n"), 0, 1.025, 3.5, 0.6, :left, true, :top
-        page_header_data_box @data['part_name'].join("\n"), 3.5, 1.025, 2.5, 0.6, :left, false, :top
-        page_header_data_box @data['po_numbers'].join("\n"), 6, 1.025, 1.5, 0.6, :left, true, :top
-        page_header_data_box @data['shop_order_date*'], 0, 0.3, 1.5, 0.3, :center, true
+        page_header_data_box @data['shipTo']['name_1']+ "\n" + @data['shipTo']['name_2'], 0, 1.6, 3.5, 0.5, :left, true
+        page_header_data_box @data['customerCode'], 3.5, 1.6, 1, 0.3, :center, true
+        page_header_data_box @data['processCode'], 4.5, 1.6, 0.7, 0.3, :center, true
+        page_header_data_box @data['partID'], 5.2, 1.6, 2, 0.3, :left, true
+        page_header_data_box @data['subID'], 7.2, 1.6, 0.3, 0.3, :center, true
+        page_header_data_box @data['equipmentUsed'].join("\n"), 0, 1.025, 3.5, 0.6, :left, false, :top
+        page_header_data_box @data['partName'].join("\n"), 3.5, 1.025, 2.5, 0.6, :left, false, :top
+        page_header_data_box @data['poNumbers'].join("\n"), 6, 1.025, 1.5, 0.6, :left, false, :top
+        page_header_data_box DateTime.parse(@data['receiptDate']).strftime("%m/%d/%Y"), 0, 0.3, 1.5, 0.3, :center, true
         page_header_data_box (number_with_precision(@data['pounds'], precision: 2)).to_s, 1.5, 0.3, 1.25, 0.3, :center, true
         page_header_data_box (number_with_delimiter(@data['pieces'])).to_s, 2.75, 0.3, 1.25, 0.3, :center, true
-        page_header_data_box @data['containers'].to_s + " " +  @data['container_type'], 4, 0.3, 2, 0.3, :center, true
-        page_header_data_box '$/' + @data['price_per'], 6, 0.3, 1.5, 0.3, :right, true, :bottom 
+        page_header_data_box @data['containers'].to_s + " " +  @data['containerType'], 4, 0.3, 2, 0.3, :center, true
+        page_header_data_box '$/' + @data['pricePer'], 6, 0.3, 1.5, 0.3, :right, true, :bottom 
       end
-
     end
 
   end
@@ -357,86 +379,10 @@ class SO < VarlandPdf
 
     #Begin printing
     bounding_box([_i(0.25), _i(8.2)], :width => _i(8.0), :height => _i(7.75)) do
-      opCode_length = @data['operations'].length - 1
-      specInstr_length =  @data['special_instructions'].length - 1
-
-      puts "Length of opCode is: #{opCode_length+1}"
-      puts "Length of specInstr is: #{specInstr_length+1}"
-
-
-      #Print Instructions
-      for i in 0..opCode_length do
-        text @data['operations'][i]['code'] + ".  " + @data['operations'][i]['title'] 
-        
-        for j in 0..specInstr_length do
-
-          if@data['special_instructions'][j]['operation'] == @data['operations'][i]['code']
-
-            if @data['special_instructions'][j]['before_after'].eql? "before"
-              @data['special_instructions'][j]['text'].each do |l|
-
-                if l.blank?
-                  text "\xC2\xA0"
-                else 
-                  text l.gsub(/^([^\S\r\n]+)/m) { |m| "\xC2\xA0" * m.size }
-                end
-
-              end
-
-            end
-
-          end
-          
-        end
-
-        if ((@data['operations'][i].length > 7) && (@data['operations'][i]['code_details']['text'] != nil))
-
-          @data['operations'][i]['code_details']['text'].each do |l|
-            if l.blank?
-              text "\xC2\xA0"
-            else 
-              text l.gsub(/^([^\S\r\n]+)/m) { |m| "\xC2\xA0" * m.size }
-            end
-            
-          end
-
-        end
-        
-        text "\n"
-      end
-
+      text @data['body']
     end
 
   end
-
-
-  def testShopOrderNotes
-    start_new_page
-    #TEST shop order (format & fonts)
-    bounding_box [_i(0.25), _i(8)], width: _i(8), height: _i(7.75) do
-      2.times do
-        text ('=' * 31) + ' SHOP ORDER NOTES ' + ('=' * 31)
-        text 'SEE JP BEFORE RUNNING FIRST LOAD. LAST COUPLE ORDERS WE HAVE HAD TO ADD 500CC'
-        text 'OF BRIGHTENER BEFORE RUNNING. DO WE NEED TO DO THIS AGAIN? -MMJ'
-        text ('=' * 80)
-        text ' '
-      end
-
-      font 'SF Mono', style: :normal
-      2.times do
-        text ('=' * 31) + ' SHOP ORDER NOTES ' + ('=' * 31)
-        text 'SEE JP BEFORE RUNNING FIRST LOAD. LAST COUPLE ORDERS WE HAVE HAD TO ADD 500CC'
-        text 'OF BRIGHTENER BEFORE RUNNING. DO WE NEED TO DO THIS AGAIN? -MMJ'
-        text ('=' * 80)
-        text ' '
-      end
-    end
-  end
-
-  def testNewJSON
-    text @data['body']
-     
-  end 
 
   def page_header_text_box(text, x, y, width, height = 0.2, large = false, align = :center, valign = :center)
     font 'Arial Narrow', style: :bold
