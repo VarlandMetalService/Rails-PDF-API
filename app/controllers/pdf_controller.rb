@@ -77,9 +77,18 @@ class PdfController < ApplicationController
 
   def so
     printer = :ox
+    if params[:shop_order]
+      @so_number = params[:shop_order]
+      url = "http://as400railsapi.varland.com/v1/so?shop_order=" + @so_number
+      uri = URI(url)
+      response = Net::HTTP.get(uri)
+      @data = JSON.parse(response)
+    else
+      render plain: "Please enter a shop order number into the url"
+    end
     if params[:print]
       ['yellow', 'green', 'blue', 'purple', '', ''].each do |color|
-        pdf = SO.new nil, color
+        pdf = SO.new @data, color
         path = Tempfile.new(['so','.pdf']).path
         pdf.render_file path
         spooler = VMS::PrintSpooler.new printer: printer, color: true
@@ -88,27 +97,9 @@ class PdfController < ApplicationController
       end
       render plain: "PDF sent to printer."
     else
-      pdf = SO.new nil, 'blue'
+      pdf = SO.new @data, 'blue'
       send_data pdf.render,
                 filename: "SO.pdf",
-                type: "application/pdf",
-                disposition: "inline"
-    end
-  end
-
-  def shop_order
-    printer = :ox
-    pdf = ShopOrder.new
-    if params[:print]
-      path = Tempfile.new(['shop_order','.pdf']).path
-      pdf.render_file path
-      spooler = VMS::PrintSpooler.new printer: printer, color: true
-      spooler.print_files path
-      File.delete(path)
-      render plain: "PDF (#{path}) sent to printer."
-    else
-      send_data pdf.render,
-                filename: "Shop Order.pdf",
                 type: "application/pdf",
                 disposition: "inline"
     end

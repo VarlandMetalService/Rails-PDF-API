@@ -4,6 +4,7 @@ require 'barby/outputter/prawn_outputter'
 require 'json'
 require 'uri'
 require 'date'
+require 'net/http'
 include ActionView::Helpers::NumberHelper
 
 class SO < VarlandPdf
@@ -13,9 +14,8 @@ class SO < VarlandPdf
 
   def initialize(data = nil, color = nil)
     super()
-    file = File.read('288473.json')
-    @data = JSON.parse(file)
-
+    @data = data
+    puts @data
     @color = color
     case @data['scheduleCode']
       when 'YEL'
@@ -201,9 +201,9 @@ class SO < VarlandPdf
       stroke_circle [_i(7.24), _i(4.401)], _i(0.35)
 
       # Draw header data.
-      shipping_no = @data['shipTo']['phone'].to_i
+      shipping_no = (@data['shipTo']['phone'] != "0") ? number_to_phone(@data['shipTo']['phone'].to_i, area_code: true) : ""
       ship_to_address = @data['shipTo']['name_1'] + "\n" + @data['shipTo']['address'] + "\n" + @data['shipTo']['city'] + ', ' + @data['shipTo']['state'] + ', ' + @data['shipTo']['zipCode'].to_s
-      page_header_data_box number_to_phone(shipping_no, area_code: true), 3.2, 4.75, 3.3, 0.8, :right, false, :top
+      page_header_data_box shipping_no, 3.2, 4.75, 3.3, 0.8, :right, false, :top
       page_header_data_box ship_to_address, 3.2, 4.75, 3.2, 0.8, :left, false, :top
       page_header_data_box @data['process'] + "\n\n" + "PRIMARY DEPARTMENT: #{@data['primaryDept']}  \nALTERNATE DEPTS: #{@data['altDepts'][0]}", 0.025, 4.95, 4, 3.2, :left, false, :top
       page_header_data_box @data['partDescription'].join("\n"), 0, 0.55, 4, 0.6, :left, false, :top
