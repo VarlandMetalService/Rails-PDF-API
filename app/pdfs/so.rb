@@ -91,7 +91,6 @@ class SO < VarlandPdf
       0.upto(headers.length-1) do |i|
         page_header_data_box headers[i], 4, y, 1.5, 0.2, :left
         if(date_numbers[i][0] != '')
-          puts "LOOK HERE! -->#{date_numbers[i][0]}"
           page_header_data_box DateTime.parse(date_numbers[i][0]).strftime("%m/%d/%Y"), 4.9, y, 1.5, 0.2, :left
         end
           page_header_data_box date_numbers[i][1].to_s, 5.65, y, 1.5, 0.2, :left
