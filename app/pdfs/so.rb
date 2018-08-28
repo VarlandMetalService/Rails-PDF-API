@@ -161,13 +161,13 @@ class SO < VarlandPdf
       fill_rectangle([_i(2.95 + prod_recording_widths.sum), _i(4)], _i(x_ray_data_widths.sum), _i(0.7))
       fill_color 'cccccc'
       fill_rectangle([_i(2.95), _i(4)], _i(prod_recording_widths.sum), _i(0.7))
-      fill_rectangle([_i(2.95), _i(5)], _i(4.8), _i(0.2)) 
+      fill_rectangle([_i(0), _i(5)], _i(7.75), _i(0.2)) 
       fill_rectangle([_i(6.5), _i(5)], _i(1.5), _i(0.2))
       fill_rectangle([_i(0), _i(0.8)], _i(2.95), _i(0.2))
 
       #Stroke lines for SHIP TO, FINAL INSPECTION, and P&M DESC.
       stroke_color '000000'
-      stroke_line [_i(2.95), _i(4.8)], [_i(8.0), _i(4.8)]
+      stroke_line [_i(0), _i(4.8)], [_i(8.0), _i(4.8)]
       stroke_line [_i(0), _i(0.6)], [_i(2.95), _i(0.6)]
 
       # Draw border around entire box.
@@ -216,6 +216,7 @@ class SO < VarlandPdf
       x += x_ray_data_widths[1]
       page_header_text_box 'Alloy %', x, 3.7, x_ray_data_widths[2], 0.4
 
+      page_header_text_box 'Process Specification', 0, 5, 2.95, 0.2, false, :center
       page_header_text_box 'Ship To', 2.95, 5, prod_recording_widths.sum, 0.2, false, :center
       page_header_text_box 'Final Inspection', 2.95 + prod_recording_widths.sum, 5, x_ray_data_widths.sum, 0.2, false, :center
       page_header_text_box 'Part & Material Description', 0, 0.8, 2.95, 0.2, false, :center
@@ -230,8 +231,8 @@ class SO < VarlandPdf
       ship_to_address = @data['shipTo']['name_1'] + "\n" + @data['shipTo']['address'] + "\n" + @data['shipTo']['city'] + ', ' + @data['shipTo']['state'] + ', ' + @data['shipTo']['zipCode'].to_s
       page_header_data_box shipping_no, 2.95, 4.75, prod_recording_widths.sum, 0.8, :right, false, :top
       page_header_data_box ship_to_address, 2.95, 4.75, prod_recording_widths.sum, 0.8, :left, false, :top
-      page_header_data_box @data['process'], 0.025, 4.95, 3.75, 3.2, :left, false, :top
-      page_header_data_box @data['partDescription'].join("\n"), 0, 0.55, 3.75, 0.6, :left, false, :top
+      page_header_data_box @data['process'], 0.025, 4.75, 2.95, 3.2, :left, false, :top
+      page_header_data_box @data['partDescription'].join("\n"), 0, 0.55, 2.95, 0.6, :left, false, :top
       page_header_data_box (number_with_precision(@data['piecesPerPound'], precision: 3)) + ' PCS / LB', 2.95, 0.8, 2.4, 0.2, :left
       page_header_data_box (number_with_precision(@data['ft2PerPound'], precision: 2)) + " FT² / LB", 2.95, 0.6, 2.4, 0.2, :left
       page_header_data_box (number_with_precision(@data['poundsPerFt3'], precision: 2)) + ' LB / FT³', 2.95, 0.4, 2.4, 0.2, :left
@@ -334,20 +335,18 @@ class SO < VarlandPdf
 
         # Draw shaded header boxes.
         fill_color 'cccccc'
-        [1.8, 0.5].each do |y|
+        [1.8, 1.3, 0.5].each do |y|
           fill_rectangle([0, _i(y)], _i(7.5), _i(0.2))
         end
-        fill_rectangle([_i(3.5), _i(1.3)], _i(4), _i(0.2))
 
         # Draw border around entire box.
         stroke_color '000000'
         stroke_bounds
 
         # Draw horizontal lines.
-        [1.6, 1.1, 0.5, 0.3].each do |y|
+        [1.6, 1.1, 1.3, 0.5, 0.3].each do |y|
           stroke_line [0, _i(y)], [_i(7.5), _i(y)]
         end
-        stroke_line [_i(3.5), _i(1.3)], [_i(7.5), _i(1.3)]
 
         # Draw vertical lines.
         [4.5, 5.2, 7.2].each do |x|
@@ -355,7 +354,7 @@ class SO < VarlandPdf
         end
         stroke_line [_i(3.5), _i(1.8)], [_i(3.5), _i(0.5)]
         stroke_line [_i(6), _i(1.3)], [_i(6), _i(0.5)]
-        [1.5, 2.75, 4, 6].each do |x|
+        [1.25, 2.5, 3.65, 4.8, 6.2].each do |x|
           stroke_line [_i(x), _i(0.5)], [_i(x), _i(0)]
         end
 
@@ -365,16 +364,18 @@ class SO < VarlandPdf
         page_header_text_box 'Proc Code', 4.5, 1.8, 0.7
         page_header_text_box 'Part ID', 5.2, 1.8, 2
         page_header_text_box 'Sub', 7.2, 1.8, 0.3
+        page_header_text_box 'Equipment Used', 0, 1.3, 3.5 
         page_header_text_box 'Part Name & Information', 3.5, 1.3, 2.5
         page_header_text_box 'Customer PO #', 6, 1.3, 1.5
-        page_header_text_box 'Shop Order Date', 0, 0.5, 1.5
-        page_header_text_box 'Pounds', 1.5, 0.5, 1.25
-        page_header_text_box 'Pieces', 2.75, 0.5, 1.25
-        page_header_text_box 'Containers', 4, 0.5, 2
-        page_header_text_box 'Shipping #', 6, 0.5, 1.5
+        page_header_text_box 'Shop Order Date', 0, 0.5, 1.25
+        page_header_text_box 'Promise Date', 1.25, 0.5, 1.25 
+        page_header_text_box 'Pounds', 2.5, 0.5, 1.15
+        page_header_text_box 'Pieces', 3.65, 0.5, 1.15
+        page_header_text_box 'Containers', 4.8, 0.5, 1.4
+        page_header_text_box 'Shipping #', 6.2, 0.5, 1.3
 
         # Draw header data.
-        page_header_data_box @data['shipTo']['name_1']+ "\n" + @data['shipTo']['name_2'], 0, 1.6, 3.5, 0.5, :left, true
+        page_header_data_box @data['shipTo']['name_1'], 0, 1.6, 3.5, 0.3, :left, true
         page_header_data_box @data['customerCode'], 3.5, 1.6, 1, 0.3, :center, true
         page_header_data_box @data['processCode'], 4.5, 1.6, 0.7, 0.3, :center, true
         page_header_data_box @data['partID'], 5.2, 1.6, 2, 0.3, :left, true
@@ -382,11 +383,12 @@ class SO < VarlandPdf
         page_header_data_box @data['equipmentUsed'].join("\n"), 0, 1.025, 3.5, 0.6, :left, false, :top
         page_header_data_box @data['partName'].join("\n"), 3.5, 1.025, 2.5, 0.6, :left, false, :top
         page_header_data_box @data['poNumbers'].join("\n"), 6, 1.025, 1.5, 0.6, :left, false, :top
-        page_header_data_box DateTime.parse(@data['receiptDate']).strftime("%m/%d/%y"), 0, 0.3, 1.5, 0.3, :center, true
-        page_header_data_box (number_with_delimiter(number_with_precision(@data['pounds'], precision: 2))).to_s, 1.5, 0.3, 1.25, 0.3, :center, true
-        page_header_data_box (number_with_delimiter(@data['pieces'])).to_s, 2.75, 0.3, 1.25, 0.3, :center, true
-        page_header_data_box @data['containers'].to_s + " " +  @data['containerType'], 4, 0.3, 2, 0.3, :center, true
-        # page_header_data_box '$/' + @data['pricePer'], 6, 0.3, 1.5, 0.3, :right, true, :bottom 
+        page_header_data_box (@data['receiptDate'] != nil ? DateTime.parse(@data['receiptDate']).strftime("%m/%d/%y") : ""), 0, 0.3, 1.25, 0.3, :center, true
+        page_header_data_box (@data['promiseDate'] != nil ? DateTime.parse(@data['promiseDate']).strftime("%m/%d/%y") : ""), 1.25, 0.3, 1.25, 0.3, :center, true
+        page_header_data_box (number_with_delimiter(number_with_precision(@data['pounds'], precision: 2))).to_s, 2.5, 0.3, 1.15, 0.3, :center, true
+        page_header_data_box (number_with_delimiter(@data['pieces'])).to_s, 3.65, 0.3, 1.15, 0.3, :center, true
+        page_header_data_box @data['containers'].to_s + " " +  @data['containerType'], 4.8, 0.3, 1.4, 0.3, :center, true
+        # page_header_data_box '$/' + @data['pricePer'], 6.2, 0.3, 1.3, 0.3, :right, true, :bottom 
       end
     end
 
