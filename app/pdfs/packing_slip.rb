@@ -1,10 +1,13 @@
+include ActionView::Helpers::NumberHelper
+
 class PackingSlip < VarlandPdf
     DEFAULT_MARGIN = 0
     DEFAULT_LAYOUT = :landscape
 
     def initialize(data = nil)
         super()
-        @data = data
+        file = File.read('288473.json')
+        @data = JSON.parse(file)
 
         drawTable
         insertTableData
@@ -72,15 +75,24 @@ class PackingSlip < VarlandPdf
                 end
 
                 #SHIP TO data
-                ship_to_data = [
-                    "SMALL PARTS INC.",
-                    "C/O F1 LOGISTICS - SUITE 2",
-                    "543-A AMERICAS",
-                    "EL PASO, TX 79907"
-                ]
+                if (@data['shipTo']['name_2'] != "")
+                    ship_to = [
+                        @data['shipTo']['name_1'],
+                        @data['shipTo']['name_2'],
+                        @data['shipTo']['address'],
+                        @data['shipTo']['city'] + ", " + @data['shipTo']['state'] + " " + (@data['shipTo']['zipCode'].to_s)[0, 5]
+                    ]
+                else 
+                    ship_to = [
+                        @data['shipTo']['name_1'],
+                        @data['shipTo']['address'],
+                        @data['shipTo']['city'] + ", " + @data['shipTo']['state'] + " " + (@data['shipTo']['zipCode'].to_s)[0, 5]
+                    ]
+                end
+
                 #Draw SHIP TO Data
                 y = 1.4
-                ship_to_data.each do |text|
+                ship_to.each do |text|
                     page_header_data_box text, 5.50, y, 3.5, 1.4, :left
                     y -= 0.2
                 end
@@ -106,7 +118,7 @@ class PackingSlip < VarlandPdf
                 end
 
                 #Draw Customer Code
-                page_header_data_box 'SMAELP', 9.5, 0.4, 1, 0.75, :center
+                page_header_data_box @data['customerCode'], 9.5, 0.4, 1, 0.75, :center
             end
         end
     end
@@ -152,18 +164,18 @@ class PackingSlip < VarlandPdf
         
         bounding_box [_i(0.25), _i(5.05)], width: _i(10.5), height: _i(4.55) do
 
-            packing_list_data = [ #Can fit 6 large sets of data before overflow.
+            poNumbers = @data['poNumbers'][0] + "\n" +  @data['poNumbers'][1] + "\n" +  @data['poNumbers'][2]
+            partDescription = @data['partDescription'][0] + "\n" + @data['partDescription'][1] + "\n" + @data['partDescription'][2]
+
+            #Dummny data
+            packing_list_data = [
+                [@data['shopOrder'].to_s, DateTime.parse(@data['shopOrderDate']).strftime("%m/%d/%y"), (number_with_delimiter(number_with_precision(@data['pounds'], precision: 2))), (number_with_delimiter(@data['pieces'])).to_s, @data['containers'].to_s + ' ' + @data['containerType'], poNumbers, partDescription, @data['process'], "COMPLETE"],
                 ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"],
                 ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"],
                 ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"],
                 ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"],
                 ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"],
-                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"],
-                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"],
-                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"],
-                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"],
-                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"],
-                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"],
+                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "CADMIUM (.0002' MINIMUM)\n& CLEAR SEAL\nPER SQUARE D 40004-016-01", "COMPLETE"]
             ]
 
             table(packing_list_data, :width => (10.5*72)) do
@@ -182,18 +194,21 @@ class PackingSlip < VarlandPdf
     end
 
     def insertFooter
-         #Draw the footer 'Recieved by' 
-         font_size(9) do
-            text_box "Recieved By:", 
-                        :at => [_i(0.85), _i(0.4)],
-                        :width => _i(1),
-                        :align => :left,
-                        :valign => :top,
-                        font => 'Arial Narrow', style: :normal
-        end
+        repeat :all do
 
-        #Draw line for signature
-        stroke_line [_i(1.5), _i(0.3)], [_i(4.5), _i(0.3)]
+            #Draw the footer 'Recieved by' 
+            font_size(9) do
+                text_box "Recieved By:", 
+                            :at => [_i(0.85), _i(0.4)],
+                            :width => _i(1),
+                            :align => :left,
+                            :valign => :top,
+                            font => 'Arial Narrow', style: :normal
+            end
+
+            #Draw line for signature
+            stroke_line [_i(1.5), _i(0.3)], [_i(4.5), _i(0.3)]
+        end
     end
 
     def page_header_text_box(text, x, y, width, height = 0.25, large = false, align = :center, valign = :center)

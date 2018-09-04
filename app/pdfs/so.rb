@@ -17,12 +17,16 @@ class SO < VarlandPdf
     @data = data
     puts @data
     @color = 'white'
-    case @data['scheduleCode']
-      when 'YEL'
-        @color = 'yellow'
-      when 'GRN'
-        @color = 'green'
-      else
+    if @data['scheduleCode'] != nil
+      case @data['scheduleCode']
+        when 'YEL'
+          @color = 'yellow'
+        when 'GRN'
+          @color = 'green'
+        else
+          @color = 'white'
+      end
+    else
         @color = 'white'
     end
 
@@ -228,7 +232,7 @@ class SO < VarlandPdf
 
       # Draw header data.
       shipping_no = (@data['shipTo']['phone'] != "0") ? number_to_phone(@data['shipTo']['phone'].to_i, area_code: true) : ""
-      ship_to_address = @data['shipTo']['name_1'] + "\n" + @data['shipTo']['address'] + "\n" + @data['shipTo']['city'] + ', ' + @data['shipTo']['state'] + ', ' + @data['shipTo']['zipCode'].to_s
+      ship_to_address = @data['shipTo']['name_1'] + "\n" + @data['shipTo']['address'] + "\n" + @data['shipTo']['city'] + ', ' + @data['shipTo']['state'] + ', ' + (@data['shipTo']['zipCode'].to_s)[0, 5]
       page_header_data_box shipping_no, 2.95, 4.75, prod_recording_widths.sum, 0.8, :right, false, :top
       page_header_data_box ship_to_address, 2.95, 4.75, prod_recording_widths.sum, 0.8, :left, false, :top
       page_header_data_box @data['process'], 0.025, 4.75, 2.95, 3.2, :left, false, :top

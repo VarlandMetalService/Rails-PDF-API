@@ -1,10 +1,13 @@
+include ActionView::Helpers::NumberHelper
+
 class Invoice < VarlandPdf
     DEFAULT_MARGIN = 0
     DEFAULT_LAYOUT = :portrait
 
     def initialize(data = nil)
         super()
-        @data = data
+        file = File.read('288473.json')
+        @data = JSON.parse(file)
 
         draw_invoiceTable
         insert_data
@@ -47,18 +50,6 @@ class Invoice < VarlandPdf
                 page_header_text_box 'INVOICE TOTAL', 5.5, 0.25, 1.3, 0.25, true, :left, :center
                 page_header_text_box '$', 6.75, 0.25, 0.8, 0.25, true, :left, :center
 
-=begin
-                #Draw '$' symbols as well as lines under 'TOTALS'
-                #TODO: Need to make a way to only print this out as many times as needed. As well, let us hope formating remains okay.
-                #It may be possible to cound the number of orders, and then use some spacing trickwork to display in the proper places.
-                y = 6.5
-                stroke_line [_i(6.75), _i((y - 0.15))], [_i(7.45), _i((y-0.15))] 
-                ['$','$'].each do |text|
-                    page_header_text_box text, 6.75, y, 0.8, 0.25, false, :left, :top
-                    y -= 0.2
-                end
-=end
-
             end
             #Draw footer
             page_header_text_box 'We Hereby Certify That These Goods Were Produced In Compliance With The Fair Labor Standards Act, As Amended', 0.5, 0.6, 7.5, 0.2, false, :center, :top 
@@ -71,144 +62,94 @@ class Invoice < VarlandPdf
             #Dummy data container
             invoice_data = [
                 [
-                    ["XXXXX", "XXXXX", "XXXXX"],
-                    '2.77',
-                    '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
-                    ['COMPLETE ORDER','4125960'],
+                    ["00000000000", "12345678901", "###########"],
+                    '000,000.00',
+                    '0,000,000',
+                    @data['process'], 
+                    @data['processCode'],
+                    ['INCOMPLETE ORDER','##################'],
                     ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['2,000,000','200'],
+                    ['20,000,000.00','12,345,678.90'],
                 ],
                 [
-                    ["XXXXX", 'XXXXX', 'XXXXXX'],
-                    '2.77',
-                    '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
+                    ['XXXXX', @data['shopOrder'].to_s, 'XXXXXX'],
+                    (number_with_delimiter(number_with_precision(@data['pounds'], precision: 2))),
+                    (number_with_delimiter(@data['pieces'])).to_s,
+                    @data['process'],
+                    @data['processCode'],
                     ['COMPLETE ORDER','4125960'],
                     ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['200','200'],
-                ],
-                [
-                    ['253411', '284435', '04/09/18'],
-                    '2.77',
-                    '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
-                    ['COMPLETE ORDER','4125960'],
-                    ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['200','200'],
+                    ['200.00','200.00']
                 ],
                 [
                     ['253411', '284435', '04/09/18'],
                     '2.77',
                     '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
+                    @data['process'],
+                    @data['processCode'],
                     ['COMPLETE ORDER','4125960'],
                     ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['200','200'],
+                    ['200.00','200.00']
                 ],
                 [
                     ['253411', '284435', '04/09/18'],
                     '2.77',
                     '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
+                    @data['process'],
+                    @data['processCode'],
                     ['COMPLETE ORDER','4125960'],
                     ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['200','200'],
+                    ['200.00','200.00']
                 ],
                 [
                     ['253411', '284435', '04/09/18'],
                     '2.77',
                     '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
+                    @data['process'],                    
+                    @data['processCode'],
                     ['COMPLETE ORDER','4125960'],
                     ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['200','200'],
+                    ['200.00','200.00']
                 ],
                 [
                     ['253411', '284435', '04/09/18'],
                     '2.77',
                     '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
+                    @data['process'],                    
+                    @data['processCode'],
                     ['COMPLETE ORDER','4125960'],
                     ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['200','200'],
+                    ['200.00','200.00']
                 ],
                 [
                     ['253411', '284435', '04/09/18'],
                     '2.77',
                     '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
+                    @data['process'],                    
+                    @data['processCode'],
                     ['COMPLETE ORDER','4125960'],
                     ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['200','200'],
+                    ['200.00','200.00']
                 ],
                 [
                     ['253411', '284435', '04/09/18'],
                     '2.77',
                     '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
+                    @data['process'],                    
+                    @data['processCode'],
                     ['COMPLETE ORDER','4125960'],
                     ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['200','200'],
+                    ['200.00','200.00']
                 ],
                 [
                     ['253411', '284435', '04/09/18'],
                     '2.77',
                     '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
+                    @data['process'],                    
+                    @data['processCode'],
                     ['COMPLETE ORDER','4125960'],
                     ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['200','200'],
-                ],
-                [
-                    ['253411', '284435', '04/09/18'],
-                    '2.77',
-                    '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
-                    ['COMPLETE ORDER','4125960'],
-                    ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['200','200'],
-                ],
-                [
-                    ['253411', '284435', '04/09/18'],
-                    '2.77',
-                    '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
-                    ['COMPLETE ORDER','4125960'],
-                    ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['200','200'],
-                ],
-                [
-                    ['253411', '284435', '04/09/18'],
-                    '2.77',
-                    '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
-                    ['COMPLETE ORDER','4125960'],
-                    ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['200','200'],
-                ],
-                [
-                    ['253411', '284435', '04/09/18'],
-                    '2.77',
-                    '3,223',
-                    ['MMXP02.6C006TZ','RECD AS MMXP02.6C006Z','M2.6-45 X 6 PH PAN M/S:','STRIP ZINC, REPLATE','TIN-ZINC (.0002" - .0004")','& CLEAR TRIVALENT CHROMATE'],
-                    'STZ',
-                    ['COMPLETE ORDER','4125960'],
-                    ['MINIMUM CHARGE', 'TOTAL DUE'],
-                    ['200', '200'],
+                    ['200.00','200.00']
                 ]
             ]
 
@@ -222,13 +163,13 @@ class Invoice < VarlandPdf
             shipDateText = "\n<font size='8'><b>SHIP DATE:</b></font>\n"
 
             #Undlerines in the TOTALS column (Dirty solution, rework if possible)
-            strikeoutText = "\n<font size='4'><strikethrough><i>-                                    </i></strikethrough><font><font size='9'><fontsize>\n"
+            strikeoutText = "\n<font size='4'><strikethrough><i>-                                                     </i></strikethrough><font><font size='9'><fontsize>\n"
 
             (0...dataLength-1).each do |i|
                 invoice_data_formatted[i][0] = shipperText + invoice_data[i][0][0] + vmsOrderText + invoice_data[i][0][1] +  shipDateText + invoice_data[i][0][2]
                 invoice_data_formatted[i][1] = invoice_data[i][1]
                 invoice_data_formatted[i][2] = invoice_data[i][2]
-                invoice_data_formatted[i][3] = invoice_data[i][3].join("\n")
+                invoice_data_formatted[i][3] = invoice_data[i][3]
                 invoice_data_formatted[i][4] = invoice_data[i][4]
                 invoice_data_formatted[i][5] = invoice_data[i][5].join("\n")
                 invoice_data_formatted[i][6] = invoice_data[i][6].join("\n\n")
@@ -238,17 +179,17 @@ class Invoice < VarlandPdf
 
             font 'Arial Narrow', style: :normal
             font_size  9
-            table(invoice_data_formatted, :width => (7.5*72), :cell_style => { :inline_format => true}) do
+            table(invoice_data_formatted, :width => (7.49*72), :cell_style => { :inline_format => true}) do
                 style(row(0...-1).columns(0...-1), :borders => [])
-                style(columns(0), :width => (0.78*72), :align => :center)
-                style(columns(1), :width => (0.6*72), :align => :center)
+                style(columns(0), :width => (0.76*72), :align => :center)
+                style(columns(1), :width => (0.65*72), :align => :center)
                 style(columns(2), :width => (0.6*72), :align => :center)
-                style(columns(3), :width => (1.9*72), :align => :left)
-                style(columns(4), :width => (0.32*72), :align => :right)
-                style(columns(5), :width => (1.2*72), :align => :center)
+                style(columns(3), :width => (1.9*72), :align => :left, :font_size => 8)
+                style(columns(4), :width => (0.275*72), :align => :center, :padding => [5, 0, 5, 0])
+                style(columns(5), :width => (1.205*72), :align => :center)
                 style(columns(6), :width => (1.3*72), :align => :left)
-                style(columns(7), :width => (0.2*72), :align => :left)
-                style(columns(8), :width => (0.6*72), :align => :right)
+                style(columns(7), :width => (0.08*72), :align => :right, :padding => [5, 0, 5, 0])
+                style(columns(8), :width => (0.72*72), :align => :right, :padding => [5, 3, 5, 0])
             end 
 
         end
@@ -259,7 +200,7 @@ class Invoice < VarlandPdf
         bounding_box [_i(0.25), _i(10.75)], width: _i(8), height: _i(0.75) do
             number_pages 'PAGE <page> OF <total>', align: :right
         end
-        
+
         repeat :all do
             #Header Image (Varland Logo)
             bounding_box([_i(0.5), _i(10.6)], :width => _i(7.5), :height => _i(1.2)) do
@@ -270,7 +211,7 @@ class Invoice < VarlandPdf
             bounding_box [_i(0.5), _i(9)], width: _i(7.5), height: _i(1.5) do
                 #Draw Header Text
                 font_size 22
-                text "INVOICE #: 276876", :align => :center
+                text "INVOICE #: " + @data['shopOrder'].to_s, :align => :center
                 page_header_text_box 'SOLD TO:', 0, 1, 2.5, 0.2, true, :left, :top, :bold
                 page_header_text_box 'SHIPPED VIA:', 0, 0.15, 0.7, 0.2, true, :left, :top
                 page_header_text_box 'SHIP TO:', 4.2, 1, 0.75, 0.2, true, :left, :top, :bold
@@ -278,12 +219,20 @@ class Invoice < VarlandPdf
                 page_header_text_box 'INVOICE #:', 6.50, 0.15, 0.75, 0.2, true, :left, :top
 
                 #SOLD TO Data
-                sold_to = [
-                    "SOLUTION INDUSTRIES LLC",
-                    "UNIT 7-11",
-                    "17830 ENGLEWOOD DR.",
-                    "MIDDLEBURG HTS., OH 44130"
-                ]
+                if (@data['shipTo']['name_2'] != "")
+                    sold_to = [
+                        @data['shipTo']['name_1'],
+                        @data['shipTo']['name_2'],
+                        @data['shipTo']['address'],
+                        @data['shipTo']['city'] + ", " + @data['shipTo']['state'] + " " + (@data['shipTo']['zipCode'].to_s)[0, 5]
+                    ]
+                else 
+                    sold_to = [
+                        @data['shipTo']['name_1'],
+                        @data['shipTo']['address'],
+                        @data['shipTo']['city'] + ", " + @data['shipTo']['state'] + " " + (@data['shipTo']['zipCode'].to_s)[0, 5]
+                    ]
+                end
 
                 #Draw SOLD TO Data
                 y = 0.875
@@ -293,12 +242,20 @@ class Invoice < VarlandPdf
                 end
 
                 #SHIP TO Data
-                ship_to = [
-                    "SOLUTION INDUSTRIES LLC",
-                    "UNIT 7-11",
-                    "17830 ENGLEWOOD DR.",
-                    "MIDDLEBURG HTS., OH 44130"
-                ]
+                 if (@data['shipTo']['name_2'] != "")
+                    ship_to = [
+                        @data['shipTo']['name_1'],
+                        @data['shipTo']['name_2'],
+                        @data['shipTo']['address'],
+                        @data['shipTo']['city'] + ", " + @data['shipTo']['state'] + " " + (@data['shipTo']['zipCode'].to_s)[0, 5]
+                    ]
+                else 
+                    ship_to = [
+                        @data['shipTo']['name_1'],
+                        @data['shipTo']['address'],
+                        @data['shipTo']['city'] + ", " + @data['shipTo']['state'] + " " + (@data['shipTo']['zipCode'].to_s)[0, 5]
+                    ]
+                end
 
                 #Draw SHIP TO Data
                 y = 0.875
@@ -318,8 +275,8 @@ class Invoice < VarlandPdf
 
                 #Draw customer code and FAX #
                 y = 0.875
-                ['SOLIND',
-                '',
+                [@data['customerCode'],
+                'Phone: ' + number_to_phone(@data['shipTo']['phone'].to_i),
                 'FAX: (440) 816-9501'].each do |text|
                     page_header_data_box text, 0.0, y, 7.5, 0.2, false, :right
                     y -= 0.125

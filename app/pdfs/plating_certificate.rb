@@ -4,7 +4,8 @@ class PlatingCertificate < VarlandPdf
 
     def initialize(data = nil)
         super()
-        @data = data
+        file = File.read('288473.json')
+        @data = JSON.parse(file)
 
         drawTable
         insertTableData
@@ -57,13 +58,21 @@ class PlatingCertificate < VarlandPdf
                     y -= 0.15
                 end
 
-                #SHIP TO Data
-                ship_to = [
-                    "SMALL PARTS INC.",
-                    "C/O F1 LOGISTICS - SUITE 2",
-                    "543-A AMERICAS",
-                    "EL PASO, TX 79907"
-                ]
+                 #SHIP TO Data
+                 if (@data['shipTo']['name_2'] != "")
+                    ship_to = [
+                        @data['shipTo']['name_1'],
+                        @data['shipTo']['name_2'],
+                        @data['shipTo']['address'],
+                        @data['shipTo']['city'] + ", " + @data['shipTo']['state'] + " " + (@data['shipTo']['zipCode'].to_s)[0, 5]
+                    ]
+                else 
+                    ship_to = [
+                        @data['shipTo']['name_1'],
+                        @data['shipTo']['address'],
+                        @data['shipTo']['city'] + ", " + @data['shipTo']['state'] + " " + (@data['shipTo']['zipCode'].to_s)[0, 5]
+                    ]
+                end
 
                 #Draw SHIP TO Data
                 y = 1.4
@@ -93,7 +102,7 @@ class PlatingCertificate < VarlandPdf
                 end
 
                 #Draw Customer Code
-                page_header_data_box 'SMAELP', 9.5, 0.4, 1, 0.75, :center
+                page_header_data_box @data['customerCode'], 9.5, 0.4, 1, 0.75, :center
             end
         end
     end
@@ -147,16 +156,13 @@ class PlatingCertificate < VarlandPdf
     def insertTableData
         bounding_box [_i(0.25), _i(4.3)], width: _i(10.5), height: _i(3.75) , position: :center do
             
+            poNumbers = @data['poNumbers'][0] + "\n" +  @data['poNumbers'][1] + "\n" +  @data['poNumbers'][2]
+            partDescription = @data['partDescription'][0] + "\n" + @data['partDescription'][1] + "\n" + @data['partDescription'][2]
             #PLATING CERTIFICATE DATA
             certificate_data =  [
+                [@data['shopOrder'], DateTime.parse(@data['shopOrderDate']).strftime("%m/%d/%y"), (number_with_delimiter(number_with_precision(@data['pounds'], precision: 2))), (number_with_delimiter(@data['pieces'])).to_s, @data['containers'].to_s + ' ' + @data['containerType'], poNumbers, partDescription, @data['process'], "COMPLETE"],
                 ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "WE CERTIFY THAT THIS LOT OF PARTS\nWAS PROCESSED TO THE FOLLOWING\nPARAMETERS:\n\nCADMIUM (.0002' MINIMUM)\n& CLEAR SEAL'\n'PER SQUARE D 40004-016-01'\n\nQUALITY CONTROL DEPARTMENT\nVARLAND METAL SERVICE, INC.", "COMPLETE"],
-                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "WE CERTIFY THAT THIS LOT OF PARTS\nWAS PROCESSED TO THE FOLLOWING\nPARAMETERS:\n\nCADMIUM (.0002' MINIMUM)\n& CLEAR SEAL'\n'PER SQUARE D 40004-016-01'\n\nQUALITY CONTROL DEPARTMENT\nVARLAND METAL SERVICE, INC.", "COMPLETE"],
-                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "WE CERTIFY THAT THIS LOT OF PARTS\nWAS PROCESSED TO THE FOLLOWING\nPARAMETERS:\n\nCADMIUM (.0002' MINIMUM)\n& CLEAR SEAL'\n'PER SQUARE D 40004-016-01'\n\nQUALITY CONTROL DEPARTMENT\nVARLAND METAL SERVICE, INC.", "COMPLETE"],
-                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "WE CERTIFY THAT THIS LOT OF PARTS\nWAS PROCESSED TO THE FOLLOWING\nPARAMETERS:\n\nCADMIUM (.0002' MINIMUM)\n& CLEAR SEAL'\n'PER SQUARE D 40004-016-01'\n\nQUALITY CONTROL DEPARTMENT\nVARLAND METAL SERVICE, INC.", "COMPLETE"],
-                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "WE CERTIFY THAT THIS LOT OF PARTS\nWAS PROCESSED TO THE FOLLOWING\nPARAMETERS:\n\nCADMIUM (.0002' MINIMUM)\n& CLEAR SEAL'\n'PER SQUARE D 40004-016-01'\n\nQUALITY CONTROL DEPARTMENT\nVARLAND METAL SERVICE, INC.", "COMPLETE"],            
-                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "WE CERTIFY THAT THIS LOT OF PARTS\nWAS PROCESSED TO THE FOLLOWING\nPARAMETERS:\n\nCADMIUM (.0002' MINIMUM)\n& CLEAR SEAL'\n'PER SQUARE D 40004-016-01'\n\nQUALITY CONTROL DEPARTMENT\nVARLAND METAL SERVICE, INC.", "COMPLETE"],
-                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "WE CERTIFY THAT THIS LOT OF PARTS\nWAS PROCESSED TO THE FOLLOWING\nPARAMETERS:\n\nCADMIUM (.0002' MINIMUM)\n& CLEAR SEAL'\n'PER SQUARE D 40004-016-01'\n\nQUALITY CONTROL DEPARTMENT\nVARLAND METAL SERVICE, INC.", "COMPLETE"],
-                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "WE CERTIFY THAT THIS LOT OF PARTS\nWAS PROCESSED TO THE FOLLOWING\nPARAMETERS:\n\nCADMIUM (.0002' MINIMUM)\n& CLEAR SEAL'\n'PER SQUARE D 40004-016-01'\n\nQUALITY CONTROL DEPARTMENT\nVARLAND METAL SERVICE, INC.", "COMPLETE"] 
+                ["284555", "04/06/18", "47.38", "680", "1 CTN", "PJ00027663", "235900P\n60A SWITCH BLADE\nU-SHAPED\nLOT #19472-01-13450", "WE CERTIFY THAT THIS LOT OF PARTS\nWAS PROCESSED TO THE FOLLOWING\nPARAMETERS:\n\nCADMIUM (.0002' MINIMUM)\n& CLEAR SEAL'\n'PER SQUARE D 40004-016-01'\n\nQUALITY CONTROL DEPARTMENT\nVARLAND METAL SERVICE, INC.", "COMPLETE"]
             ]
 
             #Insert data into the table
