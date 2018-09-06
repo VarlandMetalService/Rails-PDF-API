@@ -77,7 +77,7 @@ class PdfController < ApplicationController
 
   def so
     printer = :ox
-    #Check if a shop order number has been entered
+    #Check if a shop order number has been entered & prepares data
     if params[:shop_order]
       @so_number = params[:shop_order]
       url = "http://as400railsapi.varland.com/v1/so?shop_order=" + @so_number
@@ -87,10 +87,16 @@ class PdfController < ApplicationController
 
       # Aborts PDF Generation process if the shop order is not within the system.
       if @data['shopOrderDate'] == "Wed, 31 Dec 1969 19:00:00 -0500"
-        render plain: "The shop order number you entered is currently not in the system.\n\nPlease try a new shop order number or contact IT with any concerns." and return
+        render plain: "The shop order number you entered is currently not in the system.\n\nPlease try a new shop order number or contact IT with any concerns." and return   
       end
+
+    #Checks if the user wants to view a 'sample' shop order & prepares sample data.
+    elsif  params[:sample]
+      file = File.read('288473.json')
+      @data = JSON.parse(file)
+    
+    #The user hasn't searched a proper shop order. Display error message.
     else
-      #abort "No shop order number entered. Please use format '/so?shop_order='"
       render plain: "No shop order number was entered.\n\nPlease use the format '/so?shop_order=###### ' when searching for a shop order." and return
     end
 
