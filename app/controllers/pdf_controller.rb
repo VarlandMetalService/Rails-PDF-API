@@ -77,15 +77,24 @@ class PdfController < ApplicationController
 
   def so
     printer = :ox
+    #Check if a shop order number has been entered
     if params[:shop_order]
       @so_number = params[:shop_order]
       url = "http://as400railsapi.varland.com/v1/so?shop_order=" + @so_number
       uri = URI(url)
       response = Net::HTTP.get(uri)
       @data = JSON.parse(response)
+
+      # Aborts PDF Generation process if the shop order is not within the system.
+      if @data['shopOrderDate'] == "Wed, 31 Dec 1969 19:00:00 -0500"
+        render plain: "The shop order number you entered is currently not in the system.\n\nPlease try a new shop order number or contact IT with any concerns." and return
+      end
     else
-      render plain: "Please enter a shop order number into the url"
+      #abort "No shop order number entered. Please use format '/so?shop_order='"
+      render plain: "No shop order number was entered.\n\nPlease use the format '/so?shop_order=###### ' when searching for a shop order." and return
     end
+
+    #Print shop order if "Print" was selected
     if params[:print]
       ['yellow', 'green', 'blue', 'purple', '', ''].each do |color|
         pdf = SO.new @data, color
@@ -96,6 +105,7 @@ class PdfController < ApplicationController
        # File.delete(path)
       end
       render plain: "PDF sent to printer."
+    #Otherwise, render and display Shop Order as PDF
     else
       pdf = SO.new @data, 'blue'
       send_data pdf.render,

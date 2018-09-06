@@ -16,6 +16,8 @@ class SO < VarlandPdf
     super()
     @data = data
     puts @data
+    
+    # Sets the color of the shop order
     @color = 'white'
     if @data['scheduleCode'] != nil
       case @data['scheduleCode']
