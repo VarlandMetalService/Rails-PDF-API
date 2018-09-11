@@ -9,8 +9,8 @@ class PdfController < ApplicationController
     if params[:print]
       path = Tempfile.new(['invoice','.pdf']).path
       pdf.render_file path
-      spooler = VMS::PrintSpooler.new printer: printer, color: true
-      spooler.print_files path
+      #spooler = VMS::PrintSpooler.new printer: printer, color: true
+      #spooler.print_files path
       File.delete(path)
       render plain: "PDF (#{path}) sent to printer."
     else
@@ -27,8 +27,8 @@ class PdfController < ApplicationController
     if params[:print]
       path = Tempfile.new(['packing_slip','.pdf']).path
       pdf.render_file path
-      spooler = VMS::PrintSpooler.new printer: printer, color: true
-      spooler.print_files path
+      #spooler = VMS::PrintSpooler.new printer: printer, color: true
+      #spooler.print_files path
       File.delete(path)
       render plain: "PDF (#{path}) sent to printer."
     else
@@ -45,8 +45,8 @@ class PdfController < ApplicationController
     if params[:print]
       path = Tempfile.new(['plating_certificate','.pdf']).path
       pdf.render_file path
-      spooler = VMS::PrintSpooler.new printer: printer, color: true
-      spooler.print_files path
+      #spooler = VMS::PrintSpooler.new printer: printer, color: true
+      #spooler.print_files path
       File.delete(path)
       render plain: "PDF (#{path}) sent to printer."
     else
@@ -63,8 +63,8 @@ class PdfController < ApplicationController
     if params[:print]
       path = Tempfile.new(['bill_of_lading','.pdf']).path
       pdf.render_file path
-      spooler = VMS::PrintSpooler.new printer: printer, color: true
-      spooler.print_files path
+      #spooler = VMS::PrintSpooler.new printer: printer, color: true
+      #spooler.print_files path
       File.delete(path)
       render plain: "PDF (#{path}) sent to printer."
     else
@@ -106,8 +106,8 @@ class PdfController < ApplicationController
         pdf = SO.new @data, color
         path = Tempfile.new(['so','.pdf']).path
         pdf.render_file path
-        spooler = VMS::PrintSpooler.new printer: printer, color: true
-        spooler.print_files path
+        #spooler = VMS::PrintSpooler.new printer: printer, color: true
+        #spooler.print_files path
        # File.delete(path)
       end
       render plain: "PDF sent to printer."
@@ -129,9 +129,9 @@ class PdfController < ApplicationController
     bakestand_path = Tempfile.new(['bakestand','.pdf']).path
     id.render_file id_path
     bakestand.render_file bakestand_path
-    spooler = VMS::PrintSpooler.new printer: :ph, color: true
-    spooler.print_files id_path, landscape: true
-    spooler.print_files bakestand_path
+    #spooler = VMS::PrintSpooler.new printer: :ph, color: true
+    #spooler.print_files id_path, landscape: true
+    #spooler.print_files bakestand_path
     File.delete id_path
     File.delete bakestand_path
     render plain: "OK"
@@ -150,8 +150,8 @@ class PdfController < ApplicationController
     if params[:print]
       path = Tempfile.new(['id','.pdf']).path
       pdf.render_file path
-      spooler = VMS::PrintSpooler.new printer: printer, color: true
-      spooler.print_files path, landscape: true
+      #spooler = VMS::PrintSpooler.new printer: printer, color: true
+      #spooler.print_files path, landscape: true
       File.delete(path)
       render plain: "PDF (#{path}) sent to printer."
     else
@@ -175,8 +175,8 @@ class PdfController < ApplicationController
     if params[:print]
       path = Tempfile.new(['bakestand','.pdf']).path
       pdf.render_file path
-      spooler = VMS::PrintSpooler.new printer: printer, color: true
-      spooler.print_files path
+      #spooler = VMS::PrintSpooler.new printer: printer, color: true
+      #spooler.print_files path
       File.delete(path)
       render plain: "PDF (#{path}) sent to printer."
     else
@@ -200,8 +200,8 @@ class PdfController < ApplicationController
     if params[:print]
       path = Tempfile.new(['final','.pdf']).path
       pdf.render_file path
-      spooler = VMS::PrintSpooler.new printer: printer, color: true
-      spooler.print_files path
+      #spooler = VMS::PrintSpooler.new printer: printer, color: true
+      #spooler.print_files path
       File.delete(path)
       render plain: "PDF (#{path}) sent to printer."
     else

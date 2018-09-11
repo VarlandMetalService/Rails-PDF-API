@@ -62,4 +62,4 @@ gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1'
 gem 'barby'
 
-gem 'vms', '>= 0.0.0', :git => "https://github.com/VarlandMetalService/vms-gem.git"
+# gem 'vms', '>= 0.0.0', :git => "https://github.com/VarlandMetalService/vms-gem.git"
