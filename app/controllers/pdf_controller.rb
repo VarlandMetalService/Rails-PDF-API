@@ -79,7 +79,7 @@ class PdfController < ApplicationController
 
     # Store whether or not reprinting.
     reprint = false
-    if params[:reprint] && params[:reprint] == 1
+    if params[:reprint] && params[:reprint] == '1'
       reprint = true
     end
     
