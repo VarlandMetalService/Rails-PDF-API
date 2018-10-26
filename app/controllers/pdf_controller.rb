@@ -76,7 +76,13 @@ class PdfController < ApplicationController
   end
 
   def so
-    printer = :ox
+
+    # Store whether or not reprinting.
+    reprint = false
+    if params[:reprint] && params[:reprint] == 1
+      reprint = true
+    end
+    
     #Check if a shop order number has been entered & prepares data
     if params[:shop_order]
       @so_number = params[:shop_order]
@@ -101,24 +107,12 @@ class PdfController < ApplicationController
     end
 
     #Print shop order if "Print" was selected
-    if params[:print]
-      ['yellow', 'green', 'blue', 'purple', '', ''].each do |color|
-        pdf = SO.new @data, color
-        path = Tempfile.new(['so','.pdf']).path
-        pdf.render_file path
-        #spooler = VMS::PrintSpooler.new printer: printer, color: true
-        #spooler.print_files path
-       # File.delete(path)
-      end
-      render plain: "PDF sent to printer."
-    #Otherwise, render and display Shop Order as PDF
-    else
-      pdf = SO.new @data, 'blue'
-      send_data pdf.render,
-                filename: "SO.pdf",
-                type: "application/pdf",
-                disposition: "inline"
-    end
+    pdf = SO.new @data, reprint
+    send_data pdf.render,
+              filename: "SO.pdf",
+              type: "application/pdf",
+              disposition: "inline"
+
   end
 
   def inert_id_bakestand_bakesheets

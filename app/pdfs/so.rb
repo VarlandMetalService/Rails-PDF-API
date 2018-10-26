@@ -12,9 +12,10 @@ class SO < VarlandPdf
   DEFAULT_MARGIN = 0
   DEFAULT_LAYOUT = :portrait
 
-  def initialize(data = nil, color = nil)
+  def initialize(data = nil, reprint = false)
     super()
     @data = data
+    @isReprint = reprint
     
     # Sets the color of the shop order
     @color = 'white'
@@ -296,7 +297,7 @@ class SO < VarlandPdf
     font_size 8
     font 'Arial Narrow', style: :bold
     bounding_box [_i(0.25), _i(10.75)], width: _i(8), height: _i(0.75) do
-      if @data['isReprint']
+      if @isReprint
          number_pages 'REPRINT PAGE <page> OF <total>', align: :center 
       else
         number_pages 'PAGE <page> OF <total>', align: :center
