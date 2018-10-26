@@ -31,5 +31,5 @@ Rails.application.routes.draw do
 
   match "/index" => "pdf#index",
         via: [:get]
-        
+
 end

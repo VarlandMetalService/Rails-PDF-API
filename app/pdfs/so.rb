@@ -15,7 +15,6 @@ class SO < VarlandPdf
   def initialize(data = nil, color = nil)
     super()
     @data = data
-    puts @data
     
     # Sets the color of the shop order
     @color = 'white'

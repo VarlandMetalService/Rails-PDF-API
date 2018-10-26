@@ -22,4 +22,15 @@
       </button>
     <% end %>
   </div>
+  <div class="col-xs-12 col-sm-6 col-md-4">
+    <%= form_tag({ action: action },
+                  method: "post") do %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= hidden_field_tag :search, true %>
+      <%= text_field_tag :shop_order, '', font: "FontAwesome", placeholder: "fa fa-search", class:"fa-search btn btn-block btn-outline-dark"%>
+       <!-- <span class="input-group-addon">
+          <span class ="fa fa-search"><%= text_field_tag :shop_order,'', placeholder: "Search SO#"%></span>
+        <span> -->
+    <% end %>
+  </div>
 </div>
