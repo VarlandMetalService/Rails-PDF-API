@@ -32,10 +32,10 @@ class VarlandPdf < Prawn::Document
     )
     font_families.update(
       "Arial Narrow" => {
-        :normal       => Rails.root.join('lib', 'assets', 'ARIALN.ttf'),
-        :italic       => Rails.root.join('lib', 'assets', 'ARIALNI.ttf'),
-        :bold         => Rails.root.join('lib', 'assets', 'ARIALNB.ttf'),
-        :bold_italic  => Rails.root.join('lib', 'assets', 'ARIALNBI.ttf')
+        :normal       => Rails.root.join('lib', 'assets', 'ARIALN.TTF'),
+        :italic       => Rails.root.join('lib', 'assets', 'ARIALNI.TTF'),
+        :bold         => Rails.root.join('lib', 'assets', 'ARIALNB.TTF'),
+        :bold_italic  => Rails.root.join('lib', 'assets', 'ARIALNBI.TTF')
       }
     )
     font_families.update(
