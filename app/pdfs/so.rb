@@ -83,7 +83,11 @@ class SO < VarlandPdf
             t_array = [@data['revisionDates'][i]['timestamp'], @data['revisionDates'][i]['value'], @data['revisionDates'][i]['extra'], "$/#{@data['pricePer']}"]
             date_numbers.push(t_array)
           else
-            t_array = [@data['revisionDates'][i]['timestamp'], @data['revisionDates'][i]['number'], '', '']
+            if @data['revisionDates'][i]['count'] == 1
+              t_array = [@data['revisionDates'][i]['timestamp'], @data['revisionDates'][i]['number'], '', '']
+            else
+              t_array = [@data['revisionDates'][i]['timestamp'], @data['revisionDates'][i]['number'], '', "(#{@data['revisionDates'][i]['count']})"]
+            end
             date_numbers.push(t_array)
           end
         else
@@ -237,6 +241,9 @@ class SO < VarlandPdf
       page_header_data_box shipping_no, 2.95, 4.75, prod_recording_widths.sum, 0.8, :right, false, :top
       page_header_data_box ship_to_address, 2.95, 4.75, prod_recording_widths.sum, 0.8, :left, false, :top
       page_header_data_box @data['process'], 0.025, 4.75, 2.95, 3.2, :left, false, :top
+      unless @data['primaryDept'].nil?
+        page_header_data_box "PRIMARY DEPARTMENT: #{@data['primaryDept']}\nALTERNATE DEPARTMENT#{@data['altDepts'].length == 1 ? '' : 'S'}: #{@data['altDepts'].join(', ')}", 0.025, 4.75 - (@data['processLines'] * 0.2), 2.95, 0.4, :left, false, :top
+      end
       page_header_data_box @data['partDescription'].join("\n"), 0, 0.55, 2.95, 0.6, :left, false, :top
       page_header_data_box (number_with_precision(@data['piecesPerPound'], precision: 3)) + ' PCS / LB', 2.95, 0.8, 2.4, 0.2, :left
       page_header_data_box (number_with_precision(@data['ft2PerPound'], precision: 2)) + " FT² / LB", 2.95, 0.6, 2.4, 0.2, :left
