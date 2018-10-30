@@ -219,7 +219,8 @@ class SO < VarlandPdf
       page_header_text_box 'Emp', x, 3.7, prod_recording_widths[5], 0.2, false, :center, :bottom
       page_header_text_box '#', x, 3.5, prod_recording_widths[5], 0.2, false, :center, :top
       x += prod_recording_widths[5]
-      page_header_text_box '#', x, 3.7, x_ray_data_widths[0], 0.4
+      page_header_text_box 'LD', x, 3.7, x_ray_data_widths[0], 0.2, false, :center, :bottom
+      page_header_text_box '#', x, 3.5, x_ray_data_widths[0], 0.2, false, :center, :top
       x += x_ray_data_widths[0]
       page_header_text_box 'Thick', x, 3.7, x_ray_data_widths[1], 0.2, false, :center, :bottom
       page_header_text_box '(mils)', x, 3.5, x_ray_data_widths[1], 0.2, false, :center, :top
@@ -243,7 +244,12 @@ class SO < VarlandPdf
       page_header_data_box ship_to_address, 2.95, 4.75, prod_recording_widths.sum, 0.8, :left, false, :top
       page_header_data_box @data['process'], 0.025, 4.75, 2.95, 3.2, :left, false, :top
       unless @data['primaryDept'].nil?
-        page_header_data_box "PRIMARY DEPARTMENT: #{@data['primaryDept']}\nALTERNATE DEPARTMENT#{@data['altDepts'].length == 1 ? '' : 'S'}: #{@data['altDepts'].join(', ')}", 0.025, 4.75 - (@data['processLines'] * 0.2), 2.95, 0.4, :left, false, :top
+        fill_color 'cccccc'
+        fill_rectangle([_i(0.1), _i(4.75 - (@data['processLines'] * 0.2) + 0.25)], _i(2.75), _i(0.4))
+        bounding_box([_i(0.1), _i(4.75 - (@data['processLines'] * 0.2) + 0.25)], :width => _i(2.75), :height => _i(0.4)) do
+          transparent(1) { stroke_bounds }
+          page_header_data_box "PRIMARY DEPARTMENT: #{@data['primaryDept']}\nALTERNATE DEPARTMENT#{@data['altDepts'].length == 1 ? '' : 'S'}: #{@data['altDepts'].join(', ')}", 0.05, 0.4, 2.65, 0.4, :left, false, :center
+         end
       end
       page_header_data_box @data['partDescription'].join("\n"), 0, 0.55, 2.95, 0.6, :left, false, :top
       page_header_data_box (number_with_precision(@data['piecesPerPound'], precision: 3)) + ' PCS / LB', 2.95, 0.8, 2.4, 0.2, :left
@@ -313,7 +319,7 @@ class SO < VarlandPdf
       # Draw oversized shop order numbers.
       font_size 40
       font 'Arial Narrow', style: :bold
-      text_box @data["shopOrder"].to_s, at: [_i(1), _i(10.75)], width: _i(2.5), height: _i(0.6)
+      text_box @data["shopOrder"].to_s, at: [_i(0.5), _i(10.75)], width: _i(2.5), height: _i(0.6)
       text_box @data["shopOrder"].to_s, at: [_i(8.25), _i(10.25)], width: _i(1.8), height: _i(0.6), rotate: 270, align: :center
 
       # Draw shop order barcode.
@@ -344,7 +350,8 @@ class SO < VarlandPdf
             fill_color 'ff4e50'
         end
 
-        fill_rectangle([0, _i(1.8)], _i(7.5), _i(1.8))
+        fill_rectangle([0, _i(1.8)], _i(7.5), _i(1.5))
+        fill_rectangle([0, _i(0.3)], _i(6.2), _i(0.3))
 
         # Draw shaded header boxes.
         fill_color 'cccccc'
