@@ -233,8 +233,10 @@ class SO < VarlandPdf
       page_header_text_box 'Part & Material Description', 0, 0.8, 2.95, 0.2, false, :center
 
       #Draw circle under FINAL INSPECTION
-      circle_size = 0.35
       x = 2.95 + prod_recording_widths.sum + (x_ray_data_widths.sum / 2)
+      fill_color 'ffffff'
+      fill_circle [_i(x), _i(4.4)], _i(0.35)
+      circle_size = 0.35
       stroke_circle [_i(x), _i(4.4)], _i(0.35)
 
       # Draw header data.
@@ -242,14 +244,26 @@ class SO < VarlandPdf
       ship_to_address = @data['shipTo']['name_1'] + "\n" + @data['shipTo']['address'] + "\n" + @data['shipTo']['city'] + ', ' + @data['shipTo']['state'] + ', ' + (@data['shipTo']['zipCode'].to_s)[0, 5]
       page_header_data_box shipping_no, 2.95, 4.75, prod_recording_widths.sum, 0.8, :right, false, :top
       page_header_data_box ship_to_address, 2.95, 4.75, prod_recording_widths.sum, 0.8, :left, false, :top
-      page_header_data_box @data['process'], 0.025, 4.75, 2.95, 3.2, :left, false, :top
+      temp_y = 4.75
+      process_height = (@data['processLines'] + 1) * (11.0 / 72.0)
+      dept_height = 0
+      page_header_data_box @data['process'].to_s, 0.025, temp_y, 2.95, process_height, :left, false, :top
+      temp_y -= process_height
       unless @data['primaryDept'].nil?
         fill_color 'cccccc'
-        fill_rectangle([_i(0.1), _i(4.75 - (@data['processLines'] * 0.2) + 0.25)], _i(2.75), _i(0.4))
-        bounding_box([_i(0.1), _i(4.75 - (@data['processLines'] * 0.2) + 0.25)], :width => _i(2.75), :height => _i(0.4)) do
+        dept_height = 2.5 * (11.0 / 72.0)
+        fill_rectangle([_i(0.1), _i(temp_y)], _i(2.75), _i(dept_height))
+        bounding_box([_i(0.1), _i(temp_y)], :width => _i(2.75), :height => _i(dept_height)) do
           transparent(1) { stroke_bounds }
           page_header_data_box "PRIMARY DEPARTMENT: #{@data['primaryDept']}\nALTERNATE DEPARTMENT#{@data['altDepts'].length == 1 ? '' : 'S'}: #{@data['altDepts'].join(', ')}", 0.05, 0.4, 2.65, 0.4, :left, false, :center
          end
+         temp_y -= dept_height + (11.0 / 72.0)
+      end
+      unless @color == 'white'
+        fill_color 'ffffff'
+        blank_height = 3.2 - process_height - dept_height - (11.0 / 72.0)
+        fill_rectangle([_i(0.1), _i(temp_y)], _i(2.75), _i(blank_height))
+        stroke_rectangle([_i(0.1), _i(temp_y)], _i(2.75), _i(blank_height))
       end
       page_header_data_box @data['partDescription'].join("\n"), 0, 0.55, 2.95, 0.6, :left, false, :top
       page_header_data_box (number_with_precision(@data['piecesPerPound'], precision: 3)) + ' PCS / LB', 2.95, 0.8, 2.4, 0.2, :left
