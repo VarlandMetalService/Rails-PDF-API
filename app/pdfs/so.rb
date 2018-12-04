@@ -216,8 +216,8 @@ class SO < VarlandPdf
       page_header_text_box 'Quantity', x, 3.7, prod_recording_widths[4], 0.2, false, :center, :bottom
       page_header_text_box '(lbs)', x, 3.5, prod_recording_widths[4], 0.2, false, :center, :top
       x += prod_recording_widths[4]
-      page_header_text_box 'Emp', x, 3.7, prod_recording_widths[5], 0.2, false, :center, :bottom
-      page_header_text_box '#', x, 3.5, prod_recording_widths[5], 0.2, false, :center, :top
+      page_header_text_box 'Emp', x, 3.7, prod_recording_widths[5], 0.4 #, false, :center, :bottom
+      #page_header_text_box '#', x, 3.5, prod_recording_widths[5], 0.2, false, :center, :top
       x += prod_recording_widths[5]
       page_header_text_box 'LD', x, 3.7, x_ray_data_widths[0], 0.2, false, :center, :bottom
       page_header_text_box '#', x, 3.5, x_ray_data_widths[0], 0.2, false, :center, :top
