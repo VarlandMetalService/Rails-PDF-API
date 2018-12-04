@@ -241,7 +241,11 @@ class SO < VarlandPdf
 
       # Draw header data.
       shipping_no = (@data['shipTo']['phone'] != "0") ? number_to_phone(@data['shipTo']['phone'].to_i, area_code: true) : ""
-      ship_to_address = @data['shipTo']['name_1'] + "\n" + @data['shipTo']['address'] + "\n" + @data['shipTo']['city'] + ', ' + @data['shipTo']['state'] + ', ' + (@data['shipTo']['zipCode'].to_s)[0, 5]
+      if @data['shipTo']['name_2'].blank?
+        ship_to_address = @data['shipTo']['name_1'] + "\n" + @data['shipTo']['address'] + "\n" + @data['shipTo']['city'] + ', ' + @data['shipTo']['state'] + ', ' + (@data['shipTo']['zipCode'].to_s)[0, 5]
+      else
+        ship_to_address = @data['shipTo']['name_1'] + "\n" + @data['shipTo']['name_2'] + "\n" + @data['shipTo']['address'] + "\n" + @data['shipTo']['city'] + ', ' + @data['shipTo']['state'] + ', ' + (@data['shipTo']['zipCode'].to_s)[0, 5]
+      end
       page_header_data_box shipping_no, 2.95, 4.75, prod_recording_widths.sum, 0.8, :right, false, :top
       page_header_data_box ship_to_address, 2.95, 4.75, prod_recording_widths.sum, 0.8, :left, false, :top
       temp_y = 4.75
