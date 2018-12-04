@@ -409,7 +409,7 @@ class SO < VarlandPdf
         page_header_text_box 'Shipping #', 6.2, 0.5, 1.3
 
         # Draw header data.
-        page_header_data_box @data['shipTo']['name_1'], 0, 1.6, 3.5, 0.3, :left, true
+        page_header_data_box @data['customerName'], 0, 1.6, 3.5, 0.3, :left, true
         page_header_data_box @data['customerCode'], 3.5, 1.6, 1, 0.3, :center, true
         page_header_data_box @data['processCode'], 4.5, 1.6, 0.7, 0.3, :center, true
         page_header_data_box @data['partID'], 5.2, 1.6, 2, 0.3, :left, true
