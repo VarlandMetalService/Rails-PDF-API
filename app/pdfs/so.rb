@@ -321,8 +321,8 @@ class SO < VarlandPdf
     font_size 8
     font 'Arial Narrow', style: :bold
     bounding_box [_i(0.25), _i(10.75)], width: _i(8), height: _i(0.75) do
-      promise_date_text = (@data['promiseDate'] != nil ? 'PROMISE DATE: ' + DateTime.parse(@data['promiseDate']).strftime("%m/%d/%y") : "")
-      page_number_text = "#{@isReprint ? 'REPRINT ' : ''}PAGE <page> OF <total>\n#{promise_date_text}"
+      promise_date_text = "" #(@data['promiseDate'] != nil ? "\nPROMISE DATE: " + DateTime.parse(@data['promiseDate']).strftime("%m/%d/%y") : "")
+      page_number_text = "#{@isReprint ? 'REPRINT ' : ''}PAGE <page> OF <total>#{promise_date_text}"
       number_pages page_number_text, align: :center 
       #if @isReprint
       #   number_pages 'REPRINT PAGE <page> OF <total>', align: :center 
@@ -428,7 +428,7 @@ class SO < VarlandPdf
         #page_header_data_box (@data['promiseDate'] != nil ? DateTime.parse(@data['promiseDate']).strftime("%m/%d/%y") : ""), 1.25, 0.3, 1.25, 0.3, :center, true
         page_header_data_box (number_with_delimiter(number_with_precision(@data['pounds'], precision: 2))).to_s, 1.25, 0.3, 1.4, 0.3, :center, true
         page_header_data_box (number_with_delimiter(@data['pieces'])).to_s, 2.65, 0.3, 1.4, 0.3, :center, true
-        page_header_data_box @data['containers'].to_s + " " +  @data['containerType'], 4.05, 0.3, 2.15, 0.3, :center, true
+        page_header_data_box @data['containers'].to_s + " " +  @data['containerType'], 4.05, 0.3, 2.15, 0.3, :left, true
         # page_header_data_box '$/' + @data['pricePer'], 6.2, 0.3, 1.3, 0.3, :right, true, :bottom 
       end
     end
