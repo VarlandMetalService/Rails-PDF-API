@@ -321,11 +321,14 @@ class SO < VarlandPdf
     font_size 8
     font 'Arial Narrow', style: :bold
     bounding_box [_i(0.25), _i(10.75)], width: _i(8), height: _i(0.75) do
-      if @isReprint
-         number_pages 'REPRINT PAGE <page> OF <total>', align: :center 
-      else
-        number_pages 'PAGE <page> OF <total>', align: :center
-      end
+      promise_date_text = (@data['promiseDate'] != nil ? 'PROMISE DATE: ' + DateTime.parse(@data['promiseDate']).strftime("%m/%d/%y") : "")
+      page_number_text = "#{@isReprint ? 'REPRINT ' : ''}PAGE <page> OF <total>\n#{promise_date_text}"
+      number_pages page_number_text, align: :center 
+      #if @isReprint
+      #   number_pages 'REPRINT PAGE <page> OF <total>', align: :center 
+      #else
+      #  number_pages "PAGE <page> OF <total>", align: :center
+      #end
     end
 
     # Configure shop order barcode.
@@ -392,7 +395,7 @@ class SO < VarlandPdf
         end
         stroke_line [_i(3.5), _i(1.8)], [_i(3.5), _i(0.5)]
         stroke_line [_i(6), _i(1.3)], [_i(6), _i(0.5)]
-        [1.25, 2.5, 3.65, 4.8, 6.2].each do |x|
+        [1.25, 2.65, 4.05, 6.2].each do |x|
           stroke_line [_i(x), _i(0.5)], [_i(x), _i(0)]
         end
 
@@ -406,10 +409,10 @@ class SO < VarlandPdf
         page_header_text_box 'Part Name & Information', 3.5, 1.3, 2.5
         page_header_text_box 'Customer PO #', 6, 1.3, 1.5
         page_header_text_box 'Shop Order Date', 0, 0.5, 1.25
-        page_header_text_box 'Promise Date', 1.25, 0.5, 1.25 
-        page_header_text_box 'Pounds', 2.5, 0.5, 1.15
-        page_header_text_box 'Pieces', 3.65, 0.5, 1.15
-        page_header_text_box 'Containers', 4.8, 0.5, 1.4
+        #page_header_text_box 'Promise Date', 1.25, 0.5, 1.25 
+        page_header_text_box 'Pounds', 1.25, 0.5, 1.4
+        page_header_text_box 'Pieces', 2.65, 0.5, 1.4
+        page_header_text_box 'Containers', 4.05, 0.5, 2.15
         page_header_text_box 'Shipping #', 6.2, 0.5, 1.3
 
         # Draw header data.
@@ -422,10 +425,10 @@ class SO < VarlandPdf
         page_header_data_box @data['partName'].join("\n"), 3.5, 1.025, 2.5, 0.6, :left, false, :top
         page_header_data_box @data['poNumbers'].join("\n"), 6, 1.025, 1.5, 0.6, :left, false, :top
         page_header_data_box (@data['receiptDate'] != nil ? DateTime.parse(@data['receiptDate']).strftime("%m/%d/%y") : ""), 0, 0.3, 1.25, 0.3, :center, true
-        page_header_data_box (@data['promiseDate'] != nil ? DateTime.parse(@data['promiseDate']).strftime("%m/%d/%y") : ""), 1.25, 0.3, 1.25, 0.3, :center, true
-        page_header_data_box (number_with_delimiter(number_with_precision(@data['pounds'], precision: 2))).to_s, 2.5, 0.3, 1.15, 0.3, :center, true
-        page_header_data_box (number_with_delimiter(@data['pieces'])).to_s, 3.65, 0.3, 1.15, 0.3, :center, true
-        page_header_data_box @data['containers'].to_s + " " +  @data['containerType'], 4.8, 0.3, 1.4, 0.3, :center, true
+        #page_header_data_box (@data['promiseDate'] != nil ? DateTime.parse(@data['promiseDate']).strftime("%m/%d/%y") : ""), 1.25, 0.3, 1.25, 0.3, :center, true
+        page_header_data_box (number_with_delimiter(number_with_precision(@data['pounds'], precision: 2))).to_s, 1.25, 0.3, 1.4, 0.3, :center, true
+        page_header_data_box (number_with_delimiter(@data['pieces'])).to_s, 2.65, 0.3, 1.4, 0.3, :center, true
+        page_header_data_box @data['containers'].to_s + " " +  @data['containerType'], 4.05, 0.3, 2.15, 0.3, :center, true
         # page_header_data_box '$/' + @data['pricePer'], 6.2, 0.3, 1.3, 0.3, :right, true, :bottom 
       end
     end
