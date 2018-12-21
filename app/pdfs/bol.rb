@@ -14,7 +14,7 @@ class BOL < VarlandPdf
       puts(@signature.inspect)
 
       # Create specified number of pages.
-      extra_pages = data.fetch(:bolpCopies, 1).to_i - 1
+      extra_pages = @bill.fetch(:bolpCopies, 1).to_i - 1
       extra_pages.times do |e| start_new_page end
 
       # Set options.
