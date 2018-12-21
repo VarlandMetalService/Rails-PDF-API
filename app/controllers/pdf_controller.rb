@@ -58,21 +58,12 @@ class PdfController < ApplicationController
   end
 
   def bill_of_lading
-    printer = :ox
-    pdf = BillOfLading.new
-    if params[:print]
-      path = Tempfile.new(['bill_of_lading','.pdf']).path
-      pdf.render_file path
-      #spooler = VMS::PrintSpooler.new printer: printer, color: true
-      #spooler.print_files path
-      File.delete(path)
-      render plain: "PDF (#{path}) sent to printer."
-    else
-      send_data pdf.render,
-                filename: "bill_of_lading.pdf",
-                type: "application/pdf",
-                disposition: "inline"
-    end
+    data = JSON.parse(params[:data], { symbolize_names: true })
+    pdf = BOL.new(data)
+    send_data pdf.render,
+              filename: "BOL.pdf",
+              type: "application/pdf",
+              disposition: "inline"
   end
 
   def so

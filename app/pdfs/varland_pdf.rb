@@ -1,3 +1,5 @@
+require "prawn/measurement_extensions"
+
 class VarlandPdf < Prawn::Document
 
   DEFAULT_MARGIN = 36
@@ -79,6 +81,13 @@ class VarlandPdf < Prawn::Document
   end
   def _i(inches)
     return inches_to_points(inches)
+  end
+
+  def points_to_inches(points)
+    return points / 72.0
+  end
+  def _p(points)
+    return points_to_inches(points)
   end
 
   def print_error(msg)
