@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   match "/bill_of_lading" => "pdf#bill_of_lading",
         via: [:post, :get]
 
+  match "/pay_stub" => "pdf#pay_stub",
+        via: [:post, :get]
+
   match "/invoice" => "pdf#invoice",
         via: [:post, :get]
 
