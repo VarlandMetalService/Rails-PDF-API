@@ -3,6 +3,14 @@ class PdfController < ApplicationController
   def index
   end
 
+  def pay_stub
+    pdf = PayStub.new()
+    send_data pdf.render,
+              filename: "PayStub.pdf",
+              type: "application/pdf",
+              disposition: "inline"
+  end
+
   def invoice
     printer = :ox
     pdf = Invoice.new
