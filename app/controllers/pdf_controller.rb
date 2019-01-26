@@ -11,6 +11,22 @@ class PdfController < ApplicationController
               disposition: "inline"
   end
 
+  def w2
+    pdf = W2.new()
+    send_data pdf.render,
+              filename: "W2.pdf",
+              type: "application/pdf",
+              disposition: "inline"
+  end
+
+  def quote
+    pdf = Quote.new()
+    send_data pdf.render,
+              filename: "Quote.pdf",
+              type: "application/pdf",
+              disposition: "inline"
+  end
+
   def invoice
     printer = :ox
     pdf = Invoice.new

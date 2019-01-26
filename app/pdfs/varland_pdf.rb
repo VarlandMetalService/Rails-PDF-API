@@ -75,6 +75,24 @@ class VarlandPdf < Prawn::Document
     )
 
   end
+  
+  # Draws absolutely positioned text box on page.
+  def vms_text_box(text, x, y, width, height, size = 10, style = :normal, align = :center, valign = :center, font_family = nil, font_color = nil)
+      font_family = @standard_font if font_family.nil?
+      font_color = @standard_color if font_color.nil?
+      font(font_family,
+           style: style)
+      font_size(size)
+      fill_color(font_color)
+      text_box(text,
+               at: [x.in, y.in],
+               width: width.in,
+               height: height.in,
+               align: align,
+               valign: valign,
+               inline_format: true,
+               overflow: :shrink_to_fit)
+  end
 
   def inches_to_points(inches)
     return inches * 72.0
