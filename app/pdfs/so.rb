@@ -372,7 +372,7 @@ class SO < VarlandPdf
         end
 
         fill_rectangle([0, _i(1.8)], _i(7.5), _i(1.5))
-        fill_rectangle([0, _i(0.3)], _i(6.2), _i(0.3))
+        #f# ill_rectangle([0, _i(0.3)], _i(6.2), _i(0.3))
 
         # Draw shaded header boxes.
         fill_color 'cccccc'
