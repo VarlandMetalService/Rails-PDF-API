@@ -44,7 +44,7 @@ class W2 < VarlandPdf
   # Prints cutting guides.
   def print_cut_lines
     dash([1])
-    stroke_color('888888')
+    stroke_color('aaaaaa')
     stroke_horizontal_line(0.25.in, 8.25.in, :at => 5.5.in)
     stroke_vertical_line(0.25.in, 10.75.in, :at => 4.25.in)
     undash()
@@ -444,7 +444,7 @@ class W2 < VarlandPdf
     y = box[:y]
     self.vms_text_box("Employers State, Local, or File Copy", x + 0.1, y, 1.9, 0.25, 7, :bold, :left, :center)
     self.vms_text_box("22222", x + 2.1, y + 0.015, 0.6, 0.25, 10, :normal, :center, :center, 'SF Mono')
-    self.vms_text_box("2018", x + 2.7, y, 0.5, 0.25, 12, :bold, :center, :center)
+    self.vms_text_box("2018", x + 2.7, y, 0.5, 0.25, 12, :bold, :center, :center, 'Whitney Bold')
     self.vms_text_box("OMB No.\n1545-0008", x + 3.2, y, 0.55, 0.25, 6, :normal, :center, :center)
     y -= 0.25
     self.vms_text_box("<strong>a</strong> Employee's soc. sec. no.", x + 0.05, y - 0.02, 1.15, _p(6), 6, :normal, :left, :top)
