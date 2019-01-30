@@ -43,6 +43,7 @@ class W2 < VarlandPdf
 
   # Prints cutting guides.
   def print_cut_lines
+    return
     dash([1])
     stroke_color('aaaaaa')
     stroke_horizontal_line(0.25.in, 8.25.in, :at => 5.5.in)
@@ -111,46 +112,62 @@ class W2 < VarlandPdf
     # Draw box.
     x = box_x
     y = box_y - 0.375
-    self.vms_text_box("111-22-3333", x, y, 1.25, 0.25, 7, :bold, :center, :center, @data_font, @data_color)
-    self.vms_text_box("0,000.00", x + 1.3, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
-    self.vms_text_box("0,000.00", x + 2.55, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+    self.vms_text_box(@data[:employee][:ssn], x, y, 1.25, 0.25, 7, :bold, :center, :center, @data_font, @data_color)
+    self.vms_text_box(curr(@data[:wages][:gross]), x + 1.3, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+    self.vms_text_box(curr(@data[:taxes][:federal]), x + 2.55, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
     y -= 0.25
-    self.vms_text_box("0,000.00", x + 1.3, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
-    self.vms_text_box("0,000.00", x + 2.55, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+    self.vms_text_box(curr(@data[:wages][:social_security]), x + 1.3, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+    self.vms_text_box(curr(@data[:taxes][:social_security]), x + 2.55, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
     y -= 0.125
-    self.vms_text_box("111-22-3333", x, y, 1.25, 0.25, 7, :bold, :center, :center, @data_font, @data_color)
+    self.vms_text_box(@data[:employer][:ein], x, y, 1.25, 0.25, 7, :bold, :center, :center, @data_font, @data_color)
     y -= 0.125
-    self.vms_text_box("0,000.00", x + 1.3, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
-    self.vms_text_box("0,000.00", x + 2.55, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+    self.vms_text_box(curr(@data[:wages][:medicare]), x + 1.3, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+    self.vms_text_box(curr(@data[:taxes][:medicare]), x + 2.55, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
     y -= 0.25
-    self.vms_text_box("Varland Metal Service, Inc.\n3231 Fredonia Avenue\nCincinnati, OH 45229", x + 0.05, y, 3.65, 0.625, 7, :bold, :left, :center, @data_font, @data_color)
+    self.vms_text_box("#{@data[:employer][:name]}\n#{@data[:employer][:street]}\n#{@data[:employer][:city]}, #{@data[:employer][:state]} #{@data[:employer][:zip]}", x + 0.05, y, 3.65, 0.625, 7, :bold, :left, :center, @data_font, @data_color)
     y -= 1
-    self.vms_text_box("Name\nStreet\nCity, ST 12345", x + 0.05, y, 3.65, 0.625, 7, :bold, :left, :center, @data_font, @data_color)
+    self.vms_text_box("#{@data[:employee][:name]}\n#{@data[:employee][:street]}\n#{@data[:employee][:city]}, #{@data[:employee][:state]} #{@data[:employee][:zip]}", x + 0.05, y, 3.65, 0.625, 7, :bold, :left, :center, @data_font, @data_color)
     y -= 1
-    self.vms_text_box("C", x + 2.55, y, 1.15, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
-    self.vms_text_box("0,000.00", x + 2.55, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
-    y -= 0.5
-    self.vms_text_box("X", x + 0.05, y, 0.9, 0.125, 7, :bold, :center, :center, @data_font, @data_color)
-    self.vms_text_box("A", x + 2.55, y, 1.15, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
-    self.vms_text_box("0,000.00", x + 2.55, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
-    y -= 0.375
-    self.vms_text_box("OH", x, y, 0.3, 0.125, 7, :bold, :center, :center, @data_font, @data_color)
-    self.vms_text_box("12345", x + 0.35, y, 1, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
-    self.vms_text_box("0,000.00", x + 1.45, y, 1.1, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
-    self.vms_text_box("0,000.00", x + 2.65, y, 1.05, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+    self.vms_text_box(@data[:box_12][:a][:code], x + 2.55, y, 1.15, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
+    self.vms_text_box(curr(@data[:box_12][:a][:amount]), x + 2.55, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+    y -= 0.25
+    self.vms_text_box("X", x + 0.05, y, 0.9, 0.125, 7, :bold, :center, :center, @data_font, @data_color) if @data[:box_13][:statutory]
+    self.vms_text_box(@data[:box_12][:b][:code], x + 2.55, y, 1.15, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
+    self.vms_text_box(curr(@data[:box_12][:b][:amount]), x + 2.55, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+    y -= 0.25
+    self.vms_text_box("X", x + 0.05, y, 0.9, 0.125, 7, :bold, :center, :center, @data_font, @data_color) if @data[:box_13][:retirement]
+    self.vms_text_box(@data[:box_12][:c][:code], x + 2.55, y, 1.15, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
+    self.vms_text_box(curr(@data[:box_12][:c][:amount]), x + 2.55, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+    y -= 0.25
+    self.vms_text_box("X", x + 0.05, y, 0.9, 0.125, 7, :bold, :center, :center, @data_font, @data_color) if @data[:box_13][:third_party_sick]
+    self.vms_text_box(@data[:box_12][:d][:code], x + 2.55, y, 1.15, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
+    self.vms_text_box(curr(@data[:box_12][:d][:amount]), x + 2.55, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
     y -= 0.125
-    self.vms_text_box("OH", x, y, 0.3, 0.125, 7, :bold, :center, :center, @data_font, @data_color)
-    self.vms_text_box("12345", x + 0.35, y, 1, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
-    self.vms_text_box("0,000.00", x + 1.45, y, 1.1, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
-    self.vms_text_box("0,000.00", x + 2.65, y, 1.05, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
-    y -= 0.375
-    self.vms_text_box("0,000.00", x + 0.05, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
-    self.vms_text_box("0,000.00", x + 1.3, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
-    self.vms_text_box("XXXXX", x + 2.55, y, 1.15, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
+    unless @data[:state][0].blank?
+      self.vms_text_box(@data[:state][0][:code], x, y, 0.3, 0.125, 7, :bold, :center, :center, @data_font, @data_color)
+      self.vms_text_box(@data[:state][0][:ein], x + 0.35, y, 1, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
+      self.vms_text_box(curr(@data[:state][0][:wages]), x + 1.45, y, 1.1, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+      self.vms_text_box(curr(@data[:state][0][:tax]), x + 2.65, y, 1.05, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+    end
     y -= 0.125
-    self.vms_text_box("0,000.00", x + 0.05, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
-    self.vms_text_box("0,000.00", x + 1.3, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
-    self.vms_text_box("XXXXX", x + 2.55, y, 1.15, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
+    unless @data[:state][1].blank?
+      self.vms_text_box(@data[:state][1][:code], x, y, 0.3, 0.125, 7, :bold, :center, :center, @data_font, @data_color)
+      self.vms_text_box(@data[:state][1][:ein], x + 0.35, y, 1, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
+      self.vms_text_box(curr(@data[:state][1][:wages]), x + 1.45, y, 1.1, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+      self.vms_text_box(curr(@data[:state][1][:tax]), x + 2.65, y, 1.05, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+    end
+    y -= 0.375
+    unless @data[:local][0].blank?
+      self.vms_text_box(curr(@data[:local][0][:wages]), x + 0.05, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+      self.vms_text_box(curr(@data[:local][0][:tax]), x + 1.3, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+      self.vms_text_box(@data[:local][0][:name], x + 2.55, y, 1.15, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
+    end
+    y -= 0.125
+    unless @data[:local][1].blank?
+      self.vms_text_box(curr(@data[:local][1][:wages]), x + 0.05, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+      self.vms_text_box(curr(@data[:local][1][:tax]), x + 1.3, y, 1.15, 0.125, 7, :bold, :right, :center, @data_font, @data_color)
+      self.vms_text_box(@data[:local][1][:name], x + 2.55, y, 1.15, 0.125, 7, :bold, :left, :center, @data_font, @data_color)
+    end
 
   end
   
@@ -497,6 +514,23 @@ class W2 < VarlandPdf
     y -= box[:bottom_right_offset]
     self.vms_text_box(box[:bottom_right], x, y - 0.04, 3.75, 0.125, 6, :normal, :right, :top)
 
+  end
+
+# Private methods.
+private
+
+  # Prints currency amount.
+  def curr(amount)
+    if amount.blank?
+      ""
+    else
+      helpers.number_with_precision(amount, precision: 2, delimiter: ',')
+    end
+  end
+
+  # Reference Rails helpers.
+  def helpers
+    ApplicationController.helpers
   end
   
 end

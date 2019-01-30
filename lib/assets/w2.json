@@ -1,0 +1,77 @@
+{
+  "employee": {
+    "ssn": "444-55-6666",
+    "name": "Tobias A. Varland",
+    "street": "19 Gregory Lane",
+    "city": "Fort Thomas",
+    "state": "KY",
+    "zip": "41075"
+  },
+  "wages": {
+    "gross": 1,
+    "social_security": 2,
+    "medicare": 3
+  },
+  "taxes": {
+    "federal": 4,
+    "social_security": 5,
+    "medicare": 6
+  },
+  "employer": {
+    "name": "Varland Metal Service, Inc.",
+    "street": "3231 Fredonia Avenue",
+    "city": "Cincinnati",
+    "state": "OH",
+    "zip": "45229",
+    "ein": "777-88-9999"
+  },
+  "box_12": {
+    "a": {
+      "code": "C",
+      "amount": 7
+    },
+    "b": {
+      "code": null,
+      "amount": null
+    },
+    "c": {
+      "code": "A",
+      "amount": 8
+    },
+    "d": {
+      "code": null,
+      "amount": null
+    }
+  },
+  "box_13": {
+    "statutory": false,
+    "retirement": true,
+    "third_party_sick": false
+  },
+  "state": [
+    {
+      "code": "OH",
+      "ein": "12345",
+      "wages": 9,
+      "tax": 10
+    },
+    {
+      "code": "KY",
+      "ein": "98765",
+      "wages": 11,
+      "tax": 12
+    }
+  ],
+  "local": [
+    {
+      "name": "Local #1",
+      "wages": 13,
+      "tax": 14
+    },
+    {
+      "name": "Local #2",
+      "wages": 15,
+      "tax": 16
+    }
+  ]
+}

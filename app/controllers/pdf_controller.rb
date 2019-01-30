@@ -12,7 +12,8 @@ class PdfController < ApplicationController
   end
 
   def w2
-    pdf = W2.new()
+    data = JSON.parse(File.read(Rails.root.join('lib', 'assets', 'w2.json')), { symbolize_names: true })
+    pdf = W2.new(data)
     send_data pdf.render,
               filename: "W2.pdf",
               type: "application/pdf",
