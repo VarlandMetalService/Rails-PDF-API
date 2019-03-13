@@ -131,6 +131,22 @@ class PdfController < ApplicationController
 
   end
 
+  def dmr
+
+    @year = params[:year]
+    @number = params[:number]
+    uri = URI("http://as400railsapi.varland.com/v1/dmr?year=#{@year}&number=#{@number}")
+    response = Net::HTTP.get(uri)
+    @data = JSON.parse(response, symbolize_names: true)
+
+    pdf = DMR.new @data
+    send_data pdf.render,
+              filename: "DMR.pdf",
+              type: "application/pdf",
+              disposition: "inline"
+
+  end
+
   def inert_id_bakestand_bakesheets
     data = params[:data]
     id = InertIdentificationBakesheet.new data

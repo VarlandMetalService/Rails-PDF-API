@@ -18,16 +18,16 @@ class W2 < VarlandPdf
     # Print employer copies.
     self.print_employee_graphics
     self.print_employee_data
-    self.print_cut_lines
-    self.print_employee_instructions
-    self.print_cut_lines
+    # self.print_cut_lines
+    # self.print_employee_instructions
+    # self.print_cut_lines
 
     # Print employer copies.
-    self.print_employer_graphics
-    self.print_employee_data
-    self.print_cut_lines
-    self.print_employer_instructions
-    self.print_cut_lines
+    # self.print_employer_graphics
+    # self.print_employee_data
+    # self.print_cut_lines
+    # self.print_employer_instructions
+    # self.print_cut_lines
 
     # Encrypt PDF.
     encrypt_document(owner_password: :random,

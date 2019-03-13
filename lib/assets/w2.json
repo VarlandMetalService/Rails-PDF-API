@@ -1,21 +1,21 @@
 {
   "employee": {
-    "ssn": "444-55-6666",
-    "name": "Tobias A. Varland",
-    "street": "19 Gregory Lane",
-    "city": "Fort Thomas",
-    "state": "KY",
-    "zip": "41075"
+    "ssn": "280-90-2887",
+    "name": "Kelly L Smith",
+    "street": "10212 Lees Creek Road",
+    "city": "Harrison",
+    "state": "OH",
+    "zip": "45030"
   },
   "wages": {
-    "gross": 1,
-    "social_security": 2,
-    "medicare": 3
+    "gross": 16401.92,
+    "social_security": 20718.26,
+    "medicare": 20718.26
   },
   "taxes": {
-    "federal": 4,
-    "social_security": 5,
-    "medicare": 6
+    "federal": 807.16,
+    "social_security": 1284.55,
+    "medicare": 300.41
   },
   "employer": {
     "name": "Varland Metal Service, Inc.",
@@ -23,20 +23,20 @@
     "city": "Cincinnati",
     "state": "OH",
     "zip": "45229",
-    "ein": "777-88-9999"
+    "ein": "31-0513102"
   },
   "box_12": {
     "a": {
-      "code": "C",
-      "amount": 7
-    },
-    "b": {
       "code": null,
       "amount": null
     },
+    "b": {
+      "code": "D",
+      "amount": 4316.34
+    },
     "c": {
-      "code": "A",
-      "amount": 8
+      "code": null,
+      "amount": null
     },
     "d": {
       "code": null,
@@ -51,27 +51,16 @@
   "state": [
     {
       "code": "OH",
-      "ein": "12345",
-      "wages": 9,
-      "tax": 10
-    },
-    {
-      "code": "KY",
-      "ein": "98765",
-      "wages": 11,
-      "tax": 12
+      "ein": "51-062207",
+      "wages": 16401.92,
+      "tax": 231.24
     }
   ],
   "local": [
     {
-      "name": "Local #1",
-      "wages": 13,
-      "tax": 14
-    },
-    {
-      "name": "Local #2",
-      "wages": 15,
-      "tax": 16
+      "name": "CIN W/H",
+      "wages": 20718.26,
+      "tax": 435.07
     }
   ]
 }

@@ -83,6 +83,50 @@ class VarlandPdf < Prawn::Document
     )
 
   end
+
+  # Draws filled box.
+  def fbox(x, y, width, height, color)
+    self.fill_color(color)
+    fill_rectangle([x.in, y.in], width.in, height.in)
+  end
+
+  # Draws horizontal line.
+  def hline(x, y, length)
+    stroke_line([x.in, y.in], [(x + length).in, y.in])
+  end
+
+  # Draws vertical line.
+  def vline(x, y, length)
+    stroke_line([x.in, y.in], [x.in, (y - length).in])
+  end
+
+  # Alias for vms_text_box.
+  def calcwidth(text, size = 10, style = :normal, font_family = nil)
+    return 0 if text.blank?
+    font_family = @standard_font if font_family.nil?
+    font(font_family,
+         style: style)
+    return self.width_of(text, size: size) / 72.0
+  end
+
+  # Alias for vms_text_box.
+  def txtb(text, x, y, width, height, size = 10, style = :normal, align = :center, valign = :center, font_family = nil, font_color = nil)
+    return if text.blank?
+    font_family = @standard_font if font_family.nil?
+    font_color = @standard_color if font_color.nil?
+    font(font_family,
+         style: style)
+    font_size(size)
+    fill_color(font_color)
+    text_box(text.to_s,
+             at: [x.in, y.in],
+             width: width.in,
+             height: height.in,
+             align: align,
+             valign: valign,
+             inline_format: true,
+             overflow: :shrink_to_fit)
+  end
   
   # Draws absolutely positioned text box on page.
   def vms_text_box(text, x, y, width, height, size = 10, style = :normal, align = :center, valign = :center, font_family = nil, font_color = nil)
@@ -415,6 +459,14 @@ class VarlandPdf < Prawn::Document
 
     end
 
+  end
+
+# Protected methods.
+protected
+
+  # Reference Rails helpers.
+  def helpers
+    ApplicationController.helpers
   end
 
 end

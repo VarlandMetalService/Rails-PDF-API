@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   match "/so" => "pdf#so",
         via: [:post, :get]
 
+  match "/dmr" => "pdf#dmr",
+        via: [:post, :get]
+
   match "/plating_certificate" => "pdf#plating_certificate",
         via: [:post, :get]
 
