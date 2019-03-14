@@ -444,7 +444,7 @@ class SO < VarlandPdf
 
     #Begin printing
     bounding_box([_i(0.25), _i(8.2)], :width => _i(8.0), :height => _i(7.75)) do
-      text @data['body']
+      text @data['body'], inline_format: true
     end
 
   end
