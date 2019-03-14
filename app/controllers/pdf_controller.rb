@@ -91,6 +91,19 @@ class PdfController < ApplicationController
               disposition: "inline"
   end
 
+  def so_test
+    @so = params[:shop_order]
+    url = "http://as400railsapi.varland.com/v1/so_test?shop_order=#{@so}"
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    @data = JSON.parse(response)
+    pdf = SO.new @data
+    send_data pdf.render,
+              filename: "SO.pdf",
+              type: "application/pdf",
+              disposition: "inline"
+  end
+
   def so
 
     # Store whether or not reprinting.
