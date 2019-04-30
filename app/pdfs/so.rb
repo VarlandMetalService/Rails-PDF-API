@@ -342,11 +342,12 @@ class SO < VarlandPdf
       font_size 40
       font 'Arial Narrow', style: :bold
       if @data["isRework"]
-        text_box "#{@data["shopOrder"].to_s}<color rgb=\"ff0000\">R</color>", at: [_i(0.5), _i(10.75)], width: _i(2.5), height: _i(0.6)
+        text_box "#{@data["shopOrder"].to_s}<color rgb=\"ff0000\">R</color>", at: [_i(0.5), _i(10.75)], width: _i(2.5), height: _i(0.6), inline_format: true
+        text_box "#{@data["shopOrder"].to_s}<color rgb=\"ff0000\">R</color>", at: [_i(8.25), _i(10.75)], width: _i(2.3), height: _i(0.6), rotate: 270, align: :center, inline_format: true
       else
         text_box @data["shopOrder"].to_s, at: [_i(0.5), _i(10.75)], width: _i(2.5), height: _i(0.6)
+        text_box @data["shopOrder"].to_s, at: [_i(8.25), _i(10.25)], width: _i(1.8), height: _i(0.6), rotate: 270, align: :center
       end
-      text_box @data["shopOrder"].to_s, at: [_i(8.25), _i(10.25)], width: _i(1.8), height: _i(0.6), rotate: 270, align: :center
 
       # Draw shop order barcode.
       bounding_box [_i(5.58), _i(10.75)], width: _i(2.5), height: _i(0.3) do
