@@ -341,7 +341,11 @@ class SO < VarlandPdf
       # Draw oversized shop order numbers.
       font_size 40
       font 'Arial Narrow', style: :bold
-      text_box @data["shopOrder"].to_s, at: [_i(0.5), _i(10.75)], width: _i(2.5), height: _i(0.6)
+      if @data["isRework"]
+        text_box "#{@data["shopOrder"].to_s}<color rgb=\"ff0000\">R</color>", at: [_i(0.5), _i(10.75)], width: _i(2.5), height: _i(0.6)
+      else
+        text_box @data["shopOrder"].to_s, at: [_i(0.5), _i(10.75)], width: _i(2.5), height: _i(0.6)
+      end
       text_box @data["shopOrder"].to_s, at: [_i(8.25), _i(10.25)], width: _i(1.8), height: _i(0.6), rotate: 270, align: :center
 
       # Draw shop order barcode.
