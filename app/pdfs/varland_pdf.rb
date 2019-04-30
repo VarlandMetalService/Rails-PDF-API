@@ -25,6 +25,14 @@ class VarlandPdf < Prawn::Document
       }
     )
     font_families.update(
+      "WhitneyIndexSquared" => {
+        :normal       => Rails.root.join('lib', 'assets', 'WhitneyIndexBlack-SquareMd.ttf'),
+        :italic       => Rails.root.join('lib', 'assets', 'WhitneyIndexBlack-SquareMd.ttf'),
+        :bold         => Rails.root.join('lib', 'assets', 'WhitneyIndexBlack-SquareBd.ttf'),
+        :bold_italic  => Rails.root.join('lib', 'assets', 'WhitneyIndexBlack-SquareBd.ttf')
+      }
+    )
+    font_families.update(
       "Whitney Bold" => {
         :normal       => Rails.root.join('lib', 'assets', 'Whitney-Bold.ttf'),
         :italic       => Rails.root.join('lib', 'assets', 'Whitney-BoldItalic.ttf'),
