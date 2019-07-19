@@ -429,7 +429,15 @@ class SO < VarlandPdf
         page_header_data_box @data['subID'], 7.2, 1.6, 0.3, 0.3, :center, true
         page_header_data_box @data['equipmentUsed'].join("\n"), 0, 1.025, 3.5, 0.6, :left, false, :top
         page_header_data_box @data['partName'].join("\n"), 3.5, 1.025, 2.5, 0.6, :left, false, :top
-        page_header_data_box @data['poNumbers'].join("\n"), 6, 1.025, 1.5, 0.6, :left, false, :top
+        po_text = []
+        0.upto(2) do |po|
+          if @data['poNumbers'][po] == @data['partPOs'][po] || @data['poNumbers'][po] == @data['customerPOs'][po]
+            po_text << "<em>#{@data['poNumbers'][po]}</em>"
+          else
+            po_text << @data['poNumbers'][po]
+          end
+        end
+        page_header_data_box po_text.join("\n"), 6, 1.025, 1.5, 0.6, :left, false, :top
         page_header_data_box (@data['receiptDate'] != nil ? DateTime.parse(@data['receiptDate']).strftime("%m/%d/%y") : ""), 0, 0.3, 1.25, 0.3, :center, true
         #page_header_data_box (@data['promiseDate'] != nil ? DateTime.parse(@data['promiseDate']).strftime("%m/%d/%y") : ""), 1.25, 0.3, 1.25, 0.3, :center, true
         page_header_data_box (number_with_delimiter(number_with_precision(@data['pounds'], precision: 2))).to_s, 1.25, 0.3, 1.4, 0.3, :center, true
