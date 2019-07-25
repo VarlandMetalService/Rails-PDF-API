@@ -1,0 +1,123 @@
+{
+    "oven": 6,
+    "side": "L",
+    "employee": 937,
+    "loadings_entered_epoch": 1563971520,
+    "soak_started_epoch": 1563977160,
+    "soak_ended_epoch": 1564079760,
+    "loadings_entered": "07/24/19 8:32am",
+    "soak_started": "07/24/19 10:06am",
+    "soak_ended": "07/25/19 2:36pm",
+    "bakestand": 25,
+    "rows": 11,
+    "columns": 4,
+    "setpoint": 400,
+    "minimum": 375,
+    "maximum": 425,
+    "hours": 24.5,
+    "readings": [
+        {"air": 100, "parts": 500, "time": 1563971520},
+        {"air": 250, "parts": 400, "time": 1563973200},
+        {"air": 250, "parts": 400, "time": 1563976800},
+        {"air": 100, "parts": 500, "time": 1563977160},
+        {"air": 250, "parts": 400, "time": 1563980400},
+        {"air": 250, "parts": 400, "time": 1563984000},
+        {"air": 250, "parts": 400, "time": 1563987600},
+        {"air": 250, "parts": 400, "time": 1563991200},
+        {"air": 250, "parts": 400, "time": 1563994800},
+        {"air": 250, "parts": 400, "time": 1563998400},
+        {"air": 250, "parts": 400, "time": 1564002000},
+        {"air": 250, "parts": 400, "time": 1564005600},
+        {"air": 250, "parts": 400, "time": 1564009200},
+        {"air": 250, "parts": 400, "time": 1564012800},
+        {"air": 250, "parts": 400, "time": 1564016400},
+        {"air": 250, "parts": 400, "time": 1564020000},
+        {"air": 250, "parts": 400, "time": 1564023600},
+        {"air": 250, "parts": 400, "time": 1564027200},
+        {"air": 250, "parts": 400, "time": 1564030800},
+        {"air": 250, "parts": 400, "time": 1564034400},
+        {"air": 250, "parts": 400, "time": 1564038000},
+        {"air": 250, "parts": 400, "time": 1564041600},
+        {"air": 250, "parts": 400, "time": 1564045200},
+        {"air": 250, "parts": 400, "time": 1564048800},
+        {"air": 250, "parts": 400, "time": 1564052400},
+        {"air": 250, "parts": 400, "time": 1564056000},
+        {"air": 250, "parts": 400, "time": 1564059600},
+        {"air": 250, "parts": 400, "time": 1564063200},
+        {"air": 250, "parts": 400, "time": 1564066800},
+        {"air": 250, "parts": 400, "time": 1564070400},
+        {"air": 250, "parts": 400, "time": 1564074000},
+        {"air": 250, "parts": 400, "time": 1564077600},
+        {"air": 100, "parts": 500, "time": 1564079760},
+        {"air": 250, "parts": 400, "time": 1564081200}
+    ],
+    "trays": [
+        {"number": 2, "shop_order": 111111, "loads": ["1"]},
+        {"number": 3, "shop_order": 111111, "loads": ["1"]},
+        {"number": 4, "shop_order": 111111, "loads": ["2"]},
+        {"number": 5, "shop_order": 111111, "loads": ["2"]},
+        {"number": 13, "shop_order": 222222, "loads": ["1"]},
+        {"number": 14, "shop_order": 222222, "loads": ["1"]},
+        {"number": 15, "shop_order": 222222, "loads": ["1", "2RW"]},
+        {"number": 16, "shop_order": 222222, "loads": ["2RW"]},
+        {"number": 17, "shop_order": 222222, "loads": ["2RW"]}
+    ],
+    "shop_orders": [
+        {
+            "number": 111111,
+            "customer": "WWWWWW",
+            "process_code": "WWW",
+            "part_id": "WWWWWWWWWWWWWWWWW",
+            "sub_id": "W",
+            "setpoint": 400,
+            "minimum": 375,
+            "maximum": 425,
+            "hours": 24.5,
+            "within": 1,
+            "loads": [
+                {
+                    "number": "1",
+                    "out_of_plating": "07/24/19 7:26am",
+                    "in_oven": "07/24/19 8:32am",
+                    "within": 1,
+                    "hours_to_load": 1.1
+                },
+                {
+                    "number": "2",
+                    "out_of_plating": "07/24/19 7:46am",
+                    "in_oven": "07/24/19 8:32am",
+                    "within": 1,
+                    "hours_to_load": 0.77
+                }
+            ]
+        },
+        {
+            "number": 222222,
+            "customer": "WWWWWW",
+            "process_code": "WWW",
+            "part_id": "WWWWWWWWWWWWWWWWW",
+            "sub_id": "W",
+            "setpoint": 400,
+            "minimum": 375,
+            "maximum": 425,
+            "hours": 24.5,
+            "within": 0,
+            "loads": [
+                {
+                    "number": "1",
+                    "out_of_plating": null,
+                    "in_oven": "07/24/19 8:32am",
+                    "within": null,
+                    "hours_to_load": null
+                },
+                {
+                    "number": "2RW",
+                    "out_of_plating": null,
+                    "in_oven": "07/24/19 8:32am",
+                    "within": null,
+                    "hours_to_load": null
+                }
+            ]
+        }
+    ]
+}

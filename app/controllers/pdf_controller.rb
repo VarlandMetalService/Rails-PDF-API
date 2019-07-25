@@ -3,6 +3,24 @@ class PdfController < ApplicationController
   def index
   end
 
+  def bakesheet
+    data = JSON.parse(File.read(Rails.root.join('lib', 'assets', 'bakesheet.json')), { symbolize_names: true })
+    pdf = Bakesheet.new(data)
+    send_data pdf.render,
+              filename: "Bakesheet.pdf",
+              type: "application/pdf",
+              disposition: "inline"
+  end
+
+  def final_bakesheet
+    data = JSON.parse(File.read(Rails.root.join('lib', 'assets', 'final_bakesheet.json')), { symbolize_names: true })
+    pdf = FinalBakesheet.new(data)
+    send_data pdf.render,
+              filename: "FinalBakesheet.pdf",
+              type: "application/pdf",
+              disposition: "inline"
+  end
+
   def pay_stub
     pdf = PayStub.new()
     send_data pdf.render,
