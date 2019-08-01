@@ -44,13 +44,13 @@ class Bakesheet < VarlandPdf
     self.print_format
 
     # Encrypt PDF.
-    encrypt_document(owner_password: :random,
-                      permissions: {
-                        print_document: true,
-                        modify_contents: false,
-                        copy_contents: true,
-                        modify_annotations: false
-                      })
+    # encrypt_document(owner_password: :random,
+    #                   permissions: {
+    #                     print_document: true,
+    #                     modify_contents: false,
+    #                     copy_contents: true,
+    #                     modify_annotations: false
+    #                   })
       
   end
 
@@ -76,11 +76,12 @@ class Bakesheet < VarlandPdf
       unless so[:sub_id].blank?
         part_info << so[:sub_id]
       end
-      self.txtb(part_info.join(" ● "), 1.35, y, 3.8, row_height, 10, :normal, :left, :center, @data_font, FOREGROUND_COLORS[i])
-      self.txtb(so[:setpoint], 5.25, y, 0.75, row_height, 10, :normal, :center, :center, @data_font, FOREGROUND_COLORS[i])
-      self.txtb(so[:minimum], 6, y, 0.75, row_height, 10, :normal, :center, :center, @data_font, FOREGROUND_COLORS[i])
-      self.txtb(so[:maximum], 6.75, y, 0.75, row_height, 10, :normal, :center, :center, @data_font, FOREGROUND_COLORS[i])
-      self.txtb(so[:hours], 7.5, y, 0.75, row_height, 10, :normal, :center, :center, @data_font, FOREGROUND_COLORS[i])
+      self.txtb(part_info.join(" ● "), 1.35, y, 3.05, row_height, 10, :normal, :left, :center, @data_font, FOREGROUND_COLORS[i])
+      self.txtb(so[:setpoint], 4.5, y, 0.75, row_height, 10, :normal, :center, :center, @data_font, FOREGROUND_COLORS[i])
+      self.txtb(so[:minimum], 5.25, y, 0.75, row_height, 10, :normal, :center, :center, @data_font, FOREGROUND_COLORS[i])
+      self.txtb(so[:maximum], 6, y, 0.75, row_height, 10, :normal, :center, :center, @data_font, FOREGROUND_COLORS[i])
+      self.txtb(so[:hours], 6.75, y, 0.75, row_height, 10, :normal, :center, :center, @data_font, FOREGROUND_COLORS[i])
+      self.txtb(so[:within], 7.5, y, 0.75, row_height, 10, :normal, :center, :center, @data_font, FOREGROUND_COLORS[i])
       y -= row_height
     end
 
@@ -167,6 +168,7 @@ class Bakesheet < VarlandPdf
     end
     self.vline(0.25, 7.75, 3.5)
     self.vline(1.25, 7.75, 3.5)
+    self.vline(4.5, 7.75, 3.5)
     self.vline(5.25, 7.75, 3.5)
     self.vline(6, 7.75, 3.5)
     self.vline(6.75, 7.75, 3.5)
@@ -174,10 +176,11 @@ class Bakesheet < VarlandPdf
     self.vline(8.25, 7.75, 3.5)
     self.txtb("S.O. #", 0.25, 7.75, 1, 0.5, 10, :bold, :center, :center)
     self.txtb("Part", 1.35, 7.75, 3.8, 0.5, 10, :bold, :left, :center)
-    self.txtb("Set\n(° F)", 5.25, 7.75, 0.75, 0.5, 10, :bold, :center, :center)
-    self.txtb("Min\n(° F)", 6, 7.75, 0.75, 0.5, 10, :bold, :center, :center)
-    self.txtb("Max\n(° F)", 6.75, 7.75, 0.75, 0.5, 10, :bold, :center, :center)
-    self.txtb("Hours", 7.5, 7.75, 0.75, 0.5, 10, :bold, :center, :center)
+    self.txtb("Set\n(° F)", 4.5, 7.75, 0.75, 0.5, 10, :bold, :center, :center)
+    self.txtb("Min\n(° F)", 5.25, 7.75, 0.75, 0.5, 10, :bold, :center, :center)
+    self.txtb("Max\n(° F)", 6, 7.75, 0.75, 0.5, 10, :bold, :center, :center)
+    self.txtb("Hours", 6.75, 7.75, 0.75, 0.5, 10, :bold, :center, :center)
+    self.txtb("Within\n(Hours)", 7.5, 7.75, 0.75, 0.5, 10, :bold, :center, :center)
     #return
 
     # Draw bakestand diagram.

@@ -2,12 +2,9 @@
     "oven": 6,
     "side": "L",
     "employee": 937,
-    "loadings_entered_epoch": 1563971520,
-    "soak_started_epoch": 1563977160,
-    "soak_ended_epoch": 1564079760,
-    "loadings_entered": "07/24/19 8:32am",
-    "soak_started": "07/24/19 10:06am",
-    "soak_ended": "07/25/19 2:36pm",
+    "loadings_entered": 1563971520,
+    "soak_started": 1563977160,
+    "soak_ended": 1564079760,
     "bakestand": 25,
     "rows": 11,
     "columns": 4,
@@ -77,15 +74,15 @@
             "loads": [
                 {
                     "number": "1",
-                    "out_of_plating": "07/24/19 7:26am",
-                    "in_oven": "07/24/19 8:32am",
+                    "out_of_plating": 1563967560,
+                    "in_oven": 1563971520,
                     "within": 1,
                     "hours_to_load": 1.1
                 },
                 {
                     "number": "2",
-                    "out_of_plating": "07/24/19 7:46am",
-                    "in_oven": "07/24/19 8:32am",
+                    "out_of_plating": 1563968760,
+                    "in_oven": 1563971520,
                     "within": 1,
                     "hours_to_load": 0.77
                 }
@@ -106,14 +103,14 @@
                 {
                     "number": "1",
                     "out_of_plating": null,
-                    "in_oven": "07/24/19 8:32am",
+                    "in_oven": 1563971520,
                     "within": null,
                     "hours_to_load": null
                 },
                 {
                     "number": "2RW",
                     "out_of_plating": null,
-                    "in_oven": "07/24/19 8:32am",
+                    "in_oven": 1563971520,
                     "within": null,
                     "hours_to_load": null
                 }

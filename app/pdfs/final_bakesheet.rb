@@ -75,8 +75,8 @@ class FinalBakesheet < VarlandPdf
     data_y = chart_y - y_axis_height
 
     # Define x-axis.
-    start_time = Time.at(@data[:loadings_entered_epoch]).beginning_of_hour
-    end_time = Time.at(@data[:soak_ended_epoch]).end_of_hour.advance(seconds: 1)
+    start_time = Time.at(@data[:loadings_entered]).in_time_zone("Eastern Time (US & Canada)").beginning_of_hour
+    end_time = Time.at(@data[:soak_ended]).in_time_zone("Eastern Time (US & Canada)").end_of_hour.advance(seconds: 1)
     total_range = end_time.to_i - start_time.to_i
     x_increment = 1800
     count_increments = total_range / x_increment
@@ -104,8 +104,8 @@ class FinalBakesheet < VarlandPdf
     # puts ""
 
     # Draw shaded area for soak.
-    soak_start = Time.at(@data[:soak_started_epoch])
-    soak_end = Time.at(@data[:soak_ended_epoch])
+    soak_start = Time.at(@data[:soak_started]).in_time_zone("Eastern Time (US & Canada)")
+    soak_end = Time.at(@data[:soak_ended]).in_time_zone("Eastern Time (US & Canada)")
     soak_start_percentage = self.calculate_x_axis_percentage(soak_start, data_start_time, data_end_time)
     soak_end_percentage = self.calculate_x_axis_percentage(soak_end, data_start_time, data_end_time)
     soak_width = (soak_end_percentage - soak_start_percentage) * data_width
@@ -148,7 +148,7 @@ class FinalBakesheet < VarlandPdf
 
     # Draw individual temperature readings.
     @data[:readings].each do |r|
-      reading_at = Time.at(r[:time])
+      reading_at = Time.at(r[:time]).in_time_zone("Eastern Time (US & Canada)")
       reading_percentage = self.calculate_x_axis_percentage(reading_at, data_start_time, data_end_time)
       reading_x = data_x + (reading_percentage * data_width)
       air_percentage = r[:air].to_f / data_end_value
@@ -241,7 +241,10 @@ class FinalBakesheet < VarlandPdf
     self.txtb("Oven", 0.25, y, 1, 0.3, 10, :bold, :center, :center)
     self.txtb("#{@data[:oven]}#{@data[:side]}", 0.25, y - 0.3, 1, 0.9, 20, :bold, :center, :center, @data_font, @data_color)
     labels = ["Loadings Entered By:", "Date/Time Loadings Entered:", "Date/Time Soak Started:", "Date/Time Soak Ended"]
-    values = [@data[:employee], @data[:loadings_entered], @data[:soak_started], @data[:soak_ended]]
+    loadings_entered = Time.at(@data[:loadings_entered]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %l:%M%P")
+    soak_started = Time.at(@data[:soak_started]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %l:%M%P")
+    soak_ended = Time.at(@data[:soak_ended]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %l:%M%P")
+    values = [@data[:employee], loadings_entered, soak_started, soak_ended]
     labels_2 = ["Set:", "Min:", "Max:", "Hours:"]
     values_2 = ["#{so[:setpoint]}° F", "#{so[:minimum]}° F", "#{so[:maximum]}° F", so[:hours].to_s]
     y = 9.75
@@ -261,10 +264,16 @@ class FinalBakesheet < VarlandPdf
       y-= 0.5
       save_y = y
       so[:loads].each_with_index do |l, i|
+        if l[:out_of_plating].blank?
+          out_of_plating = ""
+        else
+          out_of_plating = Time.at(l[:out_of_plating]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %l:%M%P")
+        end
+        in_oven = Time.at(l[:in_oven]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %l:%M%P")
         self.fbox(0.25, y, 0.5, 0.3, BACKGROUND_COLORS[i])
         self.txtb(l[:number], 0.25, y, 0.5, 0.3, 10, :bold, :center, :center, @data_font, FOREGROUND_COLORS[i])
-        self.txtb(l[:out_of_plating], 0.85, y, 1.8, 0.3, 10, :bold, :left, :center, @data_font, @data_color)
-        self.txtb(l[:in_oven], 2.85, y, 1.8, 0.3, 10, :bold, :left, :center, @data_font, @data_color)
+        self.txtb(out_of_plating, 0.85, y, 1.8, 0.3, 10, :bold, :left, :center, @data_font, @data_color)
+        self.txtb(in_oven, 2.85, y, 1.8, 0.3, 10, :bold, :left, :center, @data_font, @data_color)
         self.txtb(l[:within], 4.75, y, 1.25, 0.3, 10, :bold, :center, :center, @data_font, @data_color)
         self.txtb(l[:hours_to_load], 6, y, 1.25, 0.3, 10, :bold, :center, :center, @data_font, @data_color)
         unless l[:within].blank?
