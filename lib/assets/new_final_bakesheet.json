@@ -1,0 +1,76 @@
+{
+  "oven": 6,
+  "side": "L",
+  "employee": 103,
+  "loadings_entered": "2019-07-10T13:42:30.000Z",
+  "soak_started": "2019-07-22T18:03:41.000Z",
+  "soak_ended": "2019-07-22T18:03:41.000Z",
+  "bakestand": 1,
+  "rows": 8,
+  "columns": 2,
+  "setpoint": 6,
+  "minimum": 1,
+  "maximum": 12,
+  "hours": 0.0,
+  "readings": [
+    {
+      "id": 5,
+      "reading_at": "2019-07-11T14:28:45.000Z",
+      "oven": 6,
+      "probe": "air",
+      "temperature": "123.456",
+      "deleted_at": null
+    },
+    {
+      "id": 6,
+      "reading_at": "2019-07-11T14:28:45.000Z",
+      "oven": 6,
+      "probe": "left",
+      "temperature": "123.456",
+      "deleted_at": null
+    }
+  ],
+  "trays": [
+    {
+      "number": 4,
+      "shop_order": 111,
+      "loads": "4"
+    }
+  ],
+  "shop_orders": [
+    {
+      "number": 111,
+      "customer": "",
+      "process_code": "",
+      "part_id": "",
+      "sub_id": "",
+      "setpoint": 1,
+      "minimum": 1,
+      "maximum": 12,
+      "hours": "1.0",
+      "within": null,
+      "loads": [
+        {
+          "number": "5RW",
+          "out_of_plating": null,
+          "within": null
+        },
+        {
+          "number": "3",
+          "out_of_plating": "2019-07-26T13:12:46.000Z",
+          "within": 180
+        },
+        {
+          "number": "4",
+          "out_of_plating": null,
+          "within": null
+        },
+        {
+          "number": "5",
+          "out_of_plating": null,
+          "within": null
+        }
+      ]
+    }
+  ]
+}

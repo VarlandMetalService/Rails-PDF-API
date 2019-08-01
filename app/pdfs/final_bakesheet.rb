@@ -323,8 +323,10 @@ class FinalBakesheet < VarlandPdf
     mini_diagram_height = mini_diagram_tray_height * @data[:rows]
     self.fbox(0.25, y, mini_diagram_width, mini_diagram_tray_height, "cccccc")
     @data[:trays].each do |t|
-      tray_column = ((t[:number] - 1) / @data[:rows]) + 1
-      tray_row = t[:number] - ((tray_column - 1) * @data[:rows])
+      tray_row = (t[:number] / @data[:columns]) + 1
+      tray_column = t[:number] - ((tray_row - 1) * @data[:columns]) + 1
+      #tray_column = ((t[:number] - 1) / @data[:rows]) + 1
+      #tray_row = t[:number] - ((tray_column - 1) * @data[:rows])
       tray_x = 0.25 + ((tray_column - 1) * mini_diagram_tray_width)
       tray_y = y - ((tray_row - 1) * mini_diagram_tray_height)
       if t[:shop_order] == so[:number]

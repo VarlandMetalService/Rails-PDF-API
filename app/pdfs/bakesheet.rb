@@ -93,9 +93,16 @@ class Bakesheet < VarlandPdf
     total_width = columns * tray_width
     x = 0.25 + ((8 - total_width) / 2)
     y = 3.75
+    #puts ""
+    #puts "Tray Calculations"
+    #puts "================="
     @data[:trays].each do |t|
-      tray_column = ((t[:number] - 1) / @data[:rows]) + 1
-      tray_row = t[:number] - ((tray_column - 1) * @data[:rows])
+      tray_row = (t[:number] / @data[:columns]) + 1
+      tray_column = t[:number] - ((tray_row - 1) * @data[:columns]) + 1
+      #puts ""
+      #puts "   Number: #{t[:number]}"
+      #puts "   Column: #{tray_column}"
+      #puts "   Row: #{tray_row}"
       tray_x = x + ((tray_column - 1) * tray_width)
       tray_y = y - ((tray_row - 1) * tray_height)
       so_index = nil
@@ -108,6 +115,7 @@ class Bakesheet < VarlandPdf
       self.fbox(tray_x, tray_y, tray_width, tray_height, BACKGROUND_COLORS[so_index])
       self.txtb("#{t[:shop_order]} » #{t[:text]}", tray_x, tray_y, tray_width, tray_height, 8, :bold, :center, :center, @data_font, FOREGROUND_COLORS[so_index])
     end
+    #puts ""
 
   end
 
