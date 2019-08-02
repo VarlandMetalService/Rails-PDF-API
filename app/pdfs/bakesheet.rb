@@ -76,7 +76,7 @@ class Bakesheet < VarlandPdf
       unless so[:sub_id].blank?
         part_info << so[:sub_id]
       end
-      self.txtb(part_info.join(" ● "), 1.35, y, 3.05, row_height, 10, :normal, :left, :center, @data_font, FOREGROUND_COLORS[i])
+      self.txtb(part_info.join(" / "), 1.35, y, 3.05, row_height, 10, :normal, :left, :center, @data_font, FOREGROUND_COLORS[i])
       self.txtb(so[:setpoint], 4.5, y, 0.75, row_height, 10, :normal, :center, :center, @data_font, FOREGROUND_COLORS[i])
       self.txtb(so[:minimum], 5.25, y, 0.75, row_height, 10, :normal, :center, :center, @data_font, FOREGROUND_COLORS[i])
       self.txtb(so[:maximum], 6, y, 0.75, row_height, 10, :normal, :center, :center, @data_font, FOREGROUND_COLORS[i])

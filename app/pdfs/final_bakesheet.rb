@@ -223,7 +223,7 @@ class FinalBakesheet < VarlandPdf
     unless so[:sub_id].blank?
       part_info << so[:sub_id]
     end
-    self.txtb(part_info.join(" ● "), title_position + title_width + 0.1, 10.75, 8.25 - title_position - title_width - 0.1, logo_height, 12, :normal, :right, :center, @data_font)
+    self.txtb(part_info.join(" / "), title_position + title_width + 0.1, 10.75, 8.25 - title_position - title_width - 0.1, logo_height, 12, :normal, :right, :center, @data_font)
 
     # Draw bake cycle information.
     y = 9.75
@@ -387,7 +387,7 @@ class FinalBakesheet < VarlandPdf
       unless so[:sub_id].blank?
         part_info << so[:sub_id]
       end
-      self.txtb(part_info.join(" ● "), 1.35, y, 3.8, row_height, 10, :normal, :left, :center, @data_font, FOREGROUND_COLORS[i])
+      self.txtb(part_info.join(" / "), 1.35, y, 3.8, row_height, 10, :normal, :left, :center, @data_font, FOREGROUND_COLORS[i])
       y -= row_height
     end
 
