@@ -1,74 +1,1967 @@
 {
-  "oven": 6,
-  "side": "L",
-  "employee": 103,
-  "loadings_entered": "2019-07-10T13:42:30.000Z",
-  "soak_started": "2019-07-22T18:03:41.000Z",
-  "soak_ended": "2019-07-22T18:03:41.000Z",
+  "oven": 3,
+  "side": "P",
+  "employee": 40,
+  "loadings_entered": 1564672816,
+  "soak_started": 1564678768,
+  "soak_ended": 1564693168,
   "bakestand": 1,
   "rows": 8,
   "columns": 2,
-  "setpoint": 6,
-  "minimum": 1,
-  "maximum": 12,
+  "setpoint": 400,
+  "minimum": 375,
+  "maximum": 425,
   "hours": 0.0,
   "readings": [
     {
-      "id": 5,
-      "reading_at": "2019-07-11T14:28:45.000Z",
-      "oven": 6,
+      "time": 1564658586,
       "probe": "air",
-      "temperature": "123.456",
-      "deleted_at": null
+      "value": 79.153
     },
     {
-      "id": 6,
-      "reading_at": "2019-07-11T14:28:45.000Z",
-      "oven": 6,
-      "probe": "left",
-      "temperature": "123.456",
-      "deleted_at": null
+      "time": 1564658586,
+      "probe": "parts",
+      "value": 77.205
+    },
+    {
+      "time": 1564658767,
+      "probe": "air",
+      "value": 79.035
+    },
+    {
+      "time": 1564658767,
+      "probe": "parts",
+      "value": 77.167
+    },
+    {
+      "time": 1564658951,
+      "probe": "air",
+      "value": 78.95
+    },
+    {
+      "time": 1564658951,
+      "probe": "parts",
+      "value": 77.252
+    },
+    {
+      "time": 1564659132,
+      "probe": "air",
+      "value": 79.012
+    },
+    {
+      "time": 1564659132,
+      "probe": "parts",
+      "value": 77.134
+    },
+    {
+      "time": 1564659314,
+      "probe": "air",
+      "value": 78.993
+    },
+    {
+      "time": 1564659314,
+      "probe": "parts",
+      "value": 76.97
+    },
+    {
+      "time": 1564659498,
+      "probe": "air",
+      "value": 78.948
+    },
+    {
+      "time": 1564659498,
+      "probe": "parts",
+      "value": 77.003
+    },
+    {
+      "time": 1564659681,
+      "probe": "air",
+      "value": 78.98
+    },
+    {
+      "time": 1564659681,
+      "probe": "parts",
+      "value": 77.017
+    },
+    {
+      "time": 1564659862,
+      "probe": "air",
+      "value": 78.858
+    },
+    {
+      "time": 1564659862,
+      "probe": "parts",
+      "value": 77.02
+    },
+    {
+      "time": 1564660044,
+      "probe": "air",
+      "value": 78.931
+    },
+    {
+      "time": 1564660044,
+      "probe": "parts",
+      "value": 76.975
+    },
+    {
+      "time": 1564660228,
+      "probe": "air",
+      "value": 78.82
+    },
+    {
+      "time": 1564660228,
+      "probe": "parts",
+      "value": 76.891
+    },
+    {
+      "time": 1564660411,
+      "probe": "air",
+      "value": 78.824
+    },
+    {
+      "time": 1564660411,
+      "probe": "parts",
+      "value": 76.947
+    },
+    {
+      "time": 1564660594,
+      "probe": "air",
+      "value": 78.931
+    },
+    {
+      "time": 1564660594,
+      "probe": "parts",
+      "value": 77.021
+    },
+    {
+      "time": 1564660775,
+      "probe": "air",
+      "value": 78.797
+    },
+    {
+      "time": 1564660775,
+      "probe": "parts",
+      "value": 77.109
+    },
+    {
+      "time": 1564660958,
+      "probe": "air",
+      "value": 78.892
+    },
+    {
+      "time": 1564660958,
+      "probe": "parts",
+      "value": 77.228
+    },
+    {
+      "time": 1564661140,
+      "probe": "air",
+      "value": 78.831
+    },
+    {
+      "time": 1564661140,
+      "probe": "parts",
+      "value": 77.221
+    },
+    {
+      "time": 1564661321,
+      "probe": "air",
+      "value": 78.857
+    },
+    {
+      "time": 1564661321,
+      "probe": "parts",
+      "value": 77.302
+    },
+    {
+      "time": 1564661505,
+      "probe": "air",
+      "value": 78.895
+    },
+    {
+      "time": 1564661505,
+      "probe": "parts",
+      "value": 77.342
+    },
+    {
+      "time": 1564661687,
+      "probe": "air",
+      "value": 78.773
+    },
+    {
+      "time": 1564661687,
+      "probe": "parts",
+      "value": 77.454
+    },
+    {
+      "time": 1564661867,
+      "probe": "air",
+      "value": 78.87
+    },
+    {
+      "time": 1564661867,
+      "probe": "parts",
+      "value": 77.464
+    },
+    {
+      "time": 1564662049,
+      "probe": "air",
+      "value": 78.895
+    },
+    {
+      "time": 1564662049,
+      "probe": "parts",
+      "value": 77.519
+    },
+    {
+      "time": 1564662233,
+      "probe": "air",
+      "value": 78.893
+    },
+    {
+      "time": 1564662233,
+      "probe": "parts",
+      "value": 77.582
+    },
+    {
+      "time": 1564662417,
+      "probe": "air",
+      "value": 78.859
+    },
+    {
+      "time": 1564662417,
+      "probe": "parts",
+      "value": 77.481
+    },
+    {
+      "time": 1564662599,
+      "probe": "air",
+      "value": 78.874
+    },
+    {
+      "time": 1564662599,
+      "probe": "parts",
+      "value": 77.569
+    },
+    {
+      "time": 1564662783,
+      "probe": "air",
+      "value": 78.938
+    },
+    {
+      "time": 1564662783,
+      "probe": "parts",
+      "value": 77.571
+    },
+    {
+      "time": 1564662966,
+      "probe": "air",
+      "value": 78.891
+    },
+    {
+      "time": 1564662966,
+      "probe": "parts",
+      "value": 77.725
+    },
+    {
+      "time": 1564663149,
+      "probe": "air",
+      "value": 78.877
+    },
+    {
+      "time": 1564663149,
+      "probe": "parts",
+      "value": 77.771
+    },
+    {
+      "time": 1564663330,
+      "probe": "air",
+      "value": 78.856
+    },
+    {
+      "time": 1564663330,
+      "probe": "parts",
+      "value": 78.004
+    },
+    {
+      "time": 1564663511,
+      "probe": "air",
+      "value": 78.986
+    },
+    {
+      "time": 1564663511,
+      "probe": "parts",
+      "value": 77.993
+    },
+    {
+      "time": 1564663694,
+      "probe": "air",
+      "value": 78.999
+    },
+    {
+      "time": 1564663694,
+      "probe": "parts",
+      "value": 77.927
+    },
+    {
+      "time": 1564663875,
+      "probe": "air",
+      "value": 78.959
+    },
+    {
+      "time": 1564663875,
+      "probe": "parts",
+      "value": 78.197
+    },
+    {
+      "time": 1564664056,
+      "probe": "air",
+      "value": 78.964
+    },
+    {
+      "time": 1564664056,
+      "probe": "parts",
+      "value": 78.068
+    },
+    {
+      "time": 1564664238,
+      "probe": "air",
+      "value": 79.003
+    },
+    {
+      "time": 1564664238,
+      "probe": "parts",
+      "value": 78.048
+    },
+    {
+      "time": 1564664422,
+      "probe": "air",
+      "value": 79.018
+    },
+    {
+      "time": 1564664422,
+      "probe": "parts",
+      "value": 78.123
+    },
+    {
+      "time": 1564664603,
+      "probe": "air",
+      "value": 79.155
+    },
+    {
+      "time": 1564664603,
+      "probe": "parts",
+      "value": 78.289
+    },
+    {
+      "time": 1564664788,
+      "probe": "air",
+      "value": 79.069
+    },
+    {
+      "time": 1564664788,
+      "probe": "parts",
+      "value": 78.432
+    },
+    {
+      "time": 1564664971,
+      "probe": "air",
+      "value": 79.131
+    },
+    {
+      "time": 1564664971,
+      "probe": "parts",
+      "value": 78.329
+    },
+    {
+      "time": 1564665043,
+      "probe": "air",
+      "value": 79.153
+    },
+    {
+      "time": 1564665043,
+      "probe": "parts",
+      "value": 78.195
+    },
+    {
+      "time": 1564665084,
+      "probe": "air",
+      "value": 79.066
+    },
+    {
+      "time": 1564665084,
+      "probe": "parts",
+      "value": 78.126
+    },
+    {
+      "time": 1564665267,
+      "probe": "air",
+      "value": 79.102
+    },
+    {
+      "time": 1564665267,
+      "probe": "parts",
+      "value": 78.382
+    },
+    {
+      "time": 1564665449,
+      "probe": "air",
+      "value": 79.158
+    },
+    {
+      "time": 1564665449,
+      "probe": "parts",
+      "value": 78.464
+    },
+    {
+      "time": 1564665631,
+      "probe": "air",
+      "value": 79.307
+    },
+    {
+      "time": 1564665631,
+      "probe": "parts",
+      "value": 78.484
+    },
+    {
+      "time": 1564665814,
+      "probe": "air",
+      "value": 79.313
+    },
+    {
+      "time": 1564665814,
+      "probe": "parts",
+      "value": 78.691
+    },
+    {
+      "time": 1564665997,
+      "probe": "air",
+      "value": 79.399
+    },
+    {
+      "time": 1564665997,
+      "probe": "parts",
+      "value": 78.684
+    },
+    {
+      "time": 1564666180,
+      "probe": "air",
+      "value": 79.31
+    },
+    {
+      "time": 1564666180,
+      "probe": "parts",
+      "value": 78.89
+    },
+    {
+      "time": 1564666362,
+      "probe": "air",
+      "value": 79.498
+    },
+    {
+      "time": 1564666362,
+      "probe": "parts",
+      "value": 78.889
+    },
+    {
+      "time": 1564666546,
+      "probe": "air",
+      "value": 79.499
+    },
+    {
+      "time": 1564666546,
+      "probe": "parts",
+      "value": 79.136
+    },
+    {
+      "time": 1564666727,
+      "probe": "air",
+      "value": 79.587
+    },
+    {
+      "time": 1564666727,
+      "probe": "parts",
+      "value": 79.217
+    },
+    {
+      "time": 1564666909,
+      "probe": "air",
+      "value": 79.727
+    },
+    {
+      "time": 1564666909,
+      "probe": "parts",
+      "value": 79.136
+    },
+    {
+      "time": 1564667092,
+      "probe": "air",
+      "value": 79.542
+    },
+    {
+      "time": 1564667092,
+      "probe": "parts",
+      "value": 79.34
+    },
+    {
+      "time": 1564667276,
+      "probe": "air",
+      "value": 79.691
+    },
+    {
+      "time": 1564667276,
+      "probe": "parts",
+      "value": 79.261
+    },
+    {
+      "time": 1564667457,
+      "probe": "air",
+      "value": 79.682
+    },
+    {
+      "time": 1564667457,
+      "probe": "parts",
+      "value": 79.342
+    },
+    {
+      "time": 1564667640,
+      "probe": "air",
+      "value": 79.775
+    },
+    {
+      "time": 1564667640,
+      "probe": "parts",
+      "value": 79.277
+    },
+    {
+      "time": 1564667823,
+      "probe": "air",
+      "value": 79.741
+    },
+    {
+      "time": 1564667823,
+      "probe": "parts",
+      "value": 79.211
+    },
+    {
+      "time": 1564668005,
+      "probe": "air",
+      "value": 79.759
+    },
+    {
+      "time": 1564668005,
+      "probe": "parts",
+      "value": 79.537
+    },
+    {
+      "time": 1564668188,
+      "probe": "air",
+      "value": 79.921
+    },
+    {
+      "time": 1564668188,
+      "probe": "parts",
+      "value": 79.487
+    },
+    {
+      "time": 1564668371,
+      "probe": "air",
+      "value": 79.899
+    },
+    {
+      "time": 1564668371,
+      "probe": "parts",
+      "value": 79.658
+    },
+    {
+      "time": 1564668553,
+      "probe": "air",
+      "value": 79.877
+    },
+    {
+      "time": 1564668553,
+      "probe": "parts",
+      "value": 79.79
+    },
+    {
+      "time": 1564668737,
+      "probe": "air",
+      "value": 80.108
+    },
+    {
+      "time": 1564668737,
+      "probe": "parts",
+      "value": 79.792
+    },
+    {
+      "time": 1564668920,
+      "probe": "air",
+      "value": 80.007
+    },
+    {
+      "time": 1564668920,
+      "probe": "parts",
+      "value": 80.04
+    },
+    {
+      "time": 1564669103,
+      "probe": "air",
+      "value": 80.109
+    },
+    {
+      "time": 1564669103,
+      "probe": "parts",
+      "value": 80.109
+    },
+    {
+      "time": 1564669286,
+      "probe": "air",
+      "value": 80.104
+    },
+    {
+      "time": 1564669286,
+      "probe": "parts",
+      "value": 80.212
+    },
+    {
+      "time": 1564669468,
+      "probe": "air",
+      "value": 80.318
+    },
+    {
+      "time": 1564669468,
+      "probe": "parts",
+      "value": 80.318
+    },
+    {
+      "time": 1564669650,
+      "probe": "air",
+      "value": 80.23
+    },
+    {
+      "time": 1564669650,
+      "probe": "parts",
+      "value": 80.456
+    },
+    {
+      "time": 1564669834,
+      "probe": "air",
+      "value": 80.264
+    },
+    {
+      "time": 1564669834,
+      "probe": "parts",
+      "value": 80.392
+    },
+    {
+      "time": 1564670015,
+      "probe": "air",
+      "value": 80.354
+    },
+    {
+      "time": 1564670015,
+      "probe": "parts",
+      "value": 80.402
+    },
+    {
+      "time": 1564670153,
+      "probe": "air",
+      "value": 80.494
+    },
+    {
+      "time": 1564670153,
+      "probe": "parts",
+      "value": 80.528
+    },
+    {
+      "time": 1564670227,
+      "probe": "air",
+      "value": 80.285
+    },
+    {
+      "time": 1564670227,
+      "probe": "parts",
+      "value": 80.702
+    },
+    {
+      "time": 1564670411,
+      "probe": "air",
+      "value": 80.539
+    },
+    {
+      "time": 1564670411,
+      "probe": "parts",
+      "value": 80.769
+    },
+    {
+      "time": 1564670591,
+      "probe": "air",
+      "value": 80.563
+    },
+    {
+      "time": 1564670591,
+      "probe": "parts",
+      "value": 80.889
+    },
+    {
+      "time": 1564670776,
+      "probe": "air",
+      "value": 86.445
+    },
+    {
+      "time": 1564670776,
+      "probe": "parts",
+      "value": 82.888
+    },
+    {
+      "time": 1564670957,
+      "probe": "air",
+      "value": 126.557
+    },
+    {
+      "time": 1564670957,
+      "probe": "parts",
+      "value": 146.938
+    },
+    {
+      "time": 1564671140,
+      "probe": "air",
+      "value": 151.976
+    },
+    {
+      "time": 1564671140,
+      "probe": "parts",
+      "value": 155.627
+    },
+    {
+      "time": 1564671324,
+      "probe": "air",
+      "value": 164.643
+    },
+    {
+      "time": 1564671324,
+      "probe": "parts",
+      "value": 156.393
+    },
+    {
+      "time": 1564671506,
+      "probe": "air",
+      "value": 178.61
+    },
+    {
+      "time": 1564671506,
+      "probe": "parts",
+      "value": 155.809
+    },
+    {
+      "time": 1564671690,
+      "probe": "air",
+      "value": 189.179
+    },
+    {
+      "time": 1564671690,
+      "probe": "parts",
+      "value": 155.933
+    },
+    {
+      "time": 1564671874,
+      "probe": "air",
+      "value": 203.011
+    },
+    {
+      "time": 1564671874,
+      "probe": "parts",
+      "value": 156.913
+    },
+    {
+      "time": 1564672056,
+      "probe": "air",
+      "value": 215.833
+    },
+    {
+      "time": 1564672056,
+      "probe": "parts",
+      "value": 158.973
+    },
+    {
+      "time": 1564672237,
+      "probe": "air",
+      "value": 228.226
+    },
+    {
+      "time": 1564672237,
+      "probe": "parts",
+      "value": 161.995
+    },
+    {
+      "time": 1564672419,
+      "probe": "air",
+      "value": 239.919
+    },
+    {
+      "time": 1564672419,
+      "probe": "parts",
+      "value": 166.088
+    },
+    {
+      "time": 1564672602,
+      "probe": "air",
+      "value": 251.184
+    },
+    {
+      "time": 1564672602,
+      "probe": "parts",
+      "value": 170.728
+    },
+    {
+      "time": 1564672785,
+      "probe": "air",
+      "value": 285.642
+    },
+    {
+      "time": 1564672785,
+      "probe": "parts",
+      "value": 176.047
+    },
+    {
+      "time": 1564672969,
+      "probe": "air",
+      "value": 272.502
+    },
+    {
+      "time": 1564672969,
+      "probe": "parts",
+      "value": 181.442
+    },
+    {
+      "time": 1564673152,
+      "probe": "air",
+      "value": 282.877
+    },
+    {
+      "time": 1564673152,
+      "probe": "parts",
+      "value": 187.139
+    },
+    {
+      "time": 1564673333,
+      "probe": "air",
+      "value": 306.114
+    },
+    {
+      "time": 1564673333,
+      "probe": "parts",
+      "value": 193.539
+    },
+    {
+      "time": 1564673515,
+      "probe": "air",
+      "value": 305.358
+    },
+    {
+      "time": 1564673515,
+      "probe": "parts",
+      "value": 200.1
+    },
+    {
+      "time": 1564673697,
+      "probe": "air",
+      "value": 315.118
+    },
+    {
+      "time": 1564673697,
+      "probe": "parts",
+      "value": 207.011
+    },
+    {
+      "time": 1564673880,
+      "probe": "air",
+      "value": 323.834
+    },
+    {
+      "time": 1564673880,
+      "probe": "parts",
+      "value": 214.176
+    },
+    {
+      "time": 1564674062,
+      "probe": "air",
+      "value": 330.117
+    },
+    {
+      "time": 1564674062,
+      "probe": "parts",
+      "value": 221.429
+    },
+    {
+      "time": 1564674246,
+      "probe": "air",
+      "value": 331.079
+    },
+    {
+      "time": 1564674246,
+      "probe": "parts",
+      "value": 229.018
+    },
+    {
+      "time": 1564674428,
+      "probe": "air",
+      "value": 335.105
+    },
+    {
+      "time": 1564674428,
+      "probe": "parts",
+      "value": 236.477
+    },
+    {
+      "time": 1564674610,
+      "probe": "air",
+      "value": 338.82
+    },
+    {
+      "time": 1564674610,
+      "probe": "parts",
+      "value": 244.153
+    },
+    {
+      "time": 1564674793,
+      "probe": "air",
+      "value": 342.64
+    },
+    {
+      "time": 1564674793,
+      "probe": "parts",
+      "value": 251.89
+    },
+    {
+      "time": 1564674975,
+      "probe": "air",
+      "value": 346.241
+    },
+    {
+      "time": 1564674975,
+      "probe": "parts",
+      "value": 259.64
+    },
+    {
+      "time": 1564675158,
+      "probe": "air",
+      "value": 348.071
+    },
+    {
+      "time": 1564675158,
+      "probe": "parts",
+      "value": 267.265
+    },
+    {
+      "time": 1564675341,
+      "probe": "air",
+      "value": 348.492
+    },
+    {
+      "time": 1564675341,
+      "probe": "parts",
+      "value": 274.906
+    },
+    {
+      "time": 1564675524,
+      "probe": "air",
+      "value": 349.669
+    },
+    {
+      "time": 1564675524,
+      "probe": "parts",
+      "value": 282.674
+    },
+    {
+      "time": 1564675706,
+      "probe": "air",
+      "value": 350.574
+    },
+    {
+      "time": 1564675706,
+      "probe": "parts",
+      "value": 290.328
+    },
+    {
+      "time": 1564675887,
+      "probe": "air",
+      "value": 351.93
+    },
+    {
+      "time": 1564675887,
+      "probe": "parts",
+      "value": 297.777
+    },
+    {
+      "time": 1564676069,
+      "probe": "air",
+      "value": 364.502
+    },
+    {
+      "time": 1564676069,
+      "probe": "parts",
+      "value": 305.266
+    },
+    {
+      "time": 1564676253,
+      "probe": "air",
+      "value": 388.971
+    },
+    {
+      "time": 1564676253,
+      "probe": "parts",
+      "value": 312.491
+    },
+    {
+      "time": 1564676437,
+      "probe": "air",
+      "value": 381.306
+    },
+    {
+      "time": 1564676437,
+      "probe": "parts",
+      "value": 319.545
+    },
+    {
+      "time": 1564676619,
+      "probe": "air",
+      "value": 393.576
+    },
+    {
+      "time": 1564676619,
+      "probe": "parts",
+      "value": 326.058
+    },
+    {
+      "time": 1564676800,
+      "probe": "air",
+      "value": 400.768
+    },
+    {
+      "time": 1564676800,
+      "probe": "parts",
+      "value": 332.165
+    },
+    {
+      "time": 1564676982,
+      "probe": "air",
+      "value": 385.267
+    },
+    {
+      "time": 1564676982,
+      "probe": "parts",
+      "value": 337.748
+    },
+    {
+      "time": 1564677165,
+      "probe": "air",
+      "value": 354.295
+    },
+    {
+      "time": 1564677165,
+      "probe": "parts",
+      "value": 343.309
+    },
+    {
+      "time": 1564677346,
+      "probe": "air",
+      "value": 390.383
+    },
+    {
+      "time": 1564677346,
+      "probe": "parts",
+      "value": 348.268
+    },
+    {
+      "time": 1564677527,
+      "probe": "air",
+      "value": 388.835
+    },
+    {
+      "time": 1564677527,
+      "probe": "parts",
+      "value": 352.764
+    },
+    {
+      "time": 1564677711,
+      "probe": "air",
+      "value": 374.554
+    },
+    {
+      "time": 1564677711,
+      "probe": "parts",
+      "value": 356.807
+    },
+    {
+      "time": 1564677892,
+      "probe": "air",
+      "value": 337.55
+    },
+    {
+      "time": 1564677892,
+      "probe": "parts",
+      "value": 360.756
+    },
+    {
+      "time": 1564678075,
+      "probe": "air",
+      "value": 338.775
+    },
+    {
+      "time": 1564678075,
+      "probe": "parts",
+      "value": 364.298
+    },
+    {
+      "time": 1564678259,
+      "probe": "air",
+      "value": 344.244
+    },
+    {
+      "time": 1564678259,
+      "probe": "parts",
+      "value": 367.621
+    },
+    {
+      "time": 1564678442,
+      "probe": "air",
+      "value": 340.135
+    },
+    {
+      "time": 1564678442,
+      "probe": "parts",
+      "value": 370.415
+    },
+    {
+      "time": 1564678623,
+      "probe": "air",
+      "value": 377.818
+    },
+    {
+      "time": 1564678623,
+      "probe": "parts",
+      "value": 373.006
+    },
+    {
+      "time": 1564678805,
+      "probe": "air",
+      "value": 395.657
+    },
+    {
+      "time": 1564678805,
+      "probe": "parts",
+      "value": 375.535
+    },
+    {
+      "time": 1564678989,
+      "probe": "air",
+      "value": 389.364
+    },
+    {
+      "time": 1564678989,
+      "probe": "parts",
+      "value": 377.777
+    },
+    {
+      "time": 1564679170,
+      "probe": "air",
+      "value": 401.486
+    },
+    {
+      "time": 1564679170,
+      "probe": "parts",
+      "value": 379.859
+    },
+    {
+      "time": 1564679352,
+      "probe": "air",
+      "value": 399.477
+    },
+    {
+      "time": 1564679352,
+      "probe": "parts",
+      "value": 381.818
+    },
+    {
+      "time": 1564679533,
+      "probe": "air",
+      "value": 398.997
+    },
+    {
+      "time": 1564679533,
+      "probe": "parts",
+      "value": 383.476
+    },
+    {
+      "time": 1564679716,
+      "probe": "air",
+      "value": 401.53
+    },
+    {
+      "time": 1564679716,
+      "probe": "parts",
+      "value": 385.269
+    },
+    {
+      "time": 1564679900,
+      "probe": "air",
+      "value": 377.659
+    },
+    {
+      "time": 1564679900,
+      "probe": "parts",
+      "value": 386.575
+    },
+    {
+      "time": 1564680081,
+      "probe": "air",
+      "value": 382.037
+    },
+    {
+      "time": 1564680081,
+      "probe": "parts",
+      "value": 387.915
+    },
+    {
+      "time": 1564680263,
+      "probe": "air",
+      "value": 401.764
+    },
+    {
+      "time": 1564680263,
+      "probe": "parts",
+      "value": 389.293
+    },
+    {
+      "time": 1564680445,
+      "probe": "air",
+      "value": 402.386
+    },
+    {
+      "time": 1564680445,
+      "probe": "parts",
+      "value": 390.396
+    },
+    {
+      "time": 1564680628,
+      "probe": "air",
+      "value": 401.692
+    },
+    {
+      "time": 1564680628,
+      "probe": "parts",
+      "value": 391.291
+    },
+    {
+      "time": 1564680809,
+      "probe": "air",
+      "value": 401.964
+    },
+    {
+      "time": 1564680809,
+      "probe": "parts",
+      "value": 392.37
+    },
+    {
+      "time": 1564680992,
+      "probe": "air",
+      "value": 402.058
+    },
+    {
+      "time": 1564680992,
+      "probe": "parts",
+      "value": 393.082
+    },
+    {
+      "time": 1564681173,
+      "probe": "air",
+      "value": 401.792
+    },
+    {
+      "time": 1564681173,
+      "probe": "parts",
+      "value": 393.912
+    },
+    {
+      "time": 1564681354,
+      "probe": "air",
+      "value": 402.126
+    },
+    {
+      "time": 1564681354,
+      "probe": "parts",
+      "value": 394.523
+    },
+    {
+      "time": 1564681537,
+      "probe": "air",
+      "value": 401.91
+    },
+    {
+      "time": 1564681537,
+      "probe": "parts",
+      "value": 395.205
+    },
+    {
+      "time": 1564681719,
+      "probe": "air",
+      "value": 401.841
+    },
+    {
+      "time": 1564681719,
+      "probe": "parts",
+      "value": 395.875
+    },
+    {
+      "time": 1564681902,
+      "probe": "air",
+      "value": 402.248
+    },
+    {
+      "time": 1564681902,
+      "probe": "parts",
+      "value": 396.421
+    },
+    {
+      "time": 1564682083,
+      "probe": "air",
+      "value": 401.78
+    },
+    {
+      "time": 1564682083,
+      "probe": "parts",
+      "value": 396.859
+    },
+    {
+      "time": 1564682264,
+      "probe": "air",
+      "value": 402.177
+    },
+    {
+      "time": 1564682264,
+      "probe": "parts",
+      "value": 397.342
+    },
+    {
+      "time": 1564682448,
+      "probe": "air",
+      "value": 402.405
+    },
+    {
+      "time": 1564682448,
+      "probe": "parts",
+      "value": 397.763
+    },
+    {
+      "time": 1564682629,
+      "probe": "air",
+      "value": 402.023
+    },
+    {
+      "time": 1564682629,
+      "probe": "parts",
+      "value": 398.187
+    },
+    {
+      "time": 1564682812,
+      "probe": "air",
+      "value": 402.312
+    },
+    {
+      "time": 1564682812,
+      "probe": "parts",
+      "value": 398.479
+    },
+    {
+      "time": 1564682994,
+      "probe": "air",
+      "value": 401.911
+    },
+    {
+      "time": 1564682994,
+      "probe": "parts",
+      "value": 398.818
+    },
+    {
+      "time": 1564683178,
+      "probe": "air",
+      "value": 402.236
+    },
+    {
+      "time": 1564683178,
+      "probe": "parts",
+      "value": 399.212
+    },
+    {
+      "time": 1564683359,
+      "probe": "air",
+      "value": 401.989
+    },
+    {
+      "time": 1564683359,
+      "probe": "parts",
+      "value": 399.419
+    },
+    {
+      "time": 1564683540,
+      "probe": "air",
+      "value": 401.827
+    },
+    {
+      "time": 1564683540,
+      "probe": "parts",
+      "value": 399.703
+    },
+    {
+      "time": 1564683722,
+      "probe": "air",
+      "value": 402.262
+    },
+    {
+      "time": 1564683722,
+      "probe": "parts",
+      "value": 399.809
+    },
+    {
+      "time": 1564683904,
+      "probe": "air",
+      "value": 402.039
+    },
+    {
+      "time": 1564683904,
+      "probe": "parts",
+      "value": 400.09
+    },
+    {
+      "time": 1564684085,
+      "probe": "air",
+      "value": 401.889
+    },
+    {
+      "time": 1564684085,
+      "probe": "parts",
+      "value": 400.169
+    },
+    {
+      "time": 1564684267,
+      "probe": "air",
+      "value": 402.349
+    },
+    {
+      "time": 1564684267,
+      "probe": "parts",
+      "value": 400.279
+    },
+    {
+      "time": 1564684449,
+      "probe": "air",
+      "value": 401.951
+    },
+    {
+      "time": 1564684449,
+      "probe": "parts",
+      "value": 400.563
+    },
+    {
+      "time": 1564684631,
+      "probe": "air",
+      "value": 401.859
+    },
+    {
+      "time": 1564684631,
+      "probe": "parts",
+      "value": 400.622
+    },
+    {
+      "time": 1564684814,
+      "probe": "air",
+      "value": 402.035
+    },
+    {
+      "time": 1564684814,
+      "probe": "parts",
+      "value": 400.752
+    },
+    {
+      "time": 1564684996,
+      "probe": "air",
+      "value": 401.769
+    },
+    {
+      "time": 1564684996,
+      "probe": "parts",
+      "value": 400.899
+    },
+    {
+      "time": 1564685180,
+      "probe": "air",
+      "value": 402.221
+    },
+    {
+      "time": 1564685180,
+      "probe": "parts",
+      "value": 401.046
+    },
+    {
+      "time": 1564685362,
+      "probe": "air",
+      "value": 401.907
+    },
+    {
+      "time": 1564685362,
+      "probe": "parts",
+      "value": 401.092
+    },
+    {
+      "time": 1564685544,
+      "probe": "air",
+      "value": 402.282
+    },
+    {
+      "time": 1564685544,
+      "probe": "parts",
+      "value": 401.27
+    },
+    {
+      "time": 1564685727,
+      "probe": "air",
+      "value": 402.068
+    },
+    {
+      "time": 1564685727,
+      "probe": "parts",
+      "value": 401.251
+    },
+    {
+      "time": 1564685909,
+      "probe": "air",
+      "value": 401.84
+    },
+    {
+      "time": 1564685909,
+      "probe": "parts",
+      "value": 401.382
+    },
+    {
+      "time": 1564686093,
+      "probe": "air",
+      "value": 402.16
+    },
+    {
+      "time": 1564686093,
+      "probe": "parts",
+      "value": 401.37
+    },
+    {
+      "time": 1564686274,
+      "probe": "air",
+      "value": 401.773
+    },
+    {
+      "time": 1564686274,
+      "probe": "parts",
+      "value": 401.357
+    },
+    {
+      "time": 1564686457,
+      "probe": "air",
+      "value": 402.213
+    },
+    {
+      "time": 1564686457,
+      "probe": "parts",
+      "value": 401.546
+    },
+    {
+      "time": 1564686638,
+      "probe": "air",
+      "value": 402.277
+    },
+    {
+      "time": 1564686638,
+      "probe": "parts",
+      "value": 401.664
+    },
+    {
+      "time": 1564686821,
+      "probe": "air",
+      "value": 401.885
+    },
+    {
+      "time": 1564686821,
+      "probe": "parts",
+      "value": 401.701
+    },
+    {
+      "time": 1564687004,
+      "probe": "air",
+      "value": 402.265
+    },
+    {
+      "time": 1564687004,
+      "probe": "parts",
+      "value": 401.615
+    },
+    {
+      "time": 1564687185,
+      "probe": "air",
+      "value": 401.897
+    },
+    {
+      "time": 1564687185,
+      "probe": "parts",
+      "value": 401.759
+    },
+    {
+      "time": 1564687369,
+      "probe": "air",
+      "value": 402.169
+    },
+    {
+      "time": 1564687369,
+      "probe": "parts",
+      "value": 401.717
+    },
+    {
+      "time": 1564687551,
+      "probe": "air",
+      "value": 402.075
+    },
+    {
+      "time": 1564687551,
+      "probe": "parts",
+      "value": 401.836
+    },
+    {
+      "time": 1564687734,
+      "probe": "air",
+      "value": 401.945
+    },
+    {
+      "time": 1564687734,
+      "probe": "parts",
+      "value": 401.862
+    },
+    {
+      "time": 1564687918,
+      "probe": "air",
+      "value": 402.073
+    },
+    {
+      "time": 1564687918,
+      "probe": "parts",
+      "value": 401.821
+    },
+    {
+      "time": 1564688099,
+      "probe": "air",
+      "value": 401.933
+    },
+    {
+      "time": 1564688099,
+      "probe": "parts",
+      "value": 401.91
+    },
+    {
+      "time": 1564688284,
+      "probe": "air",
+      "value": 402.381
+    },
+    {
+      "time": 1564688284,
+      "probe": "parts",
+      "value": 401.852
+    },
+    {
+      "time": 1564688466,
+      "probe": "air",
+      "value": 401.808
+    },
+    {
+      "time": 1564688466,
+      "probe": "parts",
+      "value": 401.884
+    },
+    {
+      "time": 1564688650,
+      "probe": "air",
+      "value": 402.343
+    },
+    {
+      "time": 1564688650,
+      "probe": "parts",
+      "value": 401.862
+    },
+    {
+      "time": 1564688831,
+      "probe": "air",
+      "value": 402.064
+    },
+    {
+      "time": 1564688831,
+      "probe": "parts",
+      "value": 402.019
+    },
+    {
+      "time": 1564689013,
+      "probe": "air",
+      "value": 402.141
+    },
+    {
+      "time": 1564689013,
+      "probe": "parts",
+      "value": 401.984
+    },
+    {
+      "time": 1564689196,
+      "probe": "air",
+      "value": 402.236
+    },
+    {
+      "time": 1564689196,
+      "probe": "parts",
+      "value": 401.942
+    },
+    {
+      "time": 1564689376,
+      "probe": "air",
+      "value": 401.889
+    },
+    {
+      "time": 1564689376,
+      "probe": "parts",
+      "value": 402.117
+    },
+    {
+      "time": 1564689558,
+      "probe": "air",
+      "value": 402.096
+    },
+    {
+      "time": 1564689558,
+      "probe": "parts",
+      "value": 402.1
+    },
+    {
+      "time": 1564689740,
+      "probe": "air",
+      "value": 401.995
+    },
+    {
+      "time": 1564689740,
+      "probe": "parts",
+      "value": 402.018
+    },
+    {
+      "time": 1564689922,
+      "probe": "air",
+      "value": 401.82
+    },
+    {
+      "time": 1564689922,
+      "probe": "parts",
+      "value": 402.085
+    },
+    {
+      "time": 1564690103,
+      "probe": "air",
+      "value": 402.243
+    },
+    {
+      "time": 1564690103,
+      "probe": "parts",
+      "value": 402.117
+    },
+    {
+      "time": 1564690284,
+      "probe": "air",
+      "value": 402.067
+    },
+    {
+      "time": 1564690284,
+      "probe": "parts",
+      "value": 401.891
+    },
+    {
+      "time": 1564690465,
+      "probe": "air",
+      "value": 401.83
+    },
+    {
+      "time": 1564690465,
+      "probe": "parts",
+      "value": 402.053
+    },
+    {
+      "time": 1564690647,
+      "probe": "air",
+      "value": 402.291
+    },
+    {
+      "time": 1564690647,
+      "probe": "parts",
+      "value": 402.117
+    },
+    {
+      "time": 1564690831,
+      "probe": "air",
+      "value": 401.84
+    },
+    {
+      "time": 1564690831,
+      "probe": "parts",
+      "value": 401.922
+    },
+    {
+      "time": 1564691013,
+      "probe": "air",
+      "value": 401.926
+    },
+    {
+      "time": 1564691013,
+      "probe": "parts",
+      "value": 401.941
+    },
+    {
+      "time": 1564691197,
+      "probe": "air",
+      "value": 402.141
+    },
+    {
+      "time": 1564691197,
+      "probe": "parts",
+      "value": 401.957
+    },
+    {
+      "time": 1564691380,
+      "probe": "air",
+      "value": 402.033
+    },
+    {
+      "time": 1564691380,
+      "probe": "parts",
+      "value": 402.02
+    },
+    {
+      "time": 1564691564,
+      "probe": "air",
+      "value": 402.227
+    },
+    {
+      "time": 1564691564,
+      "probe": "parts",
+      "value": 402.029
+    },
+    {
+      "time": 1564691745,
+      "probe": "air",
+      "value": 401.828
+    },
+    {
+      "time": 1564691745,
+      "probe": "parts",
+      "value": 401.967
+    },
+    {
+      "time": 1564691928,
+      "probe": "air",
+      "value": 402.102
+    },
+    {
+      "time": 1564691928,
+      "probe": "parts",
+      "value": 401.878
+    },
+    {
+      "time": 1564692111,
+      "probe": "air",
+      "value": 401.972
+    },
+    {
+      "time": 1564692111,
+      "probe": "parts",
+      "value": 401.987
+    },
+    {
+      "time": 1564692295,
+      "probe": "air",
+      "value": 402.155
+    },
+    {
+      "time": 1564692295,
+      "probe": "parts",
+      "value": 401.922
+    },
+    {
+      "time": 1564692476,
+      "probe": "air",
+      "value": 402.119
+    },
+    {
+      "time": 1564692476,
+      "probe": "parts",
+      "value": 401.89
+    },
+    {
+      "time": 1564692659,
+      "probe": "air",
+      "value": 401.923
+    },
+    {
+      "time": 1564692659,
+      "probe": "parts",
+      "value": 401.93
+    },
+    {
+      "time": 1564692841,
+      "probe": "air",
+      "value": 402.319
+    },
+    {
+      "time": 1564692841,
+      "probe": "parts",
+      "value": 401.991
+    },
+    {
+      "time": 1564693024,
+      "probe": "air",
+      "value": 401.809
+    },
+    {
+      "time": 1564693024,
+      "probe": "parts",
+      "value": 401.858
     }
   ],
   "trays": [
     {
-      "number": 4,
-      "shop_order": 111,
-      "loads": "4"
+      "number": 2,
+      "shop_order": 298406,
+      "loads": [
+        "1"
+      ]
     }
   ],
   "shop_orders": [
     {
-      "number": 111,
-      "customer": "",
-      "process_code": "",
-      "part_id": "",
+      "number": 298406,
+      "customer": "MATDAN",
+      "process_code": "ZF",
+      "part_id": "MPR1671",
       "sub_id": "",
-      "setpoint": 1,
-      "minimum": 1,
-      "maximum": 12,
-      "hours": "1.0",
-      "within": null,
+      "setpoint": 400,
+      "minimum": 375,
+      "maximum": 425,
+      "hours": 4.0,
+      "within": 0.0,
       "loads": [
         {
-          "number": "5RW",
+          "number": "1",
+          "in_oven": 1564672816,
           "out_of_plating": null,
-          "within": null
-        },
-        {
-          "number": "3",
-          "out_of_plating": "2019-07-26T13:12:46.000Z",
-          "within": 180
-        },
-        {
-          "number": "4",
-          "out_of_plating": null,
-          "within": null
-        },
-        {
-          "number": "5",
-          "out_of_plating": null,
-          "within": null
+          "within": null,
+          "hours_to_load": null
         }
       ]
     }

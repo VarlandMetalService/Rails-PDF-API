@@ -149,17 +149,20 @@ class FinalBakesheet < VarlandPdf
     # Draw individual temperature readings.
     @data[:readings].each do |r|
       reading_at = Time.at(r[:time]).in_time_zone("Eastern Time (US & Canada)")
-      reading_percentage = self.calculate_x_axis_percentage(reading_at, data_start_time, data_end_time)
-      reading_x = data_x + (reading_percentage * data_width)
-      air_percentage = r[:air].to_f / data_end_value
-      air_y = data_y + (air_percentage * data_height)
-      parts_percentage = r[:parts].to_f / data_end_value
-      parts_y = data_y + (parts_percentage * data_height)
-      fill_color 'f26077'
-      fill_circle [reading_x.in, air_y.in], 2
-      fill_color '3a8eed'
-      fill_circle [reading_x.in, parts_y.in], 3
-      fill_color '000000'
+      unless reading_at < data_start_time
+        reading_percentage = self.calculate_x_axis_percentage(reading_at, data_start_time, data_end_time)
+        reading_x = data_x + (reading_percentage * data_width)
+        y_percentage = r[:value].to_f / data_end_value
+        y_value = data_y + (y_percentage * data_height)
+        if r[:probe] == "air"
+          fill_color 'f26077'
+          fill_circle [reading_x.in, y_value.in], 2
+        else
+          fill_color '3a8eed'
+          fill_circle [reading_x.in, y_value.in], 3
+        end
+        fill_color '000000'
+      end
     end   
 
     # Draw borders around chart area.
@@ -239,7 +242,7 @@ class FinalBakesheet < VarlandPdf
     self.hline(1.25, y - 0.6, 7)
     self.hline(1.25, y - 0.9, 7)
     self.txtb("Oven", 0.25, y, 1, 0.3, 10, :bold, :center, :center)
-    self.txtb("#{@data[:oven]}#{@data[:side]}", 0.25, y - 0.3, 1, 0.9, 20, :bold, :center, :center, @data_font, @data_color)
+    self.txtb("#{@data[:oven]}#{@data[:side] == "P" ? "" : @data[:side]}", 0.25, y - 0.3, 1, 0.9, 20, :bold, :center, :center, @data_font, @data_color)
     labels = ["Loadings Entered By:", "Date/Time Loadings Entered:", "Date/Time Soak Started:", "Date/Time Soak Ended"]
     loadings_entered = Time.at(@data[:loadings_entered]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %l:%M%P")
     soak_started = Time.at(@data[:soak_started]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %l:%M%P")
@@ -397,8 +400,10 @@ class FinalBakesheet < VarlandPdf
     x = 0.25 + ((8 - total_width) / 2)
     y = 6
     @data[:trays].each do |t|
-      tray_column = ((t[:number] - 1) / @data[:rows]) + 1
-      tray_row = t[:number] - ((tray_column - 1) * @data[:rows])
+      # tray_column = ((t[:number] - 1) / @data[:rows]) + 1
+      # tray_row = t[:number] - ((tray_column - 1) * @data[:rows])
+      tray_row = (t[:number] / @data[:columns]) + 1
+      tray_column = t[:number] - ((tray_row - 1) * @data[:columns]) + 1
       tray_x = x + ((tray_column - 1) * tray_width)
       tray_y = y - ((tray_row - 1) * tray_height)
       so_index = nil

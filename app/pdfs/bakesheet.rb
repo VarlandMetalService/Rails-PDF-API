@@ -129,7 +129,7 @@ class Bakesheet < VarlandPdf
 
     # Draw title.
     title_position = 0.35 + (logo_ratio * logo_height)
-    self.txtb("Pre-Bake Bakesheet", title_position, 10.75, 8.25 - title_position, logo_height, 20, :bold, :left, :center)
+    self.txtb("Bakesheet", title_position, 10.75, 8.25 - title_position, logo_height, 20, :bold, :left, :center)
 
     # Draw boxes for baking params.
     self.fbox(1.25, 10, 6, 0.25, "cccccc")

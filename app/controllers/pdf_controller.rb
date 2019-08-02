@@ -4,16 +4,22 @@ class PdfController < ApplicationController
   end
 
   def bakesheet
-    data = JSON.parse(File.read(Rails.root.join('lib', 'assets', 'bakesheet.json')), { symbolize_names: true })
-    pdf = Bakesheet.new(data)
-    send_data pdf.render,
-              filename: "Bakesheet.pdf",
-              type: "application/pdf",
-              disposition: "inline"
+    if params[:bakestand]
+      bakestand = params[:bakestand]
+      url = "http://optoapi.varland.com/ovens/bakestands/#{bakestand}.json"
+      uri = URI(url)
+      response = Net::HTTP.get(uri)
+      data = JSON.parse(response, { symbolize_names: true })
+      pdf = Bakesheet.new(data)
+      send_data pdf.render,
+                filename: "Bakesheet.pdf",
+                type: "application/pdf",
+                disposition: "inline"
+    end
   end
 
   def final_bakesheet
-    data = JSON.parse(File.read(Rails.root.join('lib', 'assets', 'final_bakesheet.json')), { symbolize_names: true })
+    data = JSON.parse(File.read(Rails.root.join('lib', 'assets', 'new_final_bakesheet.json')), { symbolize_names: true })
     pdf = FinalBakesheet.new(data)
     send_data pdf.render,
               filename: "FinalBakesheet.pdf",
