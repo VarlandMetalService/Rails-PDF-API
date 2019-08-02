@@ -23,13 +23,13 @@ class DMR < VarlandPdf
     # self.print_data
 
     # Encrypt PDF.
-    encrypt_document(owner_password: :random,
-                     permissions: {
-                       print_document: true,
-                       modify_contents: false,
-                       copy_contents: true,
-                       modify_annotations: false
-                     })
+    # encrypt_document(owner_password: :random,
+    #                  permissions: {
+    #                    print_document: true,
+    #                    modify_contents: false,
+    #                    copy_contents: true,
+    #                    modify_annotations: false
+    #                  })
       
   end
 
