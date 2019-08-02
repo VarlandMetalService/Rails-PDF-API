@@ -201,15 +201,27 @@ class PdfController < ApplicationController
 
   def dmr
 
-    id = params[:id]
-    uri = URI("http://192.168.100.7:3001/defective_materials/#{id}")
+    @year = params[:year]
+    @number = params[:number]
+    uri = URI("http://as400railsapi.varland.com/v1/dmr?year=#{@year}&number=#{@number}")
     response = Net::HTTP.get(uri)
-    dmr = DmrFormatter.parse(response)
-    pdf = DMR.new dmr
+    @data = JSON.parse(response, symbolize_names: true)
+
+    pdf = DMR.new @data
     send_data pdf.render,
               filename: "DMR.pdf",
               type: "application/pdf",
               disposition: "inline"
+
+    # id = params[:id]
+    # uri = URI("http://192.168.100.7:3001/defective_materials/#{id}")
+    # response = Net::HTTP.get(uri)
+    # dmr = DmrFormatter.parse(response)
+    # pdf = DMR.new dmr
+    # send_data pdf.render,
+    #           filename: "DMR.pdf",
+    #           type: "application/pdf",
+    #           disposition: "inline"
 
   end
 
