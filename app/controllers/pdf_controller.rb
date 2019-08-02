@@ -1,3 +1,8 @@
+require "base64"
+require "json"
+require "net/http"
+require "uri"
+
 class PdfController < ApplicationController
 
   def index
@@ -11,10 +16,15 @@ class PdfController < ApplicationController
       response = Net::HTTP.get(uri)
       data = JSON.parse(response, { symbolize_names: true })
       pdf = Bakesheet.new(data)
-      send_data pdf.render,
-                filename: "Bakesheet.pdf",
-                type: "application/pdf",
-                disposition: "inline"
+      if params[:download]
+        send_data pdf.render,
+                  filename: "Bakesheet.pdf",
+                  type: "application/pdf",
+                  disposition: "inline"
+      else
+        print_file(pdf, nil, params[:ip], "Bakesheet", "Bakestand ##{data[:bakestand]}")
+        render status: 200, json: ""
+      end
     end
   end
 
@@ -26,10 +36,25 @@ class PdfController < ApplicationController
       response = Net::HTTP.get(uri)
       data = JSON.parse(response, { symbolize_names: true })
       pdf = FinalBakesheet.new(data)
-      send_data pdf.render,
-                filename: "FinalBakesheet.pdf",
-                type: "application/pdf",
-                disposition: "inline"
+      if params[:download]
+        send_data pdf.render,
+                  filename: "FinalBakesheet.pdf",
+                  type: "application/pdf",
+                  disposition: "inline"
+      else
+        side = ""
+        case data[:side]
+        when "L"
+          side = " Left"
+        when "R"
+          side = " Right"
+        end
+        timestamp = Time.at(data[:soak_ended]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%y %l:%M:%S %P")
+        description = "Oven #{data[:oven]}#{side}, #{timestamp}"
+        puts description
+        print_file(pdf, nil, params[:ip], "FinalBakesheet", description)
+        render status: 200, json: ""
+      end
     end
   end
 
@@ -277,6 +302,20 @@ class PdfController < ApplicationController
                 type: "application/pdf",
                 disposition: "inline"
     end
+  end
+
+private
+
+  def print_file(file, user, ip, type, description)
+    job = {
+      file: "data:application/pdf;base64,#{Base64.encode64(file.render)}",
+      user: user,
+      ip_address: ip,
+      document_type: type,
+      description: description
+    }
+    uri = URI.parse("http://vms.varland.com/print_jobs")
+    response = Net::HTTP.post_form(uri, {"data" => JSON.generate(job)})
   end
 
 end
