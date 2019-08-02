@@ -19,12 +19,18 @@ class PdfController < ApplicationController
   end
 
   def final_bakesheet
-    data = JSON.parse(File.read(Rails.root.join('lib', 'assets', 'new_final_bakesheet.json')), { symbolize_names: true })
-    pdf = FinalBakesheet.new(data)
-    send_data pdf.render,
-              filename: "FinalBakesheet.pdf",
-              type: "application/pdf",
-              disposition: "inline"
+    if params[:cycle]
+      cycle = params[:cycle]
+      url = "http://optoapi.varland.com/ovens/bake_cycles/#{cycle}.json"
+      uri = URI(url)
+      response = Net::HTTP.get(uri)
+      data = JSON.parse(response, { symbolize_names: true })
+      pdf = FinalBakesheet.new(data)
+      send_data pdf.render,
+                filename: "FinalBakesheet.pdf",
+                type: "application/pdf",
+                disposition: "inline"
+    end
   end
 
   def pay_stub
