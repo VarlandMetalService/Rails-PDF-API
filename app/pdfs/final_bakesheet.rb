@@ -29,13 +29,13 @@ class FinalBakesheet < VarlandPdf
     end
 
     # Encrypt PDF.
-    encrypt_document(owner_password: :random,
-                      permissions: {
-                        print_document: true,
-                        modify_contents: false,
-                        copy_contents: true,
-                        modify_annotations: false
-                      })
+    # encrypt_document(owner_password: :random,
+    #                   permissions: {
+    #                     print_document: true,
+    #                     modify_contents: false,
+    #                     copy_contents: true,
+    #                     modify_annotations: false
+    #                   })
       
   end
 
