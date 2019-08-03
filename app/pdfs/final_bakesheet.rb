@@ -278,7 +278,7 @@ class FinalBakesheet < VarlandPdf
         self.txtb(out_of_plating, 0.85, y, 1.8, 0.3, 10, :bold, :left, :center, @data_font, @data_color)
         self.txtb(in_oven, 2.85, y, 1.8, 0.3, 10, :bold, :left, :center, @data_font, @data_color)
         self.txtb(l[:within], 4.75, y, 1.25, 0.3, 10, :bold, :center, :center, @data_font, @data_color)
-        self.txtb(l[:hours_to_load], 6, y, 1.25, 0.3, 10, :bold, :center, :center, @data_font, @data_color)
+        self.txtb(l[:hours_to_load].round(2), 6, y, 1.25, 0.3, 10, :bold, :center, :center, @data_font, @data_color)
         unless l[:within].blank?
           if l[:hours_to_load] > l[:within]
             self.fbox(7.25, y, 1, 0.3, "ff0000")
