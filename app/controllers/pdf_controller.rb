@@ -22,7 +22,7 @@ class PdfController < ApplicationController
                   type: "application/pdf",
                   disposition: "inline"
       else
-        print_file(pdf, nil, params[:ip], "Bakesheet", "Bakestand ##{data[:bakestand]}")
+        print_file(pdf, nil, params[:ip_address], "Bakesheet", "Bakestand ##{data[:bakestand]}")
         render status: 200, json: ""
       end
     end
@@ -52,7 +52,7 @@ class PdfController < ApplicationController
         timestamp = Time.at(data[:soak_ended]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%y %l:%M:%S %P")
         description = "Oven #{data[:oven]}#{side}, #{timestamp}"
         puts description
-        print_file(pdf, nil, params[:ip], "FinalBakesheet", description)
+        print_file(pdf, nil, params[:ip_address], "FinalBakesheet", description)
         render status: 200, json: ""
       end
     end
