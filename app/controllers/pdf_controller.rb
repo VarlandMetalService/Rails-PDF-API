@@ -25,6 +25,8 @@ class PdfController < ApplicationController
         print_file(pdf, nil, params[:ip_address], "Bakesheet", "Bakestand ##{data[:bakestand]}")
         render status: 200, json: ""
       end
+    else
+      render status: 500, json: ""
     end
   end
 
@@ -55,6 +57,8 @@ class PdfController < ApplicationController
         print_file(pdf, nil, params[:ip_address], "FinalBakesheet", description)
         render status: 200, json: ""
       end
+    else
+      render status: 500, json: ""
     end
   end
 
