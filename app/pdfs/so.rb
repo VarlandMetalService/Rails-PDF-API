@@ -340,14 +340,23 @@ class SO < VarlandPdf
 
       # Draw oversized shop order numbers.
       font_size 40
-      font 'Arial Narrow', style: :bold
+      # @data["loadingsIndicator"]
+      so_text = @data["shopOrder"].to_s
       if @data["isRework"]
-        text_box "#{@data["shopOrder"].to_s}<font name=\"WhitneyIndexSquared\"><color rgb=\"ff0000\">R</color></font>", at: [_i(0.5), _i(10.75)], width: _i(2.5), height: _i(0.6), inline_format: true
-        text_box "#{@data["shopOrder"].to_s}<font name=\"WhitneyIndexSquared\"><color rgb=\"ff0000\">R</color></font>", at: [_i(8.25), _i(10.75)], width: _i(2.3), height: _i(0.6), rotate: 270, align: :center, inline_format: true
-      else
-        text_box @data["shopOrder"].to_s, at: [_i(0.5), _i(10.75)], width: _i(2.5), height: _i(0.6)
-        text_box @data["shopOrder"].to_s, at: [_i(8.25), _i(10.25)], width: _i(1.8), height: _i(0.6), rotate: 270, align: :center
+        so_text += "<font name=\"WhitneyIndexSquared\"><color rgb=\"ff0000\">R</color></font>"
       end
+      if @data["loadingsIndicator"]
+        so_text += "<font name=\"WhitneyIndexSquared\"><color rgb=\"0000ff\">L</color></font>"
+      end
+      puts so_text
+      font 'Arial Narrow', style: :bold
+      #if @data["isRework"]
+      #  text_box "#{@data["shopOrder"].to_s}<font name=\"WhitneyIndexSquared\"><color rgb=\"ff0000\">R</color></font>", at: [_i(0.5), _i(10.75)], width: _i(2.5), height: _i(0.6), inline_format: true
+      #  text_box "#{@data["shopOrder"].to_s}<font name=\"WhitneyIndexSquared\"><color rgb=\"ff0000\">R</color></font>", at: [_i(8.25), _i(10.75)], width: _i(2.3), height: _i(0.6), rotate: 270, align: :center, inline_format: true
+      #else
+        text_box so_text, at: [_i(0.5), _i(10.75)], width: _i(3), height: _i(0.6), inline_format: true
+        text_box so_text, at: [_i(8.25), _i(10.75)], width: _i(2.3), height: _i(0.6), rotate: 270, align: :center, inline_format: true, overflow: :shrink_to_fit
+      #end
 
       # Draw shop order barcode.
       bounding_box [_i(5.58), _i(10.75)], width: _i(2.5), height: _i(0.3) do
