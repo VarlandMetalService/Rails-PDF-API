@@ -281,7 +281,7 @@ class FinalBakesheet < VarlandPdf
         unless l[:hours_to_load].blank?
           self.txtb(l[:hours_to_load].round(2), 6, y, 1.25, 0.3, 10, :bold, :center, :center, @data_font, @data_color)
         end
-        unless l[:within].blank?
+        unless l[:within].blank? || l[:within] == 0
           if l[:hours_to_load] > l[:within]
             self.fbox(7.25, y, 1, 0.3, "ff0000")
             self.txtb("No", 7.25, y, 1, 0.3, 10, :bold, :center, :center, @data_font, "ffffff")
