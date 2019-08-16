@@ -102,6 +102,7 @@ class VarlandPdf < Prawn::Document
 
   # Draws filled box.
   def fbox(x, y, width, height, color)
+    return if color.blank?
     self.fill_color(color)
     fill_rectangle([x.in, y.in], width.in, height.in)
   end

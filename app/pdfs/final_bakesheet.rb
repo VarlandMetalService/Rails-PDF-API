@@ -39,13 +39,21 @@ class FinalBakesheet < VarlandPdf
       
   end
 
-  def draw_temperature_graph(y)
+  def draw_temperature_graph(so, y)
 
     # Define chart size.
     chart_x = 0.25
     chart_y = y
     chart_width = 8
     chart_height = 3.5
+
+    # If not enough room, move to new page.
+    if (y < chart_height + 0.25)
+      self.start_new_page
+      self.print_order_page_header(so)
+      y = 8.05
+      chart_y = y
+    end
 
     # Define y-axis.
     y_axis_max = 600;
@@ -171,6 +179,9 @@ class FinalBakesheet < VarlandPdf
     self.vline(y_axis_gridline_x, chart_y, y_axis_height)                               # Left
     self.vline(chart_x + chart_width, chart_y, y_axis_height)                           # Right
 
+    # Return y position.
+    return y
+
   end
 
   def calculate_x_axis_percentage(point, min, max)
@@ -191,19 +202,7 @@ class FinalBakesheet < VarlandPdf
 
   end
 
-  def print_order(number)
-
-    # Initialize new page.
-    self.start_new_page
-
-    # Look up shop order object.
-    so = nil
-    @data[:shop_orders].each do |s|
-      if s[:number] == number
-        so = s
-        break
-      end
-    end
+  def print_order_page_header(so)
 
     # Draw header graphic.
     header_graphic = Rails.root.join('lib', 'images', 'logo_m_black_red.png')
@@ -213,7 +212,7 @@ class FinalBakesheet < VarlandPdf
 
     # Draw title.
     title_position = 0.35 + (logo_ratio * logo_height)
-    title_text = "Final Bakesheet: S.O. ##{number}"
+    title_text = "Final Bakesheet: S.O. ##{so[:number]}"
     title_width = self.calcwidth(title_text, 20, :bold)
     self.txtb(title_text, title_position, 10.75, 8.25 - title_position, logo_height, 20, :bold, :left, :center)
     part_info = []
@@ -259,6 +258,24 @@ class FinalBakesheet < VarlandPdf
       y -= 0.3
     end
 
+  end
+
+  def print_order(number)
+
+    # Initialize new page.
+    self.start_new_page
+
+    # Look up shop order object.
+    so = nil
+    @data[:shop_orders].each do |s|
+      if s[:number] == number
+        so = s
+        break
+      end
+    end
+
+    self.print_order_page_header(so)
+
     # Set y position.
     y = 8.05
     
@@ -273,7 +290,8 @@ class FinalBakesheet < VarlandPdf
           out_of_plating = Time.at(l[:out_of_plating]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %l:%M%P")
         end
         in_oven = Time.at(l[:in_oven]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %l:%M%P")
-        self.fbox(0.25, y, 0.5, 0.3, BACKGROUND_COLORS[i])
+        color_index = i % 10
+        self.fbox(0.25, y, 0.5, 0.3, BACKGROUND_COLORS[color_index])
         self.txtb(l[:number], 0.25, y, 0.5, 0.3, 10, :bold, :center, :center, @data_font, FOREGROUND_COLORS[i])
         self.txtb(out_of_plating, 0.85, y, 1.8, 0.3, 10, :bold, :left, :center, @data_font, @data_color)
         self.txtb(in_oven, 2.85, y, 1.8, 0.3, 10, :bold, :left, :center, @data_font, @data_color)
@@ -318,7 +336,7 @@ class FinalBakesheet < VarlandPdf
     #end
 
     # Draw graph.
-    self.draw_temperature_graph(y)
+    y = self.draw_temperature_graph(so, y)
 
     # Print mini bakestand diagram.
     y -= 3.75
@@ -345,7 +363,8 @@ class FinalBakesheet < VarlandPdf
                 break
               end
             end
-            self.fbox(load_x, tray_y, mini_diagram_tray_width / 2.0, mini_diagram_tray_height, BACKGROUND_COLORS[load_index])
+            color_index = load_index % 10
+            self.fbox(load_x, tray_y, mini_diagram_tray_width / 2.0, mini_diagram_tray_height, BACKGROUND_COLORS[color_index])
             load_x += (mini_diagram_tray_width / 2.0)
           end
         else
@@ -357,7 +376,8 @@ class FinalBakesheet < VarlandPdf
               break
             end
           end
-          self.fbox(tray_x, tray_y, mini_diagram_tray_width, mini_diagram_tray_height, BACKGROUND_COLORS[load_index])
+          color_index = load_index % 10
+          self.fbox(tray_x, tray_y, mini_diagram_tray_width, mini_diagram_tray_height, BACKGROUND_COLORS[color_index])
         end
       else
         self.fbox(tray_x, tray_y, mini_diagram_tray_width, mini_diagram_tray_height, "555555")
