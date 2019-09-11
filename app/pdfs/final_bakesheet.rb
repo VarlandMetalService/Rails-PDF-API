@@ -289,7 +289,7 @@ class FinalBakesheet < VarlandPdf
         else
           out_of_plating = Time.at(l[:out_of_plating]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %l:%M%P")
         end
-        in_oven = Time.at(l[:in_oven]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %l:%M%P")
+        in_oven = l[:in_oven] == 0 ? "" : Time.at(l[:in_oven]).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %l:%M%P")
         color_index = i % 10
         self.fbox(0.25, y, 0.5, 0.3, BACKGROUND_COLORS[color_index])
         self.txtb(l[:number], 0.25, y, 0.5, 0.3, 10, :bold, :center, :center, @data_font, FOREGROUND_COLORS[i])
