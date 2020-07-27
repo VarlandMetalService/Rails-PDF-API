@@ -55,7 +55,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'prawn'
 gem 'prawn-table'
-gem 'json', '~> 2.1'
+gem 'json', '~> 2.3'
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.2'
 gem 'capistrano-passenger', '~> 0.2.0'
