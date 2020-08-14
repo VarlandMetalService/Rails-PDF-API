@@ -61,5 +61,7 @@ gem 'capistrano-rails', '~> 1.2'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1'
 gem 'barby'
+gem 'rqrcode'
+gem 'fastimage'
 
 # gem 'vms', '>= 0.0.0', :git => "https://github.com/VarlandMetalService/vms-gem.git"
