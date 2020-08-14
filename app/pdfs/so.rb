@@ -5,12 +5,76 @@ require 'json'
 require 'uri'
 require 'date'
 require 'net/http'
+require 'tempfile'
+require 'prawn/measurement_extensions'
+require 'barby/outputter/png_outputter'
+require 'fastimage'
 include ActionView::Helpers::NumberHelper
 
 class SO < VarlandPdf
 
   DEFAULT_MARGIN = 0
   DEFAULT_LAYOUT = :portrait
+
+  def download_to_tempfile(url)
+    uri = URI.parse(url)
+    Net::HTTP.start(uri.host, uri.port) do |http|
+      resp = http.get(uri.path)
+      file = Tempfile.new('shop_order')
+      file.binmode
+      file.write(resp.body)
+      file.flush
+      file
+    end
+  end
+
+  def draw_photo
+
+    # Attempt to load photo.
+    found_photo = false
+    url, photo = nil
+    ["jpg", "png"].each do |extension|
+      url = "http://so.varland.com/so_photos/#{@data["partControl"]}.#{extension}";
+      puts url
+      photo = self.download_to_tempfile(url)
+      if photo.size >= 10.kilobytes
+        found_photo = true
+        break
+      end
+    end
+
+    # If no photo found, return.
+    return false unless found_photo
+
+    # Read image dimensions and calculate rendered size.
+    photo_width, photo_height = FastImage.size(photo.path)
+    photo_ratio = photo_height.to_f / photo_width.to_f
+    render_width = 1.8
+    render_height = photo_ratio * 1.8
+    if render_height > 2
+      render_height = 2
+      render_width = render_height / photo_ratio
+    end
+    puts render_width
+    puts render_height
+
+    # Determine position.
+    x_buffer = (1.8 - render_width) * 0.5
+    y_buffer = (2 - render_height) * 0.5
+    photo_x = 0 + x_buffer
+    photo_y = 2 - y_buffer
+    puts photo_x
+    puts photo_y
+    #photo_x = (1.8 - render_width) * 0.5
+    #photo_y = 2 + (2 - render_height) * 0.5
+
+    # Draw photo centered in box.
+    image(photo.path, at: [photo_x.in, photo_y.in], width: render_width.in, height: render_height.in)
+
+    # Return success.
+    return true
+
+  end
 
   def initialize(data = nil, reprint = false)
     super()
@@ -110,35 +174,72 @@ class SO < VarlandPdf
       end
     end
 
+    # Draw thickness location photo.
+    found_photo = false
+    bounding_box [_i(6.45), _i(2.25)], width: _i(1.8), height: _i(2) do
+      found_photo = self.draw_photo
+    end
+    if found_photo
+      bounding_box [_i(6.45), _i(2.25)], width: _i(1.8), height: _i(2) do
+        stroke_bounds
+      end
+      bounding_box [_i(6.45), _i(2.5)], width: _i(1.8), height: _i(0.25) do
+        fill_color 'cccccc'
+        fill_rectangle([_i(0), _i(0.25)], _i(1.8), _i(0.25))
+        stroke_bounds
+        font_size 11.96
+        fill_color '000000'
+        font 'Arial Narrow', style: :bold
+        text_box  'Thickness Location'.upcase,
+                  at: [_i(0.05), _i(0.25)],
+                  width: _i(1.7),
+                  height: _i(0.25),
+                  align: :center,
+                  valign: :center
+      end
+    end
+
+    # Properties for shop order notes.
+    so_notes_width = 6.2
+    so_notes_font_size = 9
+    if !found_photo
+      so_notes_width = 8
+      so_notes_font_size = 11.5
+    end
+
     if(@data['shopOrderNote'] != nil)
       # Draw shop order note box.
-      bounding_box [_i(0.25), _i(2.5)], width: _i(8), height: _i(0.25) do
+      bounding_box [_i(0.25), _i(2.5)], width: _i(so_notes_width), height: _i(0.25) do
         fill_color 'cccccc'
-        fill_rectangle([_i(0), _i(0.25)], _i(8), _i(0.25))
+        fill_rectangle([_i(0), _i(0.25)], _i(so_notes_width), _i(0.25))
         stroke_bounds
         font_size 11.96
         fill_color '000000'
         font 'Arial Narrow', style: :bold
         text_box  'Shop Order Notes'.upcase,
                   at: [_i(0.05), _i(0.25)],
-                  width: _i(7.9),
+                  width: _i(so_notes_width - 0.1),
                   height: _i(0.25),
                   align: :center,
                   valign: :center
       end
 
       #Draw shop order notes
-      bounding_box [_i(0.25), _i(2.25)], width: _i(8), height: _i(2) do
+      bounding_box [_i(0.25), _i(2.25)], width: _i(so_notes_width), height: _i(2) do
+        unless @data['shopOrderNote'].blank?
+          fill_color 'ffffcc'
+          fill_rectangle([_i(0), _i(2)], _i(so_notes_width), _i(2))
+        end
         stroke_bounds
-        font_size 11.5
+        font_size so_notes_font_size
         fill_color '000000'
         font 'Source Code Pro', style: :bold
-          text_box  @data['shopOrderNote'], #.join("\n"),
-                    at: [_i(0.05), _i(1.95)],
-                    width: _i(7.9),
-                    height: _i(2.5),
-                    align: :left,
-                    valign: :top
+        text_box  @data['shopOrderNote'],
+                  at: [_i(0.05), _i(1.95)],
+                  width: _i(so_notes_width - 0.1),
+                  height: _i(2.5),
+                  align: :left,
+                  valign: :top
       end
     end
     
@@ -348,7 +449,6 @@ class SO < VarlandPdf
       if @data["loadingsIndicator"]
         so_text += "<font name=\"WhitneyIndexSquared\"><color rgb=\"0000ff\">L</color></font>"
       end
-      puts so_text
       font 'Arial Narrow', style: :bold
       #if @data["isRework"]
       #  text_box "#{@data["shopOrder"].to_s}<font name=\"WhitneyIndexSquared\"><color rgb=\"ff0000\">R</color></font>", at: [_i(0.5), _i(10.75)], width: _i(2.5), height: _i(0.6), inline_format: true
