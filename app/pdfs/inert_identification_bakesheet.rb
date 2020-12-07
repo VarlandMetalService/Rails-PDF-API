@@ -236,9 +236,9 @@ class InertIdentificationBakesheet < VarlandPdf
         base = 3 * (shelf - 1)
         rows << [{:content => shelf.to_s,
                   :rowspan => 2},
-                 {:content => cell_data[base]},
-                 {:content => cell_data[base + 1]}]
-        rows << [{:content => cell_data[base + 2],
+                 {:content => cell_data[base + 1]},
+                 {:content => cell_data[base + 2]}]
+        rows << [{:content => cell_data[base],
                   :colspan => 2}]
       end
 
