@@ -72,7 +72,7 @@ class InertBakestandBakesheet < VarlandPdf
     bounding_box([0, bounds.height - 54], :width => bounds.width, :height => 24) do
       
       # Draw heading.
-      text_box "Bakestand #: <strong>#{@bakestand_number}</strong>",
+      text_box "Bakestand #: <strong>_____</strong>",
                 :height    =>  24,
                 :width     =>  450,
                 :overflow  =>  :shrink_to_fit,
