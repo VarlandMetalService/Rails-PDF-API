@@ -446,11 +446,11 @@ class SO < VarlandPdf
         if cubic >= 0.5
           hilbbl = "LG"
         elsif cubic >= 0.25
-          hilbbl = "701"
+          hilbbl = "70X"
         elsif cubic >= 0.15
-          hilbbl = "711"
+          hilbbl = "71X"
         elsif cubic >= 0.1
-          hilbbl = "721"
+          hilbbl = "72X"
         end
         self.fbox(7.85, 10.75, 0.4, 0.25, "ffff00")
         self.fill_color("000000")
