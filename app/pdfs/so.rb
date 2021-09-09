@@ -439,6 +439,22 @@ class SO < VarlandPdf
     # Print header on every page.
     repeat :all do
 
+      # Print special barrel designation for HIL jobs in Dept. 5.
+      if @data["customerCode"] == "HIL" && @data["primaryDept"] == 5
+        cubic = @data["pounds"].to_f / @data["poundsPerFt3"].to_f
+        hilbbl = "XXX"
+        if cubic >= 0.5
+          hilbbl = "LG"
+        elsif cubic >= 0.25
+          hilbbl = "701"
+        elsif cubic >= 0.15
+          hilbbl = "711"
+        elsif cubic >= 0.1
+          hilbbl = "721"
+        end
+        self.fbox(8.25, 10.75, 0.5, 0.25, "ffff00")
+      end
+
       # Draw oversized shop order numbers.
       font_size 40
       # @data["loadingsIndicator"]
