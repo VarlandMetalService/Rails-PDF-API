@@ -452,9 +452,9 @@ class SO < VarlandPdf
         elsif cubic >= 0.1
           hilbbl = "72X"
         end
-        self.fbox(7.85, 10.75, 0.4, 0.25, "000000")
+        self.fbox(7.85, 10.75, 0.4, 0.25, "ffff00")
         self.fill_color("000000")
-        self.txtb(hilbbl, 7.85, 10.75, 0.4, 0.25, 14, :bold, :center, :center, nil, "ffffff")
+        self.txtb(hilbbl, 7.85, 10.75, 0.4, 0.25, 14, :bold, :center, :center, nil, "000000")
       end
 
       # Draw oversized shop order numbers.
