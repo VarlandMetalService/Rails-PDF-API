@@ -80,7 +80,7 @@ class SO < VarlandPdf
     super()
     @data = data
     @isReprint = reprint
-    
+
     # Sets the color of the shop order
     @color = 'white'
     if @data['scheduleCode'] != nil
@@ -108,7 +108,7 @@ class SO < VarlandPdf
 
     # Draw revision dates.
     bounding_box [_i(0.25), _i(3.45)], width: _i(8), height: _i(0.8) do
-      
+
       #Draw REV DATES at bottom
       page_header_data_box 'REV DATES:', -0.05, 0.8, 1.5, 0.2, :left
 
@@ -159,7 +159,7 @@ class SO < VarlandPdf
           date_numbers.push(['', ''])
         end
       end
-   
+
       #Print second column of revision dates
       y = 0.8
       0.upto(headers.length-1) do |i|
@@ -242,7 +242,7 @@ class SO < VarlandPdf
                   valign: :top
       end
     end
-    
+
     # Draw page header box.
     bounding_box [_i(0.25), _i(8.45)], width: _i(8), height: _i(5) do
 
@@ -272,7 +272,7 @@ class SO < VarlandPdf
       fill_rectangle([_i(2.95 + prod_recording_widths.sum), _i(4)], _i(x_ray_data_widths.sum), _i(0.7))
       fill_color 'cccccc'
       fill_rectangle([_i(2.95), _i(4)], _i(prod_recording_widths.sum), _i(0.7))
-      fill_rectangle([_i(0), _i(5)], _i(7.75), _i(0.2)) 
+      fill_rectangle([_i(0), _i(5)], _i(7.75), _i(0.2))
       fill_rectangle([_i(6.5), _i(5)], _i(1.5), _i(0.2))
       fill_rectangle([_i(0), _i(0.8)], _i(2.95), _i(0.2))
 
@@ -377,10 +377,10 @@ class SO < VarlandPdf
       page_header_data_box (number_with_precision(@data['poundsPerFt3'], precision: 2)) + ' LB / FT³', 2.95, 0.4, 2.4, 0.2, :left
       page_header_data_box (number_with_precision(@data['gramsPerPiece'], precision: 6)) + ' GRAMS / PC', 2.95, 0.2, 2.4, 0.2, :left
       page_header_data_box (number_with_precision(@data['poundsPerThousand'], precision: 2)) + ' LBS / M', 5.47, 0.8, 2.4, 0.2, :left
-      page_header_data_box (number_with_precision(@data['ft2PerThousand'], precision: 2)) + ' FT² / M', 5.47, 0.6, 2.4, 0.2, :left 
+      page_header_data_box (number_with_precision(@data['ft2PerThousand'], precision: 2)) + ' FT² / M', 5.47, 0.6, 2.4, 0.2, :left
       page_header_data_box (number_with_precision(@data['pieceWeight'], precision: 5)) + ' PC WT', 5.47, 0.4, 2.4, 0.2, :left
-      page_header_data_box (number_with_precision(@data['cm2PerPiece'], precision: 6)) + ' CM² / PC', 5.47, 0.2, 2.4, 0.2, :left 
-      
+      page_header_data_box (number_with_precision(@data['cm2PerPiece'], precision: 6)) + ' CM² / PC', 5.47, 0.2, 2.4, 0.2, :left
+
       font 'Arial', style: :bold
       font_size 40
       fill_color 'ff0000'
@@ -399,7 +399,7 @@ class SO < VarlandPdf
                   valign: :center,
                   mode: :fill_stroke
       end
-      if (@data['isDevelopmental']) 
+      if (@data['isDevelopmental'])
         font_size 22
         case [@color]
         when 'red'
@@ -425,9 +425,9 @@ class SO < VarlandPdf
     bounding_box [_i(0.25), _i(10.75)], width: _i(8), height: _i(0.75) do
       promise_date_text = "" #(@data['promiseDate'] != nil ? "\nPROMISE DATE: " + DateTime.parse(@data['promiseDate']).strftime("%m/%d/%y") : "")
       page_number_text = "#{@isReprint ? 'REPRINT ' : ''}PAGE <page> OF <total>#{promise_date_text}"
-      number_pages page_number_text, align: :center 
+      number_pages page_number_text, align: :center
       #if @isReprint
-      #   number_pages 'REPRINT PAGE <page> OF <total>', align: :center 
+      #   number_pages 'REPRINT PAGE <page> OF <total>', align: :center
       #else
       #  number_pages "PAGE <page> OF <total>", align: :center
       #end
@@ -452,9 +452,9 @@ class SO < VarlandPdf
         elsif cubic >= 0.1
           hilbbl = "72X"
         end
-        self.fbox(7.85, 10.75, 0.4, 0.25, "ffff00")
+        self.fbox(7.85, 10.75, 0.4, 0.25, "000000")
         self.fill_color("000000")
-        self.txtb(hilbbl, 7.85, 10.75, 0.4, 0.25, 14, :bold, :center, :center, nil, "000000")
+        self.txtb(hilbbl, 7.85, 10.75, 0.4, 0.25, 14, :bold, :center, :center, nil, "ffffff")
       end
 
       # Draw oversized shop order numbers.
@@ -538,11 +538,11 @@ class SO < VarlandPdf
         page_header_text_box 'Proc Code', 4.5, 1.8, 0.7
         page_header_text_box 'Part ID', 5.2, 1.8, 2
         page_header_text_box 'Sub', 7.2, 1.8, 0.3
-        page_header_text_box 'Equipment Used', 0, 1.3, 3.5 
+        page_header_text_box 'Equipment Used', 0, 1.3, 3.5
         page_header_text_box 'Part Name & Information', 3.5, 1.3, 2.5
         page_header_text_box 'Customer PO #', 6, 1.3, 1.5
         page_header_text_box 'Shop Order Date', 0, 0.5, 1.25
-        #page_header_text_box 'Promise Date', 1.25, 0.5, 1.25 
+        #page_header_text_box 'Promise Date', 1.25, 0.5, 1.25
         page_header_text_box 'Pounds', 1.25, 0.5, 1.4
         page_header_text_box 'Pieces', 2.65, 0.5, 1.4
         page_header_text_box 'Containers', 4.05, 0.5, 2.15
@@ -570,7 +570,7 @@ class SO < VarlandPdf
         page_header_data_box (number_with_delimiter(number_with_precision(@data['pounds'], precision: 2))).to_s, 1.25, 0.3, 1.4, 0.3, :center, true
         page_header_data_box (number_with_delimiter(@data['pieces'])).to_s, 2.65, 0.3, 1.4, 0.3, :center, true
         page_header_data_box @data['containers'].to_s + " " +  @data['containerType'], 4.05, 0.3, 2.15, 0.3, :left, true
-        # page_header_data_box '$/' + @data['pricePer'], 6.2, 0.3, 1.3, 0.3, :right, true, :bottom 
+        # page_header_data_box '$/' + @data['pricePer'], 6.2, 0.3, 1.3, 0.3, :right, true, :bottom
       end
     end
 
