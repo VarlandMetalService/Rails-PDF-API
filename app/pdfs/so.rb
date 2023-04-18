@@ -442,7 +442,7 @@ class SO < VarlandPdf
     repeat :all do
 
       # Print special barrel designation for HIL jobs in Dept. 5.
-      if @data["customerCode"] == "HIL" && @data["primaryDept"] == 5
+      if @data["customerCode"] == "HIL" && (@data["accountNumbers"].include?("505.50") || @data["accountNumbers"].include?("505.57"))
         cubic = @data["pounds"].to_f / @data["poundsPerFt3"].to_f
         hilbbl = "XXX"
         if cubic >= 0.5
@@ -453,6 +453,24 @@ class SO < VarlandPdf
           hilbbl = "71X"
         elsif cubic >= 0.1
           hilbbl = "72X"
+        end
+        self.fbox(7.85, 10.75, 0.4, 0.25, "000000")
+        self.txtb(hilbbl, 7.85, 10.75, 0.4, 0.25, 14, :bold, :center, :center, nil, "ffffff")
+        self.fill_color("000000")
+      end
+
+      # Print special barrel designation for HIL jobs in Dept. 5.
+      if @data["customerCode"] == "HIL" && @data["accountNumbers"].include?("503.57")
+        cubic = @data["pounds"].to_f / @data["poundsPerFt3"].to_f
+        hilbbl = ""
+        if cubic >= 0.35
+          hilbbl = "LG"
+        elsif cubic >= 0.2
+          hilbbl = "MD"
+        elsif cubic >= 0.08
+          hilbbl = "SM"
+        else
+          hilbbl = "MC"
         end
         self.fbox(7.85, 10.75, 0.4, 0.25, "000000")
         self.txtb(hilbbl, 7.85, 10.75, 0.4, 0.25, 14, :bold, :center, :center, nil, "ffffff")
