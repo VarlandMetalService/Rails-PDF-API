@@ -1,5 +1,6 @@
 require 'barby'
 require 'barby/barcode/code_39'
+require 'barby/barcode/qr_code'
 require 'barby/outputter/prawn_outputter'
 require 'json'
 require 'uri'
@@ -435,6 +436,7 @@ class SO < VarlandPdf
 
     # Configure shop order barcode.
     barcode = Barby::Code39.new @data['shopOrder'].to_s.rjust(10)
+    qrcode = Barby::QrCode.new @data['shopOrder'].to_s
 
     # Print header on every page.
     repeat :all do
@@ -473,13 +475,18 @@ class SO < VarlandPdf
       #  text_box "#{@data["shopOrder"].to_s}<font name=\"WhitneyIndexSquared\"><color rgb=\"ff0000\">R</color></font>", at: [_i(8.25), _i(10.75)], width: _i(2.3), height: _i(0.6), rotate: 270, align: :center, inline_format: true
       #else
         text_box so_text, at: [_i(0.5), _i(10.75)], width: _i(3), height: _i(0.6), inline_format: true
-        text_box so_text, at: [_i(8.25), _i(10.75)], width: _i(2.3), height: _i(0.6), rotate: 270, align: :center, inline_format: true, overflow: :shrink_to_fit
+        text_box so_text, at: [_i(8.25), _i(10.5)], width: _i(2.05), height: _i(0.6), rotate: 270, align: :center, inline_format: true, overflow: :shrink_to_fit
       #end
 
-      # Draw shop order barcode.
+      # Draw shop order barcodes.
       bounding_box [_i(5.58), _i(10.75)], width: _i(2.5), height: _i(0.3) do
         barcode.annotate_pdf self, height: _i(0.3)
       end
+      png_outputter = Barby::PngOutputter.new(qrcode)
+      png_outputter.height = 100
+      png_outputter.margin = 0
+      png_data = png_outputter.to_png
+      self.image StringIO.new(png_data), at: [4.83.in, 10.75.in], width: 0.46.in, height: 0.46.in
 
       #Draw text under barcode
       bounding_box [_i(0.25), _i(10.45)], width: _i(7.5), height: _i(0.2) do
