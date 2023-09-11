@@ -507,10 +507,10 @@ class SO < VarlandPdf
       self.image StringIO.new(png_data), at: [4.83.in, 10.75.in], width: 0.46.in, height: 0.46.in
 
       #Draw text under barcode
-      bounding_box [_i(0.25), _i(10.45)], width: _i(7.5), height: _i(0.2) do
-        page_header_data_box 'VMS' + @data['shopOrder'].to_s, 5.275, 0.2, 7.55, 0.2, :left
-        page_header_data_box DateTime.parse(@data['shopOrderDate']).strftime("%m/%d/%y") + ' ' +  @data['timeReceived'], 0, 0.2, 7.55, 0.2, :right
-      end
+      #bounding_box [_i(0.25), _i(10.45)], width: _i(7.5), height: _i(0.2) do
+      #  page_header_data_box 'VMS' + @data['shopOrder'].to_s, 5.275, 0.2, 7.55, 0.2, :left
+      #  page_header_data_box DateTime.parse(@data['shopOrderDate']).strftime("%m/%d/%y") + ' ' +  @data['timeReceived'], 0, 0.2, 7.55, 0.2, :right
+      #end
       # Draw page header box.
       bounding_box [_i(0.25), _i(10.25)], width: _i(7.5), height: _i(1.8) do
 
@@ -566,7 +566,7 @@ class SO < VarlandPdf
         page_header_text_box 'Equipment Used', 0, 1.3, 3.5
         page_header_text_box 'Part Name & Information', 3.5, 1.3, 2.5
         page_header_text_box 'Customer PO #', 6, 1.3, 1.5
-        page_header_text_box 'Shop Order Date', 0, 0.5, 1.25
+        page_header_text_box 'Receipt Date', 0, 0.5, 1.25
         #page_header_text_box 'Promise Date', 1.25, 0.5, 1.25
         page_header_text_box 'Pounds', 1.25, 0.5, 1.4
         page_header_text_box 'Pieces', 2.65, 0.5, 1.4
