@@ -436,7 +436,7 @@ class SO < VarlandPdf
 
     # Configure shop order barcode.
     barcode = Barby::Code39.new @data['shopOrder'].to_s.rjust(10)
-    qrcode = Barby::QrCode.new @data['shopOrder'].to_s
+    qrcode = Barby::QrCode.new @data['shopOrder'].to_s, level: :q, size: 5
 
     # Print header on every page.
     repeat :all do
@@ -501,7 +501,9 @@ class SO < VarlandPdf
         barcode.annotate_pdf self, height: _i(0.3)
       end
       png_outputter = Barby::PngOutputter.new(qrcode)
-      png_outputter.height = 100
+      #png_outputter.height = 300
+      png_outputter.xdim = 5
+      #png_outputter.ydim = 5
       png_outputter.margin = 0
       png_data = png_outputter.to_png
       self.image StringIO.new(png_data), at: [4.83.in, 10.75.in], width: 0.46.in, height: 0.46.in
