@@ -443,7 +443,7 @@ class SO < VarlandPdf
 
       # Print special barrel designation for HIL jobs in Dept. 5.
       if @data["customerCode"] == "HIL" && (@data["accountNumbers"].include?("505.50") || @data["accountNumbers"].include?("505.57"))
-        cubic = @data["pounds"].to_f / @data["poundsPerFt3"].to_f
+        cubic = @data["hilLoadSize"].to_f # @data["pounds"].to_f / @data["poundsPerFt3"].to_f
         hilbbl = "XXX"
         if cubic >= 0.5
           hilbbl = "LG"
@@ -459,9 +459,9 @@ class SO < VarlandPdf
         self.fill_color("000000")
       end
 
-      # Print special barrel designation for HIL jobs in Dept. 5.
+      # Print special barrel designation for HIL jobs in Dept. 3.
       if @data["customerCode"] == "HIL" && @data["accountNumbers"].include?("503.57")
-        cubic = @data["pounds"].to_f / @data["poundsPerFt3"].to_f
+        cubic = @data["hilLoadSize"].to_f # @data["pounds"].to_f / @data["poundsPerFt3"].to_f
         hilbbl = ""
         if cubic >= 0.35
           hilbbl = "LG"
